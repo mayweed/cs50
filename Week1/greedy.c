@@ -1,3 +1,5 @@
+//more complete: gcc -Wall -ggdb -I/usr/local/include -L/usr/local/lib
+//-lcs50 -lcrypt -lm
 #include<stdio.h>
 #include<math.h>
 #include<cs50.h>
