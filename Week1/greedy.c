@@ -2,7 +2,7 @@
 #include<math.h>
 #include<cs50.h>
 
-int convert (double change)
+int convert (int change)
 {
     int quarter,dime,nickel,penny=0;
     while (change > 0){
@@ -30,7 +30,8 @@ int main(void)
 {
     printf("O hai!  How much change is owed?\n");
     float sum=GetFloat();
-    double change=round(sum*100);
+    int change=round(sum*100);
+    printf("Change due:%d\n",change);
     convert(change);
 }
 
