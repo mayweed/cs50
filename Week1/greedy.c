@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<cs50.h>
 
-int convert (int change)
+int convert (double change)
 {
     int quarter,dime,nickel,penny=0;
     while (change > 0){
@@ -21,14 +21,15 @@ int convert (int change)
             change -=1;
             penny+=1;
 	}
+    }
         printf ("Number of coins=%d",quarter+dime+nickel+penny);
 }
 
 int main(void)
 {
-    printf("O hai!  How much change is owed?");
+    printf("O hai!  How much change is owed?\n");
     float sum=GetFloat();
-    int change=sum*100;
+    double change=round(sum*100);
     convert(change);
 }
 
