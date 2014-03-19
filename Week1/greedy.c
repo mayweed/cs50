@@ -41,17 +41,18 @@ int convert (int change)
 int main(void)
 {
     printf("O hai!  How much change is owed?\n");
-    //float amount=GetFloat();
 
-    if (amount < 0);{
+    float amount=GetFloat();
+    while (amount < 0){
         printf("Retry and be positive please:");
-    } 
-    else if (amount > 0){
-       float amount=GetFloat();
+        float amount=GetFloat();
+            if (amount > 0){
+                int change=round(amount*100);
+                printf("Change due:%i\n",change);
+                convert(change);
+            }
+            break;
     }
-
-    int change=round(amount*100);
-    printf("Change due:%i\n",change);
-    convert(change);
+    return 0;
 }
 
