@@ -6,34 +6,36 @@
 int convert (int change)
 {
     int quarter=0;
-    int remainder = change - 25;
+    int dime=0;
+    int nickel=0;
+    int penny=0;
 
-    if (remainder > 25){
-	    remainder -= 25;
+    while (change >= 25){
+	    change -= 25;
 	    quarter += 1; 
     }
 
-    //else if (remainder > 10 && remainder < 25){
-      // while (remainder > 10 && remainder < 25){
-	   // remainder -= 10;
-     //   dime +=1;
-	//}
-    //}
-    //else if (remainder > 5 && remainder < 10){
-      // while (remainder > 5 && remainder < 10){
-	    //remainder -= 5;
-	    //nickel +=1;
-	//}
-    //}
-    //else if (remainder < 5 && remainder > 0){
-    //   while (remainder < 5 && remainder > 1){
-    //    change -=1;
-    //    penny+=1;
-	//}
-    //}
-       // printf ("Number of coins=%d\n",quarter+dime+nickel+penny);
-    printf("Remainder => %i\n",remainder);
+    while (change <= 25 && change >= 10){
+         change -=10;
+         dime += 1;
+    }
+
+    while (change <= 10 && change >= 5){
+         change -= 5;
+         nickel += 1;
+    }
+
+    while (change <= 5 && change > 0){
+         change -= 1;
+         penny +=1;
+    }
+    // Testing purpose
+    //printf("Reste => %i\n",change);
     printf("Quarter => %i\n",quarter);
+    printf("Dime => %i\n",dime);
+    printf("Nickel => %i\n",nickel);
+    printf("Penny => %i\n",penny);
+    printf ("Number of coins=%d\n",quarter+dime+nickel+penny);
 }
 
 int main(void)
