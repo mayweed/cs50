@@ -29,30 +29,28 @@ int convert (int change)
          change -= 1;
          penny +=1;
     }
-    // Testing purpose
-    //printf("Reste => %i\n",change);
     printf("Quarter => %i\n",quarter);
     printf("Dime => %i\n",dime);
     printf("Nickel => %i\n",nickel);
     printf("Penny => %i\n",penny);
     printf ("Number of coins=%d\n",quarter+dime+nickel+penny);
+    return 0;
 }
 
 int main(void)
 {
     printf("O hai!  How much change is owed?\n");
+    float amount=0;
 
-    float amount=GetFloat();
-    while (amount < 0){
-        printf("Retry and be positive please:");
-        float amount=GetFloat();
-            if (amount > 0){
-                int change=round(amount*100);
-                printf("Change due:%i\n",change);
-                convert(change);
-            }
+    while (true) {
+        if ((amount=GetFloat()) < 0){
+            printf("Retry and be positive please:");
+            continue;
+        } 
+        else
             break;
     }
+    int change=round(amount*100);
+    convert(change);
     return 0;
 }
-
