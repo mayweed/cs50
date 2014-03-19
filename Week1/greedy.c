@@ -43,7 +43,7 @@ int main(void)
     float amount=0;
 
     while (true) {
-        if ((amount=GetFloat()) < 0){
+        if((amount=GetFloat()) < 0){
             printf("Retry and be positive please:");
             continue;
         } 
