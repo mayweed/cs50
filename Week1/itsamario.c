@@ -20,6 +20,7 @@ int pyramide (int height)
            sharp +=1;
            printf ("\n");
         }
+    return 0;
 }
 
 
@@ -33,5 +34,6 @@ int main (void)
         height=GetInt();
     }
     pyramide (height);
+    return 0;
 }
 
