@@ -7,7 +7,7 @@
 int pyramide (int height)
 {
     int i, j,whitespace,sharp;
-    whitespace=height;
+    whitespace=height -1;
     sharp=1;
     
     for (i=0; i < height; i++)
