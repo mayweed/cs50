@@ -29,11 +29,13 @@ int convert (int change)
          change -= 1;
          penny +=1;
     }
-    printf("Quarter => %i\n",quarter);
-    printf("Dime => %i\n",dime);
-    printf("Nickel => %i\n",nickel);
-    printf("Penny => %i\n",penny);
-    printf ("Number of coins = %d\n",quarter+dime+nickel+penny);
+    //Testing purpose...
+    //printf("Quarter => %i\n",quarter);
+    //printf("Dime => %i\n",dime);
+    //printf("Nickel => %i\n",nickel);
+    //printf("Penny => %i\n",penny);
+    //printf ("Number of coins = %d\n",quarter+dime+nickel+penny);
+    printf ("%d\n",quarter + dime + nickel + penny);
     return 0;
 }
 
