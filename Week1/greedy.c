@@ -33,7 +33,7 @@ int convert (int change)
     printf("Dime => %i\n",dime);
     printf("Nickel => %i\n",nickel);
     printf("Penny => %i\n",penny);
-    printf ("Number of coins=%d\n",quarter+dime+nickel+penny);
+    printf ("Number of coins = %d\n",quarter+dime+nickel+penny);
     return 0;
 }
 
