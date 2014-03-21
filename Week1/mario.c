@@ -26,13 +26,16 @@ int pyramide (int height)
 
 int main (void)
 {
-    int height=0;
-    while ((height <= 0 ) || (height > 23))
+    printf("Height:");
+    int height=GetInt();
+
+    while ((height < 0 ) || (height > 23))
     {
         printf("Height:");
         //if it's not an int GetInt() will prompt a retry...
         height=GetInt();
     }
+
     pyramide (height);
     return 0;
 }
