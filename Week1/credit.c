@@ -31,9 +31,9 @@ int main(void)
 
     for (int i=0; i < card_number_length; i++){
        if (i%2==0)
-          sum_even+=(card_numbers[i] * 2);
+          sum_even+=card_numbers[i];
        else if (i%2!=0)
-          sum_uneven+=card_numbers[i];
+          sum_uneven+=(card_numbers[i] * 2);
 
     //Testing purpose
     printf("Sum Uneven %i\n",sum_uneven);
