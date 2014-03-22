@@ -28,7 +28,9 @@ int main(void)
     card_numbers[card_number_length]=arrayize(s);
     int sum_uneven=0;
     int sum_even=0;
-
+    
+    // we should add the Product digit NOT the product itself!!!
+    // Here is my 'bug'
     for (int i=0; i < card_number_length; i++){
        if (i%2==0)
           sum_even+=card_numbers[i];
@@ -44,6 +46,4 @@ int main(void)
     printf("Sum Uneven %i\n",sum_uneven);
     printf("Sum Even %i\n",sum_even);
     printf("Total Sum %i\n",sum_uneven + sum_even);
-         
 }
-
