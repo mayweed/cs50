@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<string.h>
+#include<ctype.h>
 #include<cs50.h>
 
 #define MAX_CARD 16
@@ -24,7 +25,7 @@ long long int arrayize(long long int s)
     while (s > 0){
         card_numbers[i]=s%10;
         // Make it less verbose for a while
-        //printf("Number[%d]:%lli\n",i,card_numbers[i]);
+        printf("Number[%d]:%lli\n",i,card_numbers[i]);
         s/=10;
         i+=1;
         }
@@ -55,7 +56,8 @@ int main(void)
 
     card_numbers[card_number_length]=arrayize(s);
     //card number length is a mistake here or not in fact...
-    int uneven_array[card_number_length];
+    //int uneven_array[card_number_length];
+    int sum_uneven=0;
     int sum_even=0;
     
     // we should add the Product digit NOT the product itself!!!
@@ -63,9 +65,11 @@ int main(void)
     for (int i=0; i < card_number_length; i++){
        if (i%2==0)
           sum_even+=card_numbers[i];
-       else if (i%2!=0){
-          uneven_array[i]=(card_numbers[i] * 2);
-          printf("Uneven[%i]:%d\n",i,uneven_array[i]);
+       else if ((i%2!=0)&& (isdigit(card_numbers[13])!=0)){
+          sum_uneven+=(card_numbers[13] * 2);
+          //uneven_array[i]=(card_numbers[i] * 2);
+          //printf("Uneven[%i]:%d\n",i,uneven_array[i]);
+//          printf("Sum uneven:%d\n",sum_uneven); 
        }
 
     //Testing purpose
@@ -73,7 +77,7 @@ int main(void)
     //printf("Sum Even %i\n",sum_even);
     //printf("\n");
     }
-    //printf("Sum Uneven %i\n",sum_uneven);
+    printf("Sum Uneven %i\n",sum_uneven);
     printf("Sum Even %i\n",sum_even);
     //printf("Total Sum %i\n",sum_uneven + sum_even);
 }
