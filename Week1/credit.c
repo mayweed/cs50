@@ -14,7 +14,8 @@ int length(long long int s)
         s/=10;
         counter += 1;
     }
-    printf("Counter:%i\n", counter);
+    // Testing purpose
+    //printf("Counter:%i\n", counter);
     return counter;
 }
 long long int arrayize(long long int s)
@@ -22,7 +23,8 @@ long long int arrayize(long long int s)
     int i = 0;
     while (s > 0){
         card_numbers[i]=s%10;
-        printf("Number[%d]:%lli\n",i,card_numbers[i]);
+        // Make it less verbose for a while
+        //printf("Number[%d]:%lli\n",i,card_numbers[i]);
         s/=10;
         i+=1;
         }
@@ -34,10 +36,26 @@ long long int arrayize(long long int s)
 int main(void)
 {
     printf("Number:");
+    // Test number: 378282246310005
     long long int s= GetLongLong();
-    length(s);
+
+    // Rework on that later on... 
+    //    float amount=0;
+    //while (true) {
+    //    if((amount=GetFloat()) < 0){
+    //        printf("Retry and be positive please:");
+    //        continue;
+    //    } 
+    //    else
+    //        break;
+    //}
+    // if ( length(s) < 13 || length(s) > 16){
+    //         printf("Number:");
+    // }
+
     card_numbers[card_number_length]=arrayize(s);
-    int sum_uneven=0;
+    //card number length is a mistake here or not in fact...
+    int uneven_array[card_number_length];
     int sum_even=0;
     
     // we should add the Product digit NOT the product itself!!!
@@ -45,16 +63,17 @@ int main(void)
     for (int i=0; i < card_number_length; i++){
        if (i%2==0)
           sum_even+=card_numbers[i];
-       else if (i%2!=0)
-          sum_uneven+=(card_numbers[i] * 2);
+       else if (i%2!=0){
+          uneven_array[i]=(card_numbers[i] * 2);
+          printf("Uneven[%i]:%d\n",i,uneven_array[i]);
+       }
 
     //Testing purpose
-    printf("Sum Uneven %i\n",sum_uneven);
-    printf("Sum Even %i\n",sum_even);
-    printf("\n");
+    //printf("Sum Uneven %i\n",sum_uneven);
+    //printf("Sum Even %i\n",sum_even);
+    //printf("\n");
     }
-        //printf("Test uneven: Number[%i]:%lli\n",i,card_numbers[i]); 
-    printf("Sum Uneven %i\n",sum_uneven);
+    //printf("Sum Uneven %i\n",sum_uneven);
     printf("Sum Even %i\n",sum_even);
-    printf("Total Sum %i\n",sum_uneven + sum_even);
+    //printf("Total Sum %i\n",sum_uneven + sum_even);
 }
