@@ -7,6 +7,16 @@
 int card_number_length;
 long long int card_numbers[MAX_CARD];
 
+int length(long long int s)
+{
+    int counter=0;
+    while (s > 0){
+        s/=10;
+        counter += 1;
+    }
+    printf("Counter:%i\n", counter);
+    return counter;
+}
 long long int arrayize(long long int s)
 {
     int i = 0;
@@ -25,6 +35,7 @@ int main(void)
 {
     printf("Number:");
     long long int s= GetLongLong();
+    length(s);
     card_numbers[card_number_length]=arrayize(s);
     int sum_uneven=0;
     int sum_even=0;
