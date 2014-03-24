@@ -54,6 +54,7 @@ long long int arrayize(long long int s)
 
 int main(void)
 {
+    //TODO:Copy/paste is bad, use do/while instead!!
     printf("Number:");
     // Test number: 378282246310005
     long long int s= GetLongLong();
