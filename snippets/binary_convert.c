@@ -33,6 +33,10 @@ int main(void)
 {
     printf("Decimal:");
     int decimal=GetInt();
+    // cant get it work with std function...
+    // One day maybe...
+    //int decimal=0;
+    //while ((decimal=getchar()) != '\n')
     binary(decimal);
 }
 
