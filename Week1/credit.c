@@ -22,6 +22,7 @@ int check_card(int x, int y)
     int sum= x+y;
     int first_number=card_numbers[card_number_length-1];
 
+    // TODO:add some test for the second number
     if (((sum%10) == 0) && (first_number==3))
             printf("AMEX\n");
     else if (((sum%10) == 0) && (first_number==4))
