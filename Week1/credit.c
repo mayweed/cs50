@@ -19,17 +19,40 @@ int length(long long int s)
     //printf("Counter:%i\n", counter);
     return counter;
 }
+
+int add_number(int s)
+{
+    int sum=0;
+    while (s > 0){
+        sum+=s%10;
+        s/=10;
+    }
+    return sum;
+}
+
+int check_card(int x, int y)
+{
+    int sum= x+y;
+
+    if ((sum%10) == 0)
+        printf("Carte Valide\n");
+    else
+        printf("INVALID\n");
+
+    return 0;
+}
+
+
 long long int arrayize(long long int s)
 {
     int i = 0;
     while (s > 0){
         card_numbers[i]=s%10;
-        // Make it less verbose for a while
-        printf("Number[%d]:%lli\n",i,card_numbers[i]);
+        //Testing purpose 
+        //printf("Number[%d]:%lli\n",i,card_numbers[i]);
         s/=10;
         i+=1;
         }
-        // First try at fixing that fuc*** length prob
     card_number_length=i;
     return card_numbers[card_number_length];
 }
@@ -39,45 +62,25 @@ int main(void)
     printf("Number:");
     // Test number: 378282246310005
     long long int s= GetLongLong();
-
-    // Rework on that later on... 
-    //    float amount=0;
-    //while (true) {
-    //    if((amount=GetFloat()) < 0){
-    //        printf("Retry and be positive please:");
-    //        continue;
-    //    } 
-    //    else
-    //        break;
-    //}
-    // if ( length(s) < 13 || length(s) > 16){
-    //         printf("Number:");
-    // }
-
     card_numbers[card_number_length]=arrayize(s);
-    //card number length is a mistake here or not in fact...
-    //int uneven_array[card_number_length];
+    int uneven_array[card_number_length];
     int sum_uneven=0;
     int sum_even=0;
-    
-    // we should add the Product digit NOT the product itself!!!
-    // Here is my 'bug'
+
     for (int i=0; i < card_number_length; i++){
        if (i%2==0)
           sum_even+=card_numbers[i];
-       else if ((i%2!=0)&& (isdigit(card_numbers[13])!=0)){
-          sum_uneven+=(card_numbers[13] * 2);
-          //uneven_array[i]=(card_numbers[i] * 2);
+       else if (i%2!=0){
+          uneven_array[i]=(card_numbers[i] * 2);
+          // Testing purpose
           //printf("Uneven[%i]:%d\n",i,uneven_array[i]);
-//          printf("Sum uneven:%d\n",sum_uneven); 
-       }
+          sum_uneven+=add_number(uneven_array[i]);
 
-    //Testing purpose
-    //printf("Sum Uneven %i\n",sum_uneven);
-    //printf("Sum Even %i\n",sum_even);
-    //printf("\n");
+       }
     }
+    //Testing purpose
     printf("Sum Uneven %i\n",sum_uneven);
     printf("Sum Even %i\n",sum_even);
-    //printf("Total Sum %i\n",sum_uneven + sum_even);
+    printf("Total Sum %i\n",sum_uneven + sum_even);
+    check_card(sum_uneven,sum_even);
 }
