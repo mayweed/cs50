@@ -1,24 +1,11 @@
 #include<stdio.h>
 #include<string.h>
-#include<ctype.h>
 #include<cs50.h>
 
 #define MAX_CARD 16
 
 int card_number_length;
 long long int card_numbers[MAX_CARD];
-
-int length(long long int s)
-{
-    int counter=0;
-    while (s > 0){
-        s/=10;
-        counter += 1;
-    }
-    // Testing purpose
-    //printf("Counter:%i\n", counter);
-    return counter;
-}
 
 int add_number(int s)
 {
@@ -54,6 +41,8 @@ long long int arrayize(long long int s)
         i+=1;
         }
     card_number_length=i;
+    //Testing purpose
+    printf("Card length=%i\n",card_number_length);
     return card_numbers[card_number_length];
 }
 
@@ -63,6 +52,23 @@ int main(void)
     // Test number: 378282246310005
     long long int s= GetLongLong();
     card_numbers[card_number_length]=arrayize(s);
+
+    while((card_number_length < 13) || (card_number_length > 16)){
+        printf("INVALID\n");
+        printf("Number:");
+        long long int s= GetLongLong();
+        card_numbers[card_number_length]=arrayize(s);
+        continue;
+    }
+    // Need to check the first digit (last card_number_length) to guess
+    // which card it is:
+    // AMEX starts with 3
+    // MASTERCARD with 5
+    // VISA with 4
+
+    int first_number=card_numbers[card_number_length-1];
+    //switch (first_number)
+        //...
     int uneven_array[card_number_length];
     int sum_uneven=0;
     int sum_even=0;
@@ -75,10 +81,10 @@ int main(void)
           // Testing purpose
           //printf("Uneven[%i]:%d\n",i,uneven_array[i]);
           sum_uneven+=add_number(uneven_array[i]);
-
-       }
+        }
     }
     //Testing purpose
+    printf("First number %i\n",first_number);
     printf("Sum Uneven %i\n",sum_uneven);
     printf("Sum Even %i\n",sum_even);
     printf("Total Sum %i\n",sum_uneven + sum_even);
