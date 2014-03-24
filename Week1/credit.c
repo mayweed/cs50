@@ -47,7 +47,7 @@ long long int arrayize(long long int s)
         }
     card_number_length=i;
     //Testing purpose
-    printf("Card length=%i\n",card_number_length);
+    //printf("Card length=%i\n",card_number_length);
     return card_numbers[card_number_length];
 }
 
