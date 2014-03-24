@@ -20,9 +20,14 @@ int add_number(int s)
 int check_card(int x, int y)
 {
     int sum= x+y;
+    int first_number=card_numbers[card_number_length-1];
 
-    if ((sum%10) == 0)
-        printf("Carte Valide\n");
+    if (((sum%10) == 0) && (first_number==3))
+            printf("AMEX\n");
+    else if (((sum%10) == 0) && (first_number==4))
+            printf("VISA\n");
+    else if (((sum%10) == 0) && (first_number==5))
+            printf("MASTERCARD\n");
     else
         printf("INVALID\n");
 
@@ -60,15 +65,7 @@ int main(void)
         card_numbers[card_number_length]=arrayize(s);
         continue;
     }
-    // Need to check the first digit (last card_number_length) to guess
-    // which card it is:
-    // AMEX starts with 3
-    // MASTERCARD with 5
-    // VISA with 4
 
-    int first_number=card_numbers[card_number_length-1];
-    //switch (first_number)
-        //...
     int uneven_array[card_number_length];
     int sum_uneven=0;
     int sum_even=0;
@@ -84,9 +81,9 @@ int main(void)
         }
     }
     //Testing purpose
-    printf("First number %i\n",first_number);
-    printf("Sum Uneven %i\n",sum_uneven);
-    printf("Sum Even %i\n",sum_even);
-    printf("Total Sum %i\n",sum_uneven + sum_even);
+    //printf("First number %i\n",first_number);
+    //printf("Sum Uneven %i\n",sum_uneven);
+    //printf("Sum Even %i\n",sum_even);
+    //printf("Total Sum %i\n",sum_uneven + sum_even);
     check_card(sum_uneven,sum_even);
 }
