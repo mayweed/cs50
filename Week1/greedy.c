@@ -1,4 +1,3 @@
-//gcc greedy.c -lcs50 -Wall -lm
 #include<stdio.h>
 #include<math.h>
 #include<cs50.h>
@@ -10,22 +9,22 @@ int convert (int change)
     int nickel=0;
     int penny=0;
 
-    while (change >= 25){
+    while (change >= 25) {
 	    change -= 25;
 	    quarter += 1; 
     }
 
-    while (change <= 25 && change >= 10){
+    while (change <= 25 && change >= 10) {
          change -=10;
          dime += 1;
     }
 
-    while (change <= 10 && change >= 5){
+    while (change <= 10 && change >= 5) {
          change -= 5;
          nickel += 1;
     }
 
-    while (change <= 5 && change > 0){
+    while (change <= 5 && change > 0) {
          change -= 1;
          penny +=1;
     }
@@ -45,7 +44,7 @@ int main(void)
     float amount=0;
 
     while (true) {
-        if((amount=GetFloat()) < 0){
+        if((amount=GetFloat()) < 0) {
             printf("Retry and be positive please:");
             continue;
         } 

@@ -24,14 +24,13 @@ int check_card(int x, int y)
 
     // TODO:add some test for the second number
     if (((sum%10) == 0) && (first_number==3))
-            printf("AMEX\n");
+        printf("AMEX\n");
     else if (((sum%10) == 0) && (first_number==4))
-            printf("VISA\n");
+        printf("VISA\n");
     else if (((sum%10) == 0) && (first_number==5))
-            printf("MASTERCARD\n");
+        printf("MASTERCARD\n");
     else
         printf("INVALID\n");
-
     return 0;
 }
 
@@ -39,7 +38,7 @@ int check_card(int x, int y)
 long long int arrayize(long long int s)
 {
     int i = 0;
-    while (s > 0){
+    while (s > 0) {
         card_numbers[i]=s%10;
         //Testing purpose 
         //printf("Number[%d]:%lli\n",i,card_numbers[i]);
@@ -60,7 +59,7 @@ int main(void)
     long long int s= GetLongLong();
     card_numbers[card_number_length]=arrayize(s);
 
-    while((card_number_length < 13) || (card_number_length > 16)){
+    while((card_number_length < 13) || (card_number_length > 16)) {
         printf("INVALID\n");
         printf("Number:");
         long long int s= GetLongLong();
@@ -72,7 +71,7 @@ int main(void)
     int sum_uneven=0;
     int sum_even=0;
 
-    for (int i=0; i < card_number_length; i++){
+    for (int i=0; i < card_number_length; i++) {
        if (i%2==0)
           sum_even+=card_numbers[i];
        else if (i%2!=0){
