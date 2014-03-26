@@ -4,14 +4,11 @@
 
 
 int main(int argc, string argv[])
-//int main (void)
 {
-    //TEST
-    //initialiser un tableau alphabetique pour les minuscules via ascii
+    string key = argv[1];
+    int key = atoi(argv[1]); 
+
     char alphabet[26];
-    //int key = atoi(argv[1]); 
-    //Reessayer pour les majuscules avec une double boucle for...
-    //Be consistent: i for lowercase, y for uppercase
     int i=1;
     for(int a='a';a<='z';a++) {
        alphabet[i]=a;
@@ -29,11 +26,11 @@ int main(int argc, string argv[])
        y+=1;
        }
 
-
-    //Boucle pour trouver la position d'une lettre.
-    // Testing purpose
-    printf("Une lettre:");
-    char a = GetChar();
+    printf("Please give me a sentence to encrypt:");
+    string a = GetString();
+    
+    // Need to factor out the encrypt function
+    // Input: the given letter / Output: the encrypted given letter
     int found_letter=0;
     for (int i = 1; i < 26; i++) {
         if (alphabet[i]==a){
@@ -51,8 +48,8 @@ int main(int argc, string argv[])
     }
 
     //Testing purpose
-    printf("Key:");
-    int key=GetInt();
+    //printf("Key:");
+    //int key=GetInt();
     int cipher=(found_letter+key) % 26;
     int cipher_maj=(found_letter_maj+key) % 26;
     
