@@ -5,8 +5,9 @@
 
 int main(int argc, string argv[])
 {
-    //string key = argv[1];
-    //int key = atoi(argv[1]); 
+    //DOES NOT WORk!!!
+    int key = atoi(argv[1]); 
+    printf("Key: %i\n",key);
 
     char alphabet[26];
     int i=1;
@@ -51,8 +52,8 @@ int main(int argc, string argv[])
     }
 
     //Testing purpose
-    printf("Key:");
-    int key=GetInt();
+    //printf("Key:");
+    //int key=GetInt();
     int cipher=(found_letter+key) % 26;
     int cipher_maj=(found_letter_maj+key) % 26;
     
