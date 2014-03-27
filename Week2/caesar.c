@@ -1,13 +1,24 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<ctype.h>
 #include<cs50.h>
+
 
 
 int main(int argc, string argv[])
 {
     //DOES NOT WORk!!!
-    int key = atoi(argv[1]); 
-    printf("Key: %i\n",key);
+    //int key = atoi(argv[1]); 
+    if(argc !=2) {
+            printf ("You must pass one and only one argument\n");
+            return 1;
+    }
+
+    int key=atoi(string argv[1]);
+    //printf("Key: %i\n",key);
+   
+    //if ((isdigit(key)) == 0)
+    //   printf ("Key NOT a digit\n");
 
     char alphabet[26];
     int i=1;
@@ -52,22 +63,25 @@ int main(int argc, string argv[])
     }
 
     //Testing purpose
+    //Why does it work in here and NOT with atoi?
     //printf("Key:");
     //int key=GetInt();
-    printf("Found letter:%i\n",found_letter);
+    printf("Found letter:%i + %i = %i\n",found_letter,key,found_letter+key);
     //BING PROBLEM with found=2 and key=2 yields 124!!!
-    //Pourquoi???
-    printf("Found letter maj: %i\n",found_letter_maj+key);
+    //Key = 122 Pourquoi???
+    printf("Found letter maj: %d + %d = %d\n",found_letter_maj,key,found_letter_maj + key);
 
-    int cipher=(found_letter+key) % 26;
-    int cipher_maj=(found_letter_maj+key) % 26;
+    //if (found_letter != 0)
+    int cipher=(found_letter + key) % 26;
+    //else if (found_letter_maj != 0)
+    int cipher_maj=(found_letter_maj + key) % 26;
     
     //Need to rework on that so that when it's uppercase
     //only the uppercase is displayed and vice-versa
     for (int i = 1; i < 26; i++) {
         if (i == cipher && found_letter !=0)
             printf("Encrypt: %c\n", alphabet[i]);
-        else if ( i == cipher_maj)
+        else if ( i == cipher_maj && found_letter_maj != 0)
             printf("Encrypt: %c\n", AlphaBetMaj[i]);
     }
 }
