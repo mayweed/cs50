@@ -5,8 +5,8 @@
 
 int main(int argc, string argv[])
 {
-    string key = argv[1];
-    int key = atoi(argv[1]); 
+    //string key = argv[1];
+    //int key = atoi(argv[1]); 
 
     char alphabet[26];
     int i=1;
@@ -26,11 +26,14 @@ int main(int argc, string argv[])
        y+=1;
        }
 
-    printf("Please give me a sentence to encrypt:");
-    string a = GetString();
+    //printf("Please give me a sentence to encrypt:");
+    //string a = GetString();
     
     // Need to factor out the encrypt function
     // Input: the given letter / Output: the encrypted given letter
+    // Testing purpose
+    printf("Lettre:");
+    char a=GetChar();
     int found_letter=0;
     for (int i = 1; i < 26; i++) {
         if (alphabet[i]==a){
@@ -48,8 +51,8 @@ int main(int argc, string argv[])
     }
 
     //Testing purpose
-    //printf("Key:");
-    //int key=GetInt();
+    printf("Key:");
+    int key=GetInt();
     int cipher=(found_letter+key) % 26;
     int cipher_maj=(found_letter_maj+key) % 26;
     
