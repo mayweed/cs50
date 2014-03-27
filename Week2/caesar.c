@@ -54,6 +54,11 @@ int main(int argc, string argv[])
     //Testing purpose
     //printf("Key:");
     //int key=GetInt();
+    printf("Found letter:%i\n",found_letter);
+    //BING PROBLEM with found=2 and key=2 yields 124!!!
+    //Pourquoi???
+    printf("Found letter maj: %i\n",found_letter_maj+key);
+
     int cipher=(found_letter+key) % 26;
     int cipher_maj=(found_letter_maj+key) % 26;
     
@@ -62,7 +67,7 @@ int main(int argc, string argv[])
     for (int i = 1; i < 26; i++) {
         if (i == cipher && found_letter !=0)
             printf("Encrypt: %c\n", alphabet[i]);
-        else if ( i == cipher_maj && found_letter_maj != 0)
+        else if ( i == cipher_maj)
             printf("Encrypt: %c\n", AlphaBetMaj[i]);
     }
 }
