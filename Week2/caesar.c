@@ -7,17 +7,17 @@
 int main(int argc, string argv[])
 {
     //DOES NOT WORk!!!
-    //int key = atoi(argv[1]); 
-    //if(argc !=2) {
-    //        printf ("You must pass one and only one argument\n");
-    //        return 1;
-    //}
+    //DONT KNOW WHY!!!
+    if(argc !=2) {
+            printf ("You must pass one and only one argument\n");
+            return 1;
+    }
 
     //int key=atoi(argv[1]);
     //printf("Key: %i\n",key);
    
-    //if ((isdigit(key)) == 0)
-    //   printf ("Key NOT a digit\n");
+    if ((isdigit(key)) == 0)
+       printf ("Key NOT a digit\n");
 
     char alphabet[26];
     int i=1;
@@ -48,10 +48,11 @@ int main(int argc, string argv[])
     int found_letter=0;
     int found_letter_maj=0;
 
+    //rajouter cipher?
     if (a >= 'a' || a <='z') {
     for (int i = 1; i < 26; i++) {
         if (alphabet[i]==a){
-            printf("trouvé %i\n",i);
+            printf("trouvé minuscule %i\n",i);
             found_letter=i;
         }
     }
@@ -60,7 +61,7 @@ int main(int argc, string argv[])
     else if (a >='A' || a <='Z'){
     for (int y = 1; y < 26; y++) {
         if (AlphaBetMaj[y]==a){
-            printf("trouvé %i\n",y);
+            printf("trouvé majuscule %i\n",y);
             found_letter_maj=y;
         }
     }
@@ -68,8 +69,11 @@ int main(int argc, string argv[])
 
     //Testing purpose
     //Why does it work in here and NOT with atoi?
-    printf("Key:");
-    int key=GetInt();
+    //printf("Key:");
+    //int key=GetInt();
+    int key=atoi(argv[1]);
+    printf("Key: %i\n",key);
+
     printf("Found letter:%i + %i = %i\n",found_letter,key,found_letter+key);
     //BING PROBLEM with found=2 and key=2 yields 124!!!
     //Key = 122 Pourquoi???
