@@ -60,12 +60,6 @@ int main(int argc, const string argv[])
             found_letter_maj=y;
         }
    } 
-    //else if (!(isdigit(argv[1]))){
-    //    key= (int) argv[1] -'0';
-    //    printf("Key 2:%i\n",key);
-    //}
-    //int key=atoi(argv[1]);
-    // With ATOI, core dumped!!
 
     // Yesterday at midnight it works?
     long int key= strtol(argv[1], NULL,10);
