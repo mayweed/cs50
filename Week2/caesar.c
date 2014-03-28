@@ -47,14 +47,9 @@ int main(int argc, string argv[])
         }
     }
 
-    //Testing purpose
-    //printf("Key:");
-    //int key=GetInt();
     int cipher=(found_letter+key) % 26;
     int cipher_maj=(found_letter_maj+key) % 26;
     
-    //Need to rework on that so that when it's uppercase
-    //only the uppercase is displayed and vice-versa
     for (int i = 1; i < 26; i++) {
         if (i == cipher && found_letter !=0)
             printf("Encrypt: %c\n", alphabet[i]);
