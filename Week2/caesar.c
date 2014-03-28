@@ -54,11 +54,7 @@ int main(int argc, string argv[])
         }
     }
     
-    // Those two do not work..
-    //printf("Found letter %i\n",found_letter);
-    //}
     //long key=strtol (argv[1],NULL,10);
-
     //int key=atoi(argv[1]);
     // With ATOI, core dumped!!
     printf("Key:");
@@ -78,7 +74,5 @@ int main(int argc, string argv[])
             printf("Encrypt: %c\n", AlphaBetMaj[i]);
             printf("Found letter maj: %d + %d = %d\n",found_letter_maj,key,found_letter_maj + key);
         }
-    //BING PROBLEM with found=2 and key=2 yields 124!!!
-    //Key = 122 Pourquoi???
     } 
 }
