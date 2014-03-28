@@ -56,10 +56,11 @@ int main(int argc, string argv[])
     
     //long key=strtol (argv[1],NULL,10);
     //int key=atoi(argv[1]);
+    //int key=atoi(argv[1] - '0');
     // With ATOI, core dumped!!
     printf("Key:");
     int key=GetInt();
-
+    
     int cipher=(found_letter + key) % 26;
     int cipher_maj=(found_letter_maj + key) % 26;
     
