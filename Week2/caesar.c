@@ -4,14 +4,19 @@
 #include<cs50.h>
 
     
-int main(int argc, const string argv[])
+int main(int argc, string argv[])
 {
 
     //DOES NOT WORk!!!
     //DONT KNOW WHY!!!
     //long int key=0;
+    
+    // Char Input
+    printf("Letter:");
+    char my_letter=GetChar();
 
-    if(argc > 2) {
+    if(argc > 2 || argc < 2 ) {
+            printf("Argc:%d\n",argc);
             printf ("You must pass one and only one argument\n");
             return 1;
     }
@@ -41,10 +46,7 @@ int main(int argc, const string argv[])
        y+=1;
        }
 
-    // Char Input
-    printf("Letter:");
-    char my_letter=GetChar();
-  
+      
     // Recherche séquentielle dans les alphabets
     int found_letter=0;
     for ( i = 1; i <= 26; i++) {
@@ -62,6 +64,7 @@ int main(int argc, const string argv[])
    } 
 
     // Yesterday at midnight it works?
+    // Need to factor this out!!!
     long int key= strtol(argv[1], NULL,10);
    
     int cipher=(found_letter + key) % 26;
