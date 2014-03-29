@@ -67,7 +67,8 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    // Char Input
+    // TODO Char Input, first a char, then will be time to tune that for an 
+    // array of char (a string yes ;)
     printf("Letter:");
     char letter=GetChar();
     if (islower(letter)) {
