@@ -20,17 +20,14 @@ int find_letter_min(char letter)
 
     for(int a='a';a<='z';a++) {
         alphabet[i]=a;
-        //Testing purpose
-        //printf("Prems lettre:%i %c\n",i,alphabet[i]);   
         i+=1;
-        }
+    }
 
     for ( i = 1; i <= 26; i++) {
        if (alphabet[i]==letter) {
-           //printf("trouve minuscule %i\n",i);
-           found_letter=i;
+          found_letter=i;
        }
-       }
+    }
     return found_letter;
 }
 
@@ -41,18 +38,14 @@ int find_letter_maj(char letter)
 
     for(int a='A';a<='Z';a++) {
         AlphaBetMaj[y]=a;
-        //Testing purpose
-        //printf("Prems lettre:%i %c\n",y,AlphaBetMaj[y]);   
         y+=1;
-        }
+    }
     
     for ( y = 1; y <= 26; y++) {
        if (AlphaBetMaj[y]==letter) {
-          //Testing purpose
-          // printf("trouvé majuscule %i\n",y);
           found_letter_maj=y;
        }
-       } 
+    } 
     return found_letter_maj;
 }
 
@@ -63,15 +56,11 @@ char encrypt(int cipher)
     for (int i = 1; i < 26; i++) {
         if (i == cipher && found_letter !=0){
            printf("%c", alphabet[i]);
-           //printf("Encrypt: %c\n", alphabet[i]);
-           //printf("Found letter:%i + %li = %li\n",found_letter,key,found_letter+key);
            }
         else if ( i == cipher && found_letter_maj !=0) {
            printf("%c", AlphaBetMaj[i]);
-           //printf("Encrypt: %c\n", AlphaBetMaj[i]);
-           //printf("Found letter maj: %d + %ld = %ld\n",found_letter_maj,key,found_letter_maj + key);
            }
-        } 
+    } 
     return 0;
 }
 
@@ -83,10 +72,6 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    // TODO Char Input, first a char, then will be time to tune that for an 
-    // array of char (a string yes ;)
-    //printf("Letter:");
-    //char letter=GetChar();
     printf("Please give me a string:");
     string p = GetString();
     long int key= strtol(argv[1], NULL,10);
@@ -107,4 +92,3 @@ int main(int argc, string argv[])
     }
     printf("\n");
 }
-
