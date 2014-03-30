@@ -38,6 +38,7 @@ int find_letter_maj(char letter)
 
     for(int a='A';a<='Z';a++) {
         AlphaBetMaj[y]=a;
+        //printf("letter %c\n", AlphaBetMaj[y]);
         y+=1;
     }
     
@@ -47,21 +48,6 @@ int find_letter_maj(char letter)
        }
     } 
     return found_letter_maj;
-}
-
-// Prend en argument cipher, parcourt les tableaux et renvoie le
-// caractère encrypté
-char encrypt(int cipher)
-{
-    for (int i = 1; i < 26; i++) {
-        if (i == cipher && found_letter !=0){
-           printf("%c", alphabet[i]);
-           }
-        else if ( i == cipher && found_letter_maj !=0) {
-           printf("%c", AlphaBetMaj[i]);
-           }
-    } 
-    return 0;
 }
 
 int main(int argc, string argv[])
@@ -80,15 +66,20 @@ int main(int argc, string argv[])
         if (islower(p[i])) {
             find_letter_min(p[i]);
             int cipher=(found_letter + key) % 26;
-            encrypt(cipher);
+            for (int i = 1; i < 26; i++) {
+                if (i == cipher && found_letter !=0)
+                    printf("%c", alphabet[i]);
+                }
         }
         else if (isupper(p[i])) {
             find_letter_maj(p[i]);
             int cipher_maj=(found_letter_maj + key) % 26;
-            encrypt(cipher_maj);
+            for (int i = 1; i < 26; i++) {
+                if (i == cipher_maj && found_letter_maj !=0)
+                    printf("%c", AlphaBetMaj[i]);
+                }
         }   
         else printf("%c",p[i]);
-
     }
     printf("\n");
 }
