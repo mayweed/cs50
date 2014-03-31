@@ -11,7 +11,6 @@ int found_letter = 0;
 int found_letter_maj = 0;
 int cipher=0;
 int cipher_maj=0;
-int key[0];
 
 // Cette fonction prend une lettre et retourne la position de la
 // lettre dans l'alphabet
@@ -60,16 +59,19 @@ int main(int argc, string argv[])
     }
 
     string p = argv[1];
+    printf("String key:%s\n",argv[1]);
+
     for (int i = 0, n = strlen(p); i < n; i++) {
-     for (int y = 0, n = strlen(p); y < n; y++){ 
-        if (isupper(p[i])){
-        int key[y]=found_letter(p[i]);
+        if (islower(p[i])){
+        find_letter_min(p[i]);
+        printf("Key min:%d\n",found_letter);
+
         }
-        else if (islower(p[i])){
-            key[y]=found_letter_maj(p[i]);
+        else if (isupper(p[i])){
+            find_letter_maj(p[i]);
+            printf("Key maj:%d\n",found_letter_maj);
+
         }
-        printf("Key y:%d\n",key[y]);
-    }
     }
 }
 
