@@ -67,7 +67,6 @@ int main(int argc, string argv[])
         find_letter_min(p[i]);
         key=found_letter;
         printf("Key min:%d\n",key);
-
         }
         else if (isupper(p[i])){
             find_letter_maj(p[i]);
