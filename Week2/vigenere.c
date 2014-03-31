@@ -61,15 +61,18 @@ int main(int argc, string argv[])
     string p = argv[1];
     printf("String key:%s\n",argv[1]);
 
+    int key=0;
     for (int i = 0, n = strlen(p); i < n; i++) {
         if (islower(p[i])){
         find_letter_min(p[i]);
-        printf("Key min:%d\n",found_letter);
+        key=found_letter;
+        printf("Key min:%d\n",key);
 
         }
         else if (isupper(p[i])){
             find_letter_maj(p[i]);
-            printf("Key maj:%d\n",found_letter_maj);
+            key=found_letter_maj;
+            printf("Key maj:%d\n",key);
 
         }
     }
