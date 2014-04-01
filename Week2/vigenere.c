@@ -14,7 +14,6 @@ int cipher_maj=0;
 
 // Cette fonction prend une lettre et retourne la position de la
 // lettre dans l'alphabet
-// Reecrire une seule fonction avec if/else if et islower() isupper()
 int find_letter_min(char letter)
 {
     int i=0;
@@ -91,33 +90,44 @@ int main(int argc, string argv[])
             //printf("Key:%i\n",key[y]);
     }
 
+    // Attention: quand on est arrivé au bout du keyword, il faut
+    // reprendre au début de ce même keyword pour encrypter!!
+    // et on n'encrypte que des caractères, il faut donc passer si ce
+    // n'est pas un caractères
+    //
+    // Tant que l'on n'est pas arrive au bout de n
+    // Continuer à boucler sur m 
+    // si isalpha alors encrypt isalpha
+    // sinon simplement imprimer le caractère
+
+    // Factoriser en char encrypt(char letter)
+    // Ne pas oublier la définition de key...
+    // Attention on perd m et n dans ce cas...
     int position[n];
     for (int i = 0; i < n; i++) {
         if (islower(s[i])) {
             found_letter=find_letter_min(s[i]);
             position[i]=found_letter;
-            //printf("Position:%i\n",position[i]);
+            int cipher=(position[i] + key[i]) % 26;
+        for (int i = 0; i < 25; i++) {
+            if (i == cipher && found_letter != 0)
+                printf("%c", alphabet[i]);
+            }
         }
+
         else if (isupper(s[i])) {
             found_letter=find_letter_maj(s[i]);
             position[i]=found_letter_maj;
-            //printf("Position:%i\n",position[i]);
+            int cipher=(position[i] + key[i]) % 26;
+        for (int i = 0; i < 25; i++) {
+            if (i == cipher && found_letter_maj != 0)
+                printf("%c", AlphaBetMaj[i]);
+
+            }
         }
         else
             printf("%c",s[i]);
-        }
-
-        for ( int i = 0; i < n; i++) {
-            int cipher=(position[i] + key[i]) % 26;
-            //printf("cipher /found_letter/ key: %i %i %i\n",cipher,position[i],key[i]);
-            for (int i = 0; i < 25; i++) {
-                if (i == cipher && found_letter != 0)
-                    printf("%c", alphabet[i]);
-                else if (i == cipher && found_letter_maj != 0)
-                    printf("%c", AlphaBetMaj[i]);
-
-               }
-        }
-        printf("\n");
+    }
+    printf("\n");
     
 }
