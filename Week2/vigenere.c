@@ -59,13 +59,13 @@ int find_key(char p)
         find_letter_min(p);
         key=found_letter;
         //printf("Key min:%d\n",key);
-        }
+    }
     else if (isupper(p)){
             find_letter_maj(p);
             key=found_letter_maj;
          //   printf("Key maj:%d\n",key);
+    }
 
-        }
     return key;
 }
 
@@ -84,12 +84,28 @@ int main(int argc, string argv[])
     string s=GetString();
     int n = strlen(s);
 
-    int key[m];
-    for (int y = 0; y < m; y++){ 
-            key[y]=find_key(p[y]);
-            //printf("Key:%i\n",key[y]);
+    // on remplit un tableau de longueur N avec la position
+    // des lettres du mot clé
+    // TODO: buggy compte aussi les espaces!!! Est ce vraiment
+    // important??
+    int key[n];
+    int x=0;
+    while (x < n){
+    for (int y = 0; y < m; y++){
+        key[y]=find_key(p[y]);
+        printf("Key:%i\n",key[y]);
     }
+    x+=1;
+    }
+   
 
+     //remettre y à 0 si fin de la chaine pas atteint
+     // Sauter les caractères non alphabétiques
+     //if( y == m && y < n)
+     //if (m < n && n >= m)
+     //    continue;
+     //else
+     //    break;
     // Attention: quand on est arrivé au bout du keyword, il faut
     // reprendre au début de ce même keyword pour encrypter!!
     // et on n'encrypte que des caractères, il faut donc passer si ce
@@ -125,9 +141,8 @@ int main(int argc, string argv[])
 
             }
         }
-        else
+        else //if //(!isalpha(s[i]))
             printf("%c",s[i]);
     }
     printf("\n");
-    
 }
