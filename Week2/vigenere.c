@@ -87,36 +87,44 @@ int main(int argc, string argv[])
     // TODO: buggy compte aussi les espaces!!! Est ce vraiment
     // important??
     // Correler ça à s[i]
-    int key;
-    int position=0;
-    printf("N egal: %i\n",n);
+    int key[n];
+    int x=0;
+    while (x < n) {
+    for (int y = 0; y < m; y++){ 
+            key[y]=find_key(p[y]);
+            printf("Key[%i]:%i\n",y,key[y]);
+    }
+    x+=1;
+    }
 
-    for (int i = 0; i < n; i++) {
-        if (isalpha(s[i])){
-        if (islower(s[i])) { 
-            position= find_letter_min(s[i]);
-        }
-        else if (isupper(s[i])) { 
-            position=find_letter_maj(s[i]);
-            //key=find_key(p[y]);
-            //cipher=(position + key) % 26;
-            //printf("Cipher,found letter,key: %i %i %i\n",cipher,position,key);
-        }
-        else  
+    int position[n];
+
+    for (int i= 0; i < n; i++) {
+     for (int y = 0; y < m; y++){ 
+        if (!isalpha (s[i])){
             printf("%c",s[i]);
         }
-
-    for (int y = 0; y < m; y++) {
-         key=find_key(p[y]);
-         int cipher=(position + key) % 26;
-         printf("Cipher,found letter,key: %i %i %i\n",cipher,position,key);
-        for (int i = 0; i < 25; i++) {
-         if (i == cipher && found_letter != 0)
-               printf("%c", alphabet[i]);
-         else if (i == cipher && found_letter_maj != 0)
+        else if (islower(s[i])) { 
+            position[i]= find_letter_min(s[i]);
+            key[y]=find_key(p[y]);
+            int cipher=(position[i] + key[y]) % 26;
+            printf("i,y,cipher,found letter,key:%i %i %i %i %i\n",i,y,cipher,position[i],key[y]);
+            for (int i = 0; i < 25; i++) {
+                if (i == cipher && found_letter != 0)
+                    printf("%c", alphabet[i]);
+                    }
+        }   
+        else if (isupper(s[i])) { 
+            position[i]=find_letter_maj(s[i]);
+            key[y]=find_key(p[y]);
+            int cipher=(position[i] + key[y]) % 26;
+            printf("i,y,cipher,found letter,key: %i %i %i %i %i\n",i,y,cipher,position[i],key[y]);
+            for (int i = 0; i < 25; i++) {
+               if (i == cipher && found_letter_maj != 0)
                 printf("%c", AlphaBetMaj[i]);
-         }
+                }
+            }
+        }
     printf("\n");
-    }
     }
 }
