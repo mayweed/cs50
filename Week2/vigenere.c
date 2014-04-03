@@ -84,68 +84,39 @@ int main(int argc, string argv[])
     string s=GetString();
     int n = strlen(s);
 
-         //remettre y à 0 si fin de la chaine pas atteint
-     // Sauter les caractères non alphabétiques
-     //if( y == m && y < n)
-     //if (m < n && n >= m)
-     //    continue;
-     //else
-     //    break;
-    // Attention: quand on est arrivé au bout du keyword, il faut
-    // reprendre au début de ce même keyword pour encrypter!!
-    // et on n'encrypte que des caractères, il faut donc passer si ce
-    // n'est pas un caractères
-    //
-    // Tant que l'on n'est pas arrive au bout de n
-    // Continuer à boucler sur m 
-    // si isalpha alors encrypt isalpha
-    // sinon simplement imprimer le caractère
-
-    // Ne pas oublier la définition de key...
-    // on remplit un tableau de longueur N avec la position
-    // des lettres du mot clé
     // TODO: buggy compte aussi les espaces!!! Est ce vraiment
     // important??
     // Correler ça à s[i]
-    int key[n];
-    int position[n];
+    int key;
+    int position=0;
     printf("N egal: %i\n",n);
-    int x=0;
-    while (x < n) {
-    for (int y = 0; y < m; y++) {
-        key[y]=find_key(p[y]);
-        printf("Key[%i]:%i\n",y,key[y]);
-        }
-    x+=1;
-    }
 
     for (int i = 0; i < n; i++) {
-     if (isalpha(s[i])){
-        if (islower(s[i])) {
-            found_letter=find_letter_min(s[i]);
-            position[i]=found_letter;
-            int cipher=(position[i] + key[i]) % 26;
-            printf("Cipher,position,key: %i %i %i\n",cipher,position[i],key[i]);
-        for (int i = 0; i < 25; i++) {
-            if (i == cipher && found_letter != 0)
-                printf("%c", alphabet[i]);
-            }
+        if (isalpha(s[i])){
+        if (islower(s[i])) { 
+            position= find_letter_min(s[i]);
+        }
+        else if (isupper(s[i])) { 
+            position=find_letter_maj(s[i]);
+            //key=find_key(p[y]);
+            //cipher=(position + key) % 26;
+            //printf("Cipher,found letter,key: %i %i %i\n",cipher,position,key);
+        }
+        else  
+            printf("%c",s[i]);
         }
 
-        else if (isupper(s[i])) {
-            found_letter=find_letter_maj(s[i]);
-            position[i]=found_letter_maj;
-            int cipher=(position[i] + key[i]) % 26;
-            printf("Cipher,position,key: %i %i %i\n",cipher,position[i],key[i]);
+    for (int y = 0; y < m; y++) {
+         key=find_key(p[y]);
+         int cipher=(position + key) % 26;
+         printf("Cipher,found letter,key: %i %i %i\n",cipher,position,key);
         for (int i = 0; i < 25; i++) {
-            if (i == cipher && found_letter_maj != 0)
+         if (i == cipher && found_letter != 0)
+               printf("%c", alphabet[i]);
+         else if (i == cipher && found_letter_maj != 0)
                 printf("%c", AlphaBetMaj[i]);
-            }
-          }
-        }
-     else { 
-         printf("%c",s[i]);
-     }
-    }
+         }
     printf("\n");
+    }
+    }
 }
