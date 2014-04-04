@@ -91,9 +91,9 @@ int main(int argc, string argv[])
     int x=0;
     while (x < n) {
     for (int y = 0; y < m; y++){ 
-            key[y]=find_key(p[y]);
-            printf("Key[%i]:%i\n",y,key[y]);
-    }
+        key[x]=find_key(p[y]);
+        printf("Key[%i]:%i\n",x,key[x]);
+        }
     x+=1;
     }
 
