@@ -71,60 +71,75 @@ int find_key(char p)
 
 int main(int argc, string argv[])
 {
-    if(argc > 2 || argc < 2 ) {
+    if(argc > 2 || argc < 2 )
+    {
         printf("Argc:%d\n",argc);
         printf ("You must pass one and only one argument\n");
         return 1;
     }
 
     string p = argv[1];
-    int m = strlen(p);
 
     printf("String to encrypt:");
     string s=GetString();
     int n = strlen(s);
+    printf("N egal %i\n",n);
 
-    // TODO: buggy compte aussi les espaces!!! Est ce vraiment
-    // important??
-    // Correler ça à s[i]
+    // Une partie pour remplir un tableau ==n des lettres du keyword
     int key[n];
-    int x=0;
-    while (x < n) {
-    for (int y = 0; y < m; y++){ 
-        key[x]=find_key(p[y]);
-        printf("Key[%i]:%i\n",x,key[x]);
+    int m = 0;
+    for (int x = 0; x < n; x++){ 
+        if (isalpha(p[m])){
+            key[x]=find_key(p[m]);
+            printf("Key[%i]:%i\n",x,key[x]);
+            m+=1;
+        }   
+        else if (p[m]=='\0'){
+            m=0;
+            continue;
         }
-    x+=1;
+        else{
+            printf(" Bad Keyword\n");
+            return 1;
+        }
     }
 
+    //parcourir la chaine mettre en tableau les positions des lettres
     int position[n];
-
-    for (int i= 0; i < n; i++) {
-     for (int y = 0; y < m; y++){ 
-        if (!isalpha (s[i])){
-            printf("%c",s[i]);
+    for (int y= 0; y < n; y++) {
+        if (!isalpha (s[y])){
+            continue;
         }
-        else if (islower(s[i])) { 
-            position[i]= find_letter_min(s[i]);
-            key[y]=find_key(p[y]);
-            int cipher=(position[i] + key[y]) % 26;
-            printf("i,y,cipher,found letter,key:%i %i %i %i %i\n",i,y,cipher,position[i],key[y]);
+        else if (islower(s[y])) { 
+            position[y]= find_letter_min(s[y]);
+        }   
+        else if (isupper(s[y])) { 
+            position[y]=find_letter_maj(s[y]);
+        }
+        printf("Position[%i]:%i\n",y,position[y]);
+    }
+
+    int w=0;
+    for (int z=0; z < n; z++){
+        if(isalpha(s[z])){
+            int cipher=(position[z] + key[w]) % 26;
+            printf("cipher,position[%i],key[%i]: %i %i %i\n",z,w,cipher,position[z],key[w]);
+            w+=1;
             for (int i = 0; i < 25; i++) {
                 if (i == cipher && found_letter != 0)
                     printf("%c", alphabet[i]);
                     }
-        }   
-        else if (isupper(s[i])) { 
-            position[i]=find_letter_maj(s[i]);
-            key[y]=find_key(p[y]);
-            int cipher=(position[i] + key[y]) % 26;
-            printf("i,y,cipher,found letter,key: %i %i %i %i %i\n",i,y,cipher,position[i],key[y]);
-            for (int i = 0; i < 25; i++) {
-               if (i == cipher && found_letter_maj != 0)
-                printf("%c", AlphaBetMaj[i]);
-                }
             }
+          else{
+              printf("%c",s[z]);
+          }
         }
-    printf("\n");
-    }
 }
+//int cipher=(position[i] + key[y]) % 26;
+//            printf("i,y,cipher,found letter,key: %i %i %i %i %i\n",i,y,cipher,position[i],key[y]);
+//            for (int i = 0; i < 25; i++) {
+//               if (i == cipher && found_letter_maj != 0)
+//                printf("%c", AlphaBetMaj[i]);
+//                }
+//            }
+
