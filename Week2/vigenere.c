@@ -12,8 +12,8 @@ int found_letter_maj = 0;
 int cipher=0;
 int cipher_maj=0;
 
-// Cette fonction prend une lettre et retourne la position de la
-// lettre dans l'alphabet
+// This function takes a letter and yields back his
+// postion in the alphabet
 int find_letter_min(char letter)
 {
     int i=0;
@@ -31,14 +31,13 @@ int find_letter_min(char letter)
     return found_letter;
 }
 
-// id mais pour les majuscules
+// Same for capital letters
 int find_letter_maj(char letter)
 {
     int y=0;
 
     for(int a='A';a<='Z';a++) {
         AlphaBetMaj[y]=a;
-        //printf("letter[%i]: %c\n",y, AlphaBetMaj[y]);
         y+=1;
     }
     
@@ -50,16 +49,15 @@ int find_letter_maj(char letter)
     return found_letter_maj;
 }
 
-//prend un string et retourne un tableau avec les clés positionnelles
-//des lettres
+// Take a letter, yields its position
 int find_key(char p)
 {
     int key=0;
-    if (islower(p)){
+    if (islower(p)) {
         find_letter_min(p);
         key=found_letter;
     }
-    else if (isupper(p)){
+    else if (isupper(p)) {
             find_letter_maj(p);
             key=found_letter_maj;
     }
@@ -75,8 +73,8 @@ int main(int argc, string argv[])
         
     string p = argv[1];
     int m = 0;
-    for (int i=0; i < strlen(p); i++){
-        if (!isalpha(p[i])){
+    for (int i=0; i < strlen(p); i++) {
+        if (!isalpha(p[i])) {
             printf("Non-alphabetical input detected!!\n");
             return 1;
         }
@@ -86,42 +84,42 @@ int main(int argc, string argv[])
     string s=GetString();
     int n = strlen(s);
 
-    // Une partie pour remplir un tableau ==n des lettres du keyword
+    // Fill an array with the key, extract from the given keyword
+    // thanks to find_key() 
     int key[n];
-    for (int x = 0; x < n; x++){ 
+    for (int x = 0; x < n; x++) { 
             key[x]=find_key(p[m]);
-            //Testing purpose
-            //printf("Key[%i]:%i\n",x,key[x]);
             m+=1;
-        if (p[m]=='\0'){
+        if (p[m]=='\0') {
             m=0;
         }
     }
 
-    //parcourir la chaine mettre en tableau les positions des lettres
+    // Fill an other array with the letter position in the string
+    // to be encrypted
     int position[n];
     for (int y= 0; y < n; y++) {
-        if (!isalpha (s[y])){
+        if (!isalpha (s[y])) {
             continue;
-        }
+        } 
         else if (islower(s[y])) { 
             position[y]= find_letter_min(s[y]);
         }   
         else if (isupper(s[y])) { 
             position[y]=find_letter_maj(s[y]);
         }
-    //    printf("Position[%i]:%i\n",y,position[y]);
     }
 
+    // Compute the result with the 2 arrays
     int w=0;
-    for (int z=0; z < n; z++){
-        if(isalpha(s[z])){
-            if(islower(s[z])){
-            int cipher=(position[z] + key[w]) % 26;
-            w+=1;
-            printf("%c", alphabet[cipher]);
+    for (int z=0; z < n; z++) {
+        if(isalpha(s[z])) {
+            if(islower(s[z])) {
+                int cipher=(position[z] + key[w]) % 26;
+                w+=1;
+                printf("%c", alphabet[cipher]);
             }
-            else if (isupper(s[z])){
+            else if (isupper(s[z])) {
                 int cipher=(position[z] + key[w]) % 26;
                 w+=1;
                 printf("%c", AlphaBetMaj[cipher]);
