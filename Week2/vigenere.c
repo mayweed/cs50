@@ -89,19 +89,18 @@ int main(int argc, string argv[])
     int key[n];
     int m = 0;
     for (int x = 0; x < n; x++){ 
-        if (isalpha(p[m])){
+        //if (isalpha(p[m])){
             key[x]=find_key(p[m]);
             printf("Key[%i]:%i\n",x,key[x]);
             m+=1;
-        }   
-        else if (p[m]=='\0'){
+        //}   
+        if (p[m]=='\0'){
             m=0;
-            continue;
         }
-        else{
-            printf(" Bad Keyword\n");
-            return 1;
-        }
+        //else{
+        //    printf(" Bad Keyword\n");
+        //    return 1;
+        //}
     }
 
     //parcourir la chaine mettre en tableau les positions des lettres
