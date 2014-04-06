@@ -122,7 +122,7 @@ int main(int argc, string argv[])
             // Testing purpose
             //printf("cipher,position[%i],key[%i]: %i %i %i\n",z,w,cipher,position[z],key[w]);
             w+=1;
-            for (int i = 0; i < 25; i++) {
+            for (int i = 0; i <= 25; i++) {
                 if (i == cipher && found_letter)
                     printf("%c", alphabet[i]);
                     }
