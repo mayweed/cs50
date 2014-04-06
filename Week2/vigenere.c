@@ -38,7 +38,7 @@ int find_letter_maj(char letter)
 
     for(int a='A';a<='Z';a++) {
         AlphaBetMaj[y]=a;
-        //printf("letter %c\n", AlphaBetMaj[y]);
+        //printf("letter[%i]: %c\n",y, AlphaBetMaj[y]);
         y+=1;
     }
     
@@ -87,6 +87,7 @@ int main(int argc, string argv[])
     printf("String to encrypt:");
     string s=GetString();
     int n = strlen(s);
+    printf("N egal %i\n",n);
 
     // Une partie pour remplir un tableau ==n des lettres du keyword
     int key[n];
@@ -121,7 +122,7 @@ int main(int argc, string argv[])
             if(islower(s[z])){
             int cipher=(position[z] + key[w]) % 26;
             // Testing purpose
-            //printf("cipher,position[%i],key[%i]: %i %i %i\n",z,w,cipher,position[z],key[w]);
+            printf("cipher,position[%i],key[%i]: %i %i %i\n",z,w,cipher,position[z],key[w]);
             w+=1;
             for (int i = 0; i <= 25; i++) {
                 if (i == cipher && found_letter)

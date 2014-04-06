@@ -53,7 +53,6 @@ int find_letter_maj(char letter)
 int main(int argc, string argv[])
 {
     if(argc > 2 || argc < 2 ) {
-        printf("Argc:%d\n",argc);
         printf ("You must pass one and only one argument\n");
         return 1;
     }
