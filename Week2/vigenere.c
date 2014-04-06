@@ -58,12 +58,10 @@ int find_key(char p)
     if (islower(p)){
         find_letter_min(p);
         key=found_letter;
-        //printf("Key min:%d\n",key);
     }
     else if (isupper(p)){
             find_letter_maj(p);
             key=found_letter_maj;
-         //   printf("Key maj:%d\n",key);
     }
     return key;
 }
@@ -87,7 +85,6 @@ int main(int argc, string argv[])
     printf("String to encrypt:");
     string s=GetString();
     int n = strlen(s);
-    printf("N egal %i\n",n);
 
     // Une partie pour remplir un tableau ==n des lettres du keyword
     int key[n];
@@ -121,23 +118,13 @@ int main(int argc, string argv[])
         if(isalpha(s[z])){
             if(islower(s[z])){
             int cipher=(position[z] + key[w]) % 26;
-            // Testing purpose
-            printf("cipher,position[%i],key[%i]: %i %i %i\n",z,w,cipher,position[z],key[w]);
             w+=1;
-            for (int i = 0; i <= 25; i++) {
-                if (i == cipher && found_letter)
-                    printf("%c", alphabet[i]);
-                    }
+            printf("%c", alphabet[cipher]);
             }
             else if (isupper(s[z])){
                 int cipher=(position[z] + key[w]) % 26;
-                // Testing purpose
-                //printf("cipher,position[%i],key[%i]: %i %i %i\n",z,w,cipher,position[z],key[w]);
                 w+=1;
-                for (int i = 0; i <= 25; i++) {
-                    if (i == cipher && found_letter_maj)
-                        printf("%c", AlphaBetMaj[i]);
-                        }
+                printf("%c", AlphaBetMaj[cipher]);
             }
         }
         else
