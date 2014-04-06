@@ -12,8 +12,8 @@ int found_letter_maj = 0;
 int cipher=0;
 int cipher_maj=0;
 
-// Cette fonction prend une lettre et retourne la position de la
-// lettre dans l'alphabet
+//This function takes a small letter and yields back
+//his position in the alphabet.
 int find_letter_min(char letter)
 {
     int i=1;
@@ -31,14 +31,13 @@ int find_letter_min(char letter)
     return found_letter;
 }
 
-// id mais pour les majuscules
+// Same as above for capital letters
 int find_letter_maj(char letter)
 {
     int y=1;
 
     for(int a='A';a<='Z';a++) {
         AlphaBetMaj[y]=a;
-        //printf("letter %c\n", AlphaBetMaj[y]);
         y+=1;
     }
     
