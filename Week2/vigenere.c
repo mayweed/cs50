@@ -65,6 +65,10 @@ int find_key(char p)
             key=found_letter_maj;
          //   printf("Key maj:%d\n",key);
     }
+    else if (!isalpha(p)){
+        printf("Non alphabetical char!!\n");
+        return 1;
+    }
 
     return key;
 }
@@ -73,7 +77,6 @@ int main(int argc, string argv[])
 {
     if(argc > 2 || argc < 2 )
     {
-        printf("Argc:%d\n",argc);
         printf ("You must pass one and only one argument\n");
         return 1;
     }
@@ -83,24 +86,18 @@ int main(int argc, string argv[])
     printf("String to encrypt:");
     string s=GetString();
     int n = strlen(s);
-    printf("N egal %i\n",n);
 
     // Une partie pour remplir un tableau ==n des lettres du keyword
     int key[n];
     int m = 0;
     for (int x = 0; x < n; x++){ 
-        //if (isalpha(p[m])){
             key[x]=find_key(p[m]);
-            printf("Key[%i]:%i\n",x,key[x]);
+            //Testing purpose
+            //printf("Key[%i]:%i\n",x,key[x]);
             m+=1;
-        //}   
         if (p[m]=='\0'){
             m=0;
         }
-        //else{
-        //    printf(" Bad Keyword\n");
-        //    return 1;
-        //}
     }
 
     //parcourir la chaine mettre en tableau les positions des lettres
@@ -115,17 +112,18 @@ int main(int argc, string argv[])
         else if (isupper(s[y])) { 
             position[y]=find_letter_maj(s[y]);
         }
-        printf("Position[%i]:%i\n",y,position[y]);
+    //    printf("Position[%i]:%i\n",y,position[y]);
     }
 
     int w=0;
     for (int z=0; z < n; z++){
         if(isalpha(s[z])){
             int cipher=(position[z] + key[w]) % 26;
-            printf("cipher,position[%i],key[%i]: %i %i %i\n",z,w,cipher,position[z],key[w]);
+            // Testing purpose
+            //printf("cipher,position[%i],key[%i]: %i %i %i\n",z,w,cipher,position[z],key[w]);
             w+=1;
             for (int i = 0; i < 25; i++) {
-                if (i == cipher && found_letter != 0)
+                if (i == cipher && found_letter)
                     printf("%c", alphabet[i]);
                     }
             }
@@ -133,6 +131,7 @@ int main(int argc, string argv[])
               printf("%c",s[z]);
           }
         }
+        printf("\n");
 }
 //int cipher=(position[i] + key[y]) % 26;
 //            printf("i,y,cipher,found letter,key: %i %i %i %i %i\n",i,y,cipher,position[i],key[y]);
