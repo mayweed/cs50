@@ -64,18 +64,12 @@ int main(int argc, string argv[])
         if (islower(p[i])) {
             find_letter_min(p[i]);
             int cipher=(found_letter + key) % 26;
-            for (int i = 1; i < 26; i++) {
-                if (i == cipher && found_letter !=0)
-                    printf("%c", alphabet[i]);
-                }
+            printf("%c", alphabet[cipher]);
         }
         else if (isupper(p[i])) {
             find_letter_maj(p[i]);
             int cipher_maj=(found_letter_maj + key) % 26;
-            for (int i = 1; i < 26; i++) {
-                if (i == cipher_maj && found_letter_maj !=0)
-                    printf("%c", AlphaBetMaj[i]);
-                }
+            printf("%c", AlphaBetMaj[cipher_maj]);
         }   
         else printf("%c",p[i]);
     }
