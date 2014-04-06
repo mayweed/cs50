@@ -118,6 +118,7 @@ int main(int argc, string argv[])
     int w=0;
     for (int z=0; z < n; z++){
         if(isalpha(s[z])){
+            if(islower(s[z])){
             int cipher=(position[z] + key[w]) % 26;
             // Testing purpose
             //printf("cipher,position[%i],key[%i]: %i %i %i\n",z,w,cipher,position[z],key[w]);
@@ -127,17 +128,19 @@ int main(int argc, string argv[])
                     printf("%c", alphabet[i]);
                     }
             }
-          else{
-              printf("%c",s[z]);
-          }
+            else if (isupper(s[z])){
+                int cipher=(position[z] + key[w]) % 26;
+                // Testing purpose
+                //printf("cipher,position[%i],key[%i]: %i %i %i\n",z,w,cipher,position[z],key[w]);
+                w+=1;
+                for (int i = 0; i <= 25; i++) {
+                    if (i == cipher && found_letter_maj)
+                        printf("%c", AlphaBetMaj[i]);
+                        }
+            }
         }
-        printf("\n");
+        else
+          printf("%c",s[z]);
+        }
+    printf("\n");
 }
-//int cipher=(position[i] + key[y]) % 26;
-//            printf("i,y,cipher,found letter,key: %i %i %i %i %i\n",i,y,cipher,position[i],key[y]);
-//            for (int i = 0; i < 25; i++) {
-//               if (i == cipher && found_letter_maj != 0)
-//                printf("%c", AlphaBetMaj[i]);
-//                }
-//            }
-
