@@ -3,7 +3,7 @@
 
 CC=clang
 
-CFLAGS= -ggdb -std=c99 -Wall -Werror
+CFLAGS= -ggdb -O0 -std=c99 -Wall -Werror
 
 LDLIBS= -lcrypt -lcs50 -lm
 
