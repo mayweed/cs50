@@ -21,17 +21,22 @@
 
 int main(int argc, string argv[])
 {
-    // TODO: comment me
+    // This prog must have at least one command-line arg, at most two
+    // else return 1
     if (argc != 2 && argc != 3)
     {
         printf("Usage: ./generate n [s]\n");
         return 1;
     }
 
-    // TODO: comment me
+    // Convert to integer first command line arg
+    // assign it to n
     int n = atoi(argv[1]);
 
-    // TODO: comment me
+    // If a second command line argument is given
+    // use it as an arg for srand 
+    // if no seed is explicitly given use the current time
+    // as arg for srand
     if (argc == 3)
     {
         srand((unsigned int) atoi(argv[2]));
@@ -41,7 +46,7 @@ int main(int argc, string argv[])
         srand((unsigned int) time(NULL));
     }
 
-    // TODO: comment me
+    // Generate n random numbers using rand() function
     for (int i = 0; i < n; i++)
     {
         printf("%i\n", rand() % LIMIT);
