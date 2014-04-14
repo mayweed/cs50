@@ -27,9 +27,9 @@ bool search(int value, int values[], int n)
         }
         else if (values[x] != value)
            continue;
-        }
-        //by default false
-        return false;
+    }
+    //by default false
+    return false;
 }
 /**
  * Sorts array of n values.
