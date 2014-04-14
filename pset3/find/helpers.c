@@ -17,9 +17,20 @@
 bool search(int value, int values[], int n)
 {
     // TODO: implement a searching algorithm
-    return false;
-}
+    if (value < 0)
+       return false;
 
+    for (int x=0; x < n; x++){
+        if (values[x] == value){
+            return true;
+            break;
+        }
+        else if (values[x] != value)
+           continue;
+        }
+        //by default false
+        return false;
+}
 /**
  * Sorts array of n values.
  */
