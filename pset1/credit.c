@@ -61,10 +61,11 @@ int main(void)
 
     while((card_number_length < 13) || (card_number_length > 16)) {
         printf("INVALID\n");
-        printf("Number:");
-        long long int s= GetLongLong();
-        card_numbers[card_number_length]=arrayize(s);
-        continue;
+        //printf("Number:");
+        //long long int s= GetLongLong();
+        //card_numbers[card_number_length]=arrayize(s);
+        //continue;
+        return 1;
     }
 
     int uneven_array[card_number_length];
