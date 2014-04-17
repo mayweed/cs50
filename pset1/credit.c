@@ -65,7 +65,7 @@ int main(void)
         //long long int s= GetLongLong();
         //card_numbers[card_number_length]=arrayize(s);
         //continue;
-        return 1;
+        return 0;
     }
 
     int uneven_array[card_number_length];
