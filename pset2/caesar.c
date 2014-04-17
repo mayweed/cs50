@@ -56,7 +56,8 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    printf("Please give me a string:");
+    //Check50 needs that to stop yelling out...
+    //printf("Please give me a string:");
     string p = GetString();
     long int key= strtol(argv[1], NULL,10);
 
