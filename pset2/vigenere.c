@@ -80,7 +80,7 @@ int main(int argc, string argv[])
         }
     }
 
-    printf("String to encrypt:");
+    //printf("String to encrypt:");
     string s=GetString();
     int n = strlen(s);
 
