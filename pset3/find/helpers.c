@@ -8,7 +8,7 @@
  */
        
 #include <cs50.h>
-
+#include<stdio.h>
 #include "helpers.h"
 
 /**
@@ -37,5 +37,21 @@ bool search(int value, int values[], int n)
 void sort(int values[], int n)
 {
     // TODO: implement an O(n^2) sorting algorithm
-    return;
+    for (int j=1; j < (n-1);j++){
+        int element = values[j];
+        //printf("Values i %d\n", values[i]);
+      for ( int i = 0; i < n; i++){
+          if (values[j] < values[i]){
+              printf("values (i)[%d] %d\n",i,values[i]);
+              values[j]=values[i];
+              values[j-1]=element;
+              printf("values (sorted?)[%d] %d\n",j,values[j]);
+          }
+          else if (values[i] < values[j]){
+              i++;
+              j++;
+          }
+      }
+    }
+//    return values;
 }

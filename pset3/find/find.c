@@ -39,7 +39,7 @@ int main(int argc, string argv[])
     for (size = 0; size < MAX; size++)
     {
         // wait for hay until EOF
-        printf("\nhaystack[%d] = ", size);
+        //printf("\nhaystack[%d] = ", size);
         int straw = GetInt();
         if (straw == INT_MAX)
         {
@@ -48,6 +48,9 @@ int main(int argc, string argv[])
      
         // add hay to stack
         haystack[size] = straw;
+        // Testing purpose
+        printf("\nhaystack[%d] = %d ", size, straw);
+
     }
     printf("\n");
 
