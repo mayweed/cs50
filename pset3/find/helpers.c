@@ -37,18 +37,19 @@ bool search(int value, int values[], int n)
 void sort(int values[], int n)
 {
     // TODO: implement an O(n^2) sorting algorithm
-    for (int i=0; i < (n-1);i++){
-        int element = values[i];
-        printf("Values i[%d] %d\n",i, values[i]);
-        for ( int j = 1; j < n; j++){
-            printf("Values j [%d] %d\n", j,values[j]);
-            if (values[i] > values[j]){
-                values[i]=values[j];
-                values[j]=element;
-                printf("values (sorted?)[%d] %d\n",j,values[j]);
-            }
-            else break;
+    // Two steps: first the algo, then the sort the array passed
+    // "destructively"
+    // Two loops: one for walkthrough(j) one for steps and swap (i)
+    for (int j=0; j < n-1; j++){
+    for ( int i = 1; i < n ; i++){
+        if (values[i-1] > values[i]){
+            int element=values[i];
+            values[i]=values[i-1];
+            values[i-1]=element;
         }
+      }
     }
-//    return values;
+    //testing purpose, must find a way to change it "in place"
+//    for (int i=0; i<n;i++)
+ //       printf("%d\n",values[i]);
 }
