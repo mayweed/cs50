@@ -56,7 +56,7 @@ void sort(int values[], int n)
         }
       }
     }
-    display(values,n);
+//    display(values,n);
     //testing purpose, must find a way to change it "in place"
 //    for (int i=0; i<n;i++)
  //       printf("%d\n",values[i]);
