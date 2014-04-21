@@ -31,6 +31,13 @@ bool search(int value, int values[], int n)
     //by default false
     return false;
 }
+
+int display(int values[], int size)
+{
+for (int i=0; i < size; i++)
+    printf("%d\n",values[i]);
+return 0;
+}
 /**
  * Sorts array of n values.
  */
@@ -49,7 +56,10 @@ void sort(int values[], int n)
         }
       }
     }
+    display(values,n);
     //testing purpose, must find a way to change it "in place"
 //    for (int i=0; i<n;i++)
  //       printf("%d\n",values[i]);
 }
+
+
