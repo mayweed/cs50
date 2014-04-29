@@ -131,7 +131,10 @@ void greet(void)
  */
 void init(void)
 {
-    // TODO
+    // TODO will use printf to ensure init correctly
+    int i,j=0;
+    for (i 
+
 }
 
 /**
