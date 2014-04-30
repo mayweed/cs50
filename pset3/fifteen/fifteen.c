@@ -121,7 +121,7 @@ void greet(void)
 {
     clear();
     printf("GAME OF FIFTEEN\n");
-    usleep(2000000);
+    //usleep(2000000);
 }
 
 /**
@@ -134,10 +134,11 @@ void init(void)
     // TODO will use printf to ensure init correctly
     int n= d*d -1;
     for (int i=1; i <= d; i++){
-      for (int j=1; j <= d; j++){
-          board[i][j]=n;
-          printf("Board[%i][%i]=%i\n",i,j,n);
-          n -=1;
+     for (int j=1; j <= d; j++){
+      board[i][j]=n;
+      printf("Board[%i][%i]=%i\n",i,j,n);
+      n -=1;
+      if (n == 0) board[i][j]='_';
       }
     }
 }
