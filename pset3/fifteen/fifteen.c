@@ -68,38 +68,38 @@ int main(int argc, string argv[])
     init();
 
     // accept moves until game is won
-    while (true)
-    {
+//    while (true)
+//    {
         // clear the screen
-        clear();
+//        clear();
 
         // draw the current state of the board
-        draw();
+  //      draw();
 
         // saves the current state of the board (for testing)
-        save();
+    //    save();
 
         // check for win
-        if (won())
-        {
-            printf("ftw!\n");
-            break;
-        }
+      //  if (won())
+       // {
+       //     printf("ftw!\n");
+       //     break;
+        //}
 
         // prompt for move
-        printf("Tile to move: ");
-        int tile = GetInt();
+        //printf("Tile to move: ");
+        //int tile = GetInt();
 
         // move if possible, else report illegality
-        if (!move(tile))
-        {
-            printf("\nIllegal move.\n");
-            usleep(500000);
-        }
+        //if (!move(tile))
+        //{
+        //    printf("\nIllegal move.\n");
+        //    usleep(500000);
+        //}
 
         // sleep for animation's sake
-        usleep(500000);
-    }
+        //usleep(500000);
+    //}
 
     // that's all folks
     return 0;
@@ -132,9 +132,14 @@ void greet(void)
 void init(void)
 {
     // TODO will use printf to ensure init correctly
-    int i,j=0;
-    for (i 
-
+    int n= d*d -1;
+    for (int i=1; i <= d; i++){
+      for (int j=1; j <= d; j++){
+          board[i][j]=n;
+          printf("Board[%i][%i]=%i\n",i,j,n);
+          n -=1;
+      }
+    }
 }
 
 /**
