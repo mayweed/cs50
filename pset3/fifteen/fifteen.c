@@ -131,13 +131,12 @@ void greet(void)
  */
 void init(void)
 {
-    // TODO will use printf to ensure init correctly
     int n= d*d -1;
     for (int i=1; i <= d; i++){
-     for (int j=1; j <= d; j++){
-        board[i][j]=n;
-        n -=1;
-      }
+        for (int j=1; j <= d; j++){
+            board[i][j]=n;
+            n -=1;
+        }
     }
 
     // case d is even, swap please
@@ -160,14 +159,12 @@ void init(void)
  */
 void draw(void)
 {
-    // TODO
-
     for (int i=1; i <= d; i++){
-     for (int j=1; j <= d; j++){
+        for (int j=1; j <= d; j++){
         // right justified, cf k&r first pages...
         printf("%3d ",board[i][j]);
-     }
-     printf("\n\n");
+        }
+    printf("\n\n");
     }
 
 }
