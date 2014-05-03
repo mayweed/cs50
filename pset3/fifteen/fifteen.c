@@ -74,7 +74,7 @@ int main(int argc, string argv[])
 //        clear();
 
         // draw the current state of the board
-  //      draw();
+        draw();
 
         // saves the current state of the board (for testing)
     //    save();
@@ -120,7 +120,7 @@ void clear(void)
 void greet(void)
 {
     clear();
-    printf("GAME OF FIFTEEN\n");
+    printf("GAME OF FIFTEEN\n\n");
     //usleep(2000000);
 }
 
@@ -135,17 +135,23 @@ void init(void)
     int n= d*d -1;
     for (int i=1; i <= d; i++){
      for (int j=1; j <= d; j++){
-      if(d%2==0){ //case d is even
-        //swap
+        board[i][j]=n;
+        n -=1;
+      }
+    }
+
+    // case d is even, swap please
+    if(d%2==0){ 
         int temp=board[d][2];
         board[d][2]=board[d][3];
         board[d][3]=temp;
-      board[i][j]=n;
-      }
-      printf("Board[%i][%i]=%i\n",i,j,n);
-      n -=1;
-      }
     }
+
+    //testing purpose
+    //for (int i=1; i <= d; i++){
+    // for (int j=1; j <= d; j++)
+    //    printf("board[%i][%i]=%i\n",i,j,board[i][j]);
+    //}
 }
 
 
@@ -155,6 +161,15 @@ void init(void)
 void draw(void)
 {
     // TODO
+
+    for (int i=1; i <= d; i++){
+     for (int j=1; j <= d; j++){
+        // right justified, cf k&r first pages...
+        printf("%3d ",board[i][j]);
+     }
+     printf("\n\n");
+    }
+
 }
 
 /**
