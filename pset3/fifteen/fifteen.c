@@ -135,13 +135,19 @@ void init(void)
     int n= d*d -1;
     for (int i=1; i <= d; i++){
      for (int j=1; j <= d; j++){
+      if(d%2==0){ //case d is even
+        //swap
+        int temp=board[d][2];
+        board[d][2]=board[d][3];
+        board[d][3]=temp;
       board[i][j]=n;
+      }
       printf("Board[%i][%i]=%i\n",i,j,n);
       n -=1;
-      if (n == 0) board[i][j]='_';
       }
     }
 }
+
 
 /**
  * Prints the board in its current state.

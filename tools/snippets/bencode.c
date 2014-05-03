@@ -31,8 +31,8 @@ int main(int argc, char* argv[])
     //char c;
     int count=0;
 
-    fgets(metainfo,12,p);
-    for (int i=0; i < 12; i++)
+    fgets(metainfo,100,p);
+    for (int i=0; i < 100; i++)
          printf("%c", metainfo[i]);
     
     if (isdigit(*metainfo)){
