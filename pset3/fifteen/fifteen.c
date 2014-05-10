@@ -87,9 +87,11 @@ int main(int argc, string argv[])
         //}
 
         // prompt for move
-        //printf("Tile to move: ");
-        //int tile = GetInt();
+        printf("Tile to move: ");
+        int tile = GetInt();
 
+        //Tesst
+        move(tile);
         // move if possible, else report illegality
         //if (!move(tile))
         //{
@@ -176,7 +178,23 @@ void draw(void)
 bool move(int tile)
 {
     // TODO
-    return false;
+    // 1- Locate the tile
+    for (int i=1; i <= d; i++){
+     for (int j=1; j <= d; j++)
+        if (board[i][j] == tile){
+            return board[i][j];
+//            printf("board[%i][%i]=%i\n",i,j,board[i][j]);
+        }
+    }
+    // 2 - Check for the empty tile around the tile
+    // well could locate it directly but should return false...
+    //
+    // 3 - Swap 
+    // the board[i][j] == tile and the empty board[i][j]
+
+    //return false;
+    //test
+    return 0;
 }
 
 /**
