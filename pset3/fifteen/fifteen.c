@@ -161,7 +161,6 @@ void draw(void)
 {
     for (int i=1; i <= d; i++){
         for (int j=1; j <= d; j++){
-        // right justified, cf k&r first pages...
         printf("%3d ",board[i][j]);
         }
     printf("\n\n");
