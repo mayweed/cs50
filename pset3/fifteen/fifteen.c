@@ -181,7 +181,15 @@ bool move(int tile)
     for (int i=1; i <= d; i++){
      for (int j=1; j <= d; j++)
         if (board[i][j] == tile){
+            //provided that i and j are not less than 0 and greater than
+            //d
+            if (board[i][j-1] && board[i][j+1] != 0)
+                return false;
+            else swap tile;
+            if (board [i-1][j] && board[i+1][j] != 0)
+                return false,
             return board[i][j];
+            else swap
 //            printf("board[%i][%i]=%i\n",i,j,board[i][j]);
         }
     }
@@ -206,7 +214,7 @@ bool won(void)
     return false;
 }
 
-/**
+/*
  * Saves the current state of the board to disk (for testing).
  */
 void save(void)
