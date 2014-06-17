@@ -90,14 +90,12 @@ int main(int argc, string argv[])
         printf("Tile to move: ");
         int tile = GetInt();
 
-        //Tesst
-        move(tile);
         // move if possible, else report illegality
-        //if (!move(tile))
-        //{
-        //    printf("\nIllegal move.\n");
+        if (!move(tile))
+        {
+            printf("\nIllegal move.\n");
         //    usleep(500000);
-        //}
+        }
 
         // sleep for animation's sake
         //usleep(500000);
@@ -148,11 +146,6 @@ void init(void)
         board[d][3]=temp;
     }
 
-    //testing purpose
-    //for (int i=1; i <= d; i++){
-    // for (int j=1; j <= d; j++)
-    //    printf("board[%i][%i]=%i\n",i,j,board[i][j]);
-    //}
 }
 
 
@@ -177,29 +170,17 @@ void draw(void)
 bool move(int tile)
 {
     // TODO
-    // 1- Locate the tile
     for (int i=1; i <= d; i++){
-     for (int j=1; j <= d; j++)
+     for (int j=1; j <= d; j++){
         if (board[i][j] == tile){
-            //provided that i and j are not less than 0 and greater than
-            //d
-            if (board[i][j-1] && board[i][j+1] != 0)
-                return false;
-            else swap tile;
-            if (board [i-1][j] && board[i+1][j] != 0)
-                return false,
-            return board[i][j];
-            else swap
-//            printf("board[%i][%i]=%i\n",i,j,board[i][j]);
+         if (board[i][j-1] || board[i][j+1] != 0)
+            return false;
+         else if (board [i-1][j] || board[i+1][j] != 0)
+            return false;
+         else return true;
         }
     }
-    // 2 - Check for the empty tile around the tile
-    // well could locate it directly but should return false...
-    //
-    // 3 - Swap 
-    // the board[i][j] == tile and the empty board[i][j]
-
-    //return false;
+    }
     //test
     return 0;
 }
