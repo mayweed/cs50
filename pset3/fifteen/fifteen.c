@@ -170,18 +170,26 @@ void draw(void)
 bool move(int tile)
 {
     // TODO
-    for (int i=1; i <= d; i++){
+//   int i = 0;
+//   int j = 0;
+
+   for (int i=1; i <= d; i++){
      for (int j=1; j <= d; j++){
         if (board[i][j] == tile){
-         if (board[i][j-1] || board[i][j+1] != 0)
-            return false;
-         else if (board [i-1][j] || board[i+1][j] != 0)
-            return false;
-         else return true;
+           printf("board[%d][%d]",i,j);
+           return board[i][j];
         }
+//        if (board[i][j-1] != 0)
+//            printf("board[%d][%d]",i,j);
+
     }
     }
     //test
+                //return false;
+//         else if (board [i-1][j] && board[i+1][j] != 0)
+  //          return false;
+      //   else return true;
+
     return 0;
 }
 
