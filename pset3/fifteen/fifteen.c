@@ -68,10 +68,10 @@ int main(int argc, string argv[])
     init();
 
     // accept moves until game is won
-//    while (true)
-//    {
-        // clear the screen
-//        clear();
+    while (true)
+    {
+       // clear the screen
+       // clear();
 
         // draw the current state of the board
         draw();
@@ -99,7 +99,7 @@ int main(int argc, string argv[])
 
         // sleep for animation's sake
         //usleep(500000);
-    //}
+    }
 
     // that's all folks
     return 0;
@@ -170,25 +170,27 @@ void draw(void)
 bool move(int tile)
 {
     // TODO
-//   int i = 0;
-//   int j = 0;
-
    for (int i=1; i <= d; i++){
      for (int j=1; j <= d; j++){
         if (board[i][j] == tile){
-           printf("board[%d][%d]",i,j);
-           return board[i][j];
+            if (board[i+1][j] == 0){
+                printf("board[%d][%d]%d\n",i,j,board[i][j]);
+                //Should write a swap func, definitely cant keep repeating
+                //that...Not use 0, should work with whatever it is in the
+                //tile (even NULL)
+                //Should work, the problem is in draw();should print as it
+                //is, not anew...
+                int s=board[i][j];
+                printf("s egal %d\n",s);
+                board[i][j]=board[i+1][j];
+                board[i+1][j]=s;
+            }
+            //else if ... explore the other cases(i-1/j-1/j+1) where a nearing tile
+            //could be 0, in the end return false for all the other
+            //cases where nearing tile !=0
         }
-//        if (board[i][j-1] != 0)
-//            printf("board[%d][%d]",i,j);
-
     }
-    }
-    //test
-                //return false;
-//         else if (board [i-1][j] && board[i+1][j] != 0)
-  //          return false;
-      //   else return true;
+}
 
     return 0;
 }
