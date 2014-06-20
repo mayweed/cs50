@@ -174,7 +174,6 @@ bool move(int tile)
      for (int j=1; j <= d; j++){
         if (board[i][j] == tile){
             if (board[i+1][j] == 0){
-                printf("board[%d][%d]%d\n",i,j,board[i][j]);
                 //Should write a swap func, definitely cant keep repeating
                 //that...Not use 0, should work with whatever it is in the
                 //tile (even NULL)
@@ -184,6 +183,7 @@ bool move(int tile)
                 printf("s egal %d\n",s);
                 board[i][j]=board[i+1][j];
                 board[i+1][j]=s;
+                return true;
             }
             //else if ... explore the other cases(i-1/j-1/j+1) where a nearing tile
             //could be 0, in the end return false for all the other
