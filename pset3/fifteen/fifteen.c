@@ -77,7 +77,7 @@ int main(int argc, string argv[])
         draw();
 
         // saves the current state of the board (for testing)
-    //    save();
+        save();
 
         // check for win
       //  if (won())
@@ -132,8 +132,8 @@ void greet(void)
 void init(void)
 {
     int n= d*d -1;
-    for (int i=1; i <= d; i++){
-        for (int j=1; j <= d; j++){
+    for (int i=0; i < d; i++){
+        for (int j=0; j < d; j++){
             board[i][j]=n;
             n -=1;
         }
@@ -154,8 +154,8 @@ void init(void)
  */
 void draw(void)
 {
-    for (int i=1; i <= d; i++){
-        for (int j=1; j <= d; j++){
+    for (int i=0; i < d; i++){
+        for (int j=0; j < d; j++){
         printf("%3d ",board[i][j]);
         }
     printf("\n\n");
@@ -174,37 +174,30 @@ bool move(int tile)
      for (int j=1; j <= d; j++){
         if (board[i][j] == tile){
             if (board[i+1][j] == 0){
-                int s=board[i][j];
-                printf("s egal %d\n",s);
+                printf("s egal %d\n",tile);
                 board[i][j]=board[i+1][j];
-                board[i+1][j]=s;
+                board[i+1][j]=tile;
                 return true;
             }
-            else return false;
 
-            if (board[i-1][j]==0){
-                int s=board[i][j];
-                printf("s egal %d\n",s);
+            else if (board[i-1][j]==0){
+                printf("s egal %d\n",tile);
                 board[i][j]=board[i-1][j];
-                board[i-1][j]=s;
+                board[i-1][j]=tile;
                 return true;
             }
-            else return false;
 
-            if (board[i][j+1]==0){
-                int s=board[i][j];
-                printf("s egal %d\n",s);
+            else if (board[i][j+1]==0){
+                printf("s egal %d\n",tile);
                 board[i][j]=board[i][j+1];
-                board[i][j+1]=s;
+                board[i][j+1]=tile;
                 return true;
             }
-            else return false;
 
-            if (board[i][j-1]==0){
-                int s=board[i][j];
-                printf("s egal %d\n",s);
+            else if (board[i][j-1]==0){
+                printf("s egal %d\n",tile);
                 board[i][j]=board[i][j-1];
-                board[i][j-1]=s;
+                board[i][j-1]=tile;
                 return true;
             }
             else return false;
