@@ -176,23 +176,23 @@ bool move(int tile)
    for (int i=0; i < d; i++){
      for (int j=0; j < d; j++){
         if (board[i][j] == tile){
-            if (board[i+1][j] == 0){
-                printf("board[%i][%i](i+1)\n",i+1,j);
+            if (board[i+1][j] == 0 && ((i+1) < d)){
+                printf("board[%i][%i]\n",i,j);
                 int s=tile;
                 board[i][j]=board[i+1][j];
                 board[i+1][j]=s;
                 return true;
             }
 
-            else if (board[i-1][j]==0){
+            else if (board[i-1][j]==0 && ((i-1) >0)){
                 printf("board[%i][%i],s egal %d\n",i,j,tile);
-                int s=tile;
+                int s=board[i][j];                
                 board[i][j]=board[i-1][j];
                 board[i-1][j]=s;
                 return true;
             }
 
-            else if (board[i][j+1]==0){
+            else if (board[i][j+1]==0 && ((j+1) < d)){
                 printf("board[%i][%i],s egal %d\n",i,j,tile);
                 int s=tile;
                 board[i][j]=board[i][j+1];
@@ -200,22 +200,19 @@ bool move(int tile)
                 return true;
             }
 
-            else if (board[i][j-1]==0){
+            else if (board[i][j-1]==0 && ((j-1) >0)){
                 printf("board[%i][%i],s egal %d\n",i,j,tile);
                 int s=tile;
                 board[i][j]=board[i][j-1];
                 board[i][j-1]=s;
                 return true;
             }
-            else if (board[i+1][j] != 0 && board[i-1][j] !=0 \
-                && board[i][j+1] !=0 && board[i][j-1] !=0)
+            else                 
                 return false;
+          }
         }
-        //else return false;
-        //}
-    }
-}
-    return false;
+   }
+return 0;
 }
 
 /**
