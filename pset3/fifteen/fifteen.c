@@ -184,7 +184,7 @@ bool move(int tile)
                 return true;
             }
 
-            else if (board[i-1][j]==0 && ((i-1) >0)){
+            else if (board[i-1][j]==0 && ((i-1) >= 0)){
                 printf("board[%i][%i],s egal %d\n",i,j,tile);
                 int s=board[i][j];                
                 board[i][j]=board[i-1][j];
@@ -200,7 +200,7 @@ bool move(int tile)
                 return true;
             }
 
-            else if (board[i][j-1]==0 && ((j-1) >0)){
+            else if (board[i][j-1]==0 && ((j-1) >= 0)){
                 printf("board[%i][%i],s egal %d\n",i,j,tile);
                 int s=tile;
                 board[i][j]=board[i][j-1];
