@@ -217,7 +217,14 @@ for (int i=0; i < d; i++){
 bool won(void)
 {
     // TODO
-    return false;
+    for (int i=0; i < d; i++){
+        for (int j=0; j < d; j++){
+            if (board[i][j+1]=board[i][j]+1)
+                return true;
+            else
+                return false;
+        }
+    }
 }
 
 /*
