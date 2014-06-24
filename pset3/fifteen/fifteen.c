@@ -70,8 +70,8 @@ int main(int argc, string argv[])
     // accept moves until game is won
     while (true)
     {
-       // clear the screen
-       // clear();
+        // clear the screen
+        clear();
 
         // draw the current state of the board
         draw();
@@ -80,11 +80,11 @@ int main(int argc, string argv[])
         save();
 
         // check for win
-      //  if (won())
-       // {
-       //     printf("ftw!\n");
-       //     break;
-        //}
+        if (won())
+        {
+            printf("ftw!\n");
+            break;
+        }
 
         // prompt for move
         printf("Tile to move: ");
@@ -94,7 +94,7 @@ int main(int argc, string argv[])
         if (!move(tile))
         {
             printf("\nIllegal move.\n");
-        //    usleep(500000);
+            usleep(500000);
         }
 
         // sleep for animation's sake
@@ -216,15 +216,16 @@ for (int i=0; i < d; i++){
  */
 bool won(void)
 {
-    // TODO
+    // TODO sth is missing in my condition...
     for (int i=0; i < d; i++){
         for (int j=0; j < d; j++){
-            if (board[i][j+1]=board[i][j]+1)
+            if (board[i][j+1]==(board[i][j]+1))
                 return true;
             else
                 return false;
         }
     }
+    return 0;
 }
 
 /*
