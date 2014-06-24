@@ -219,8 +219,9 @@ bool won(void)
     // TODO sth is missing in my condition...
     for (int i=0; i < d; i++){
         for (int j=0; j < d; j++){
-            if (board[i][j+1]==(board[i][j]+1))
+            if (board[i][j+1]==(board[i][j]+1)){
                 return true;
+            }
             else
                 return false;
         }
