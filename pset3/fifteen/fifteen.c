@@ -131,26 +131,28 @@ void greet(void)
  */
 void init(void)
 {
- int n= d*d -1;
-    for (int i=0; i < d; i++){
-        for (int j=0; j < d; j++){
-            board[i][j]=n;
-            n -=1;
-            // Should print nothing, not 0 actually...
-            //if(board[i][j]==0) board[i][j]="_";
-            }
+int n= d*d -1;
 
+for (int i=0; i < d; i++){
+    for (int j=0; j < d; j++){
+        board[i][j]=n;
+        n -=1;
+        // Should print nothing, not 0 actually...
+        //if(board[i][j]==0) board[i][j]="_";
         }
 
-    // case d is even, swap please
-    if(d%2==0){ 
-        int temp=board[d][2];
-        board[d][2]=board[d][3];
-        board[d][3]=temp;
+    }
+        
+// case d is even, swap please
+if(d%2==0){ 
+    int temp=board[d][2];
+    board[d][2]=board[d][3];
+    board[d][3]=temp;
     }
 
+if (board[d][d]==0)
+      board[d][d]='_';
 }
-
 
 /**
  * Prints the board in its current state.
@@ -218,7 +220,7 @@ bool won(void)
 {
     // Should check row by row;col by col
     for (int i=0; i < d; i++){
-       for (int j=0; j < (d-1); j++){ //empty tile==0
+       for (int j=0; j < d; j++){ //empty tile==0 !!!
         if (board[i][j]>board[i][j+1]){
             return false;
             }
