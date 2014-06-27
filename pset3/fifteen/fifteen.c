@@ -219,6 +219,7 @@ for (int i=0; i < d; i++){
 bool won(void)
 {
     // Should check row by row;col by col
+    // EMPTY TILE!!!
     for (int i=0; i < d; i++){
        for (int j=0; j < d; j++){ //empty tile==0 !!!
         if (board[i][j]>board[i][j+1]){
