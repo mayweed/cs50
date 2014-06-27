@@ -216,16 +216,15 @@ for (int i=0; i < d; i++){
  */
 bool won(void)
 {
+    // Should check row by row;col by col
     for (int i=0; i < d; i++){
        for (int j=0; j < (d-1); j++){ //empty tile==0
-        if (board[i][j+1]==board[i][j]+1){
-            return true;
-            }
-        else
+        if (board[i][j]>board[i][j+1]){
             return false;
+            }
         }
     }
-    return 0;
+    return true;
 }
 
 /*

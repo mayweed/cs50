@@ -86,6 +86,7 @@ int main(int argc, string argv[])
             break;
         }
 
+
         // prompt for move
         printf("Tile to move: ");
         int tile = GetInt();
