@@ -232,7 +232,6 @@ bool won(void)
           for (int b=0; b < d; b++){
             for (int c=0; c < (d-1);c++){
               if (board[i][j]==check[b][c]){
-                continue;
                 return true;
                 }
               else
