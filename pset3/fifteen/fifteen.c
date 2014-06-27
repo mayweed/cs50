@@ -216,28 +216,13 @@ for (int i=0; i < d; i++){
  */
 bool won(void)
 {
-    int check[MAX][MAX];
-    int a=1;
-
-    //Compare an ordered array with board[i][j] 
-    for (int b=0; b < d; b++){
-       for (int c=0; c < (d-1); c++){
-          check[b][c]=a;
-          a+=1;
-          }
-    }
-
     for (int i=0; i < d; i++){
        for (int j=0; j < (d-1); j++){ //empty tile==0
-          for (int b=0; b < d; b++){
-            for (int c=0; c < (d-1);c++){
-              if (board[i][j]==check[b][c]){
-                return true;
-                }
-              else
-                return false;
+        if (board[i][j+1]==board[i][j]+1){
+            return true;
             }
-          }
+        else
+            return false;
         }
     }
     return 0;
