@@ -9,7 +9,7 @@ fifteen: fifteen.c
 	clang -ggdb3 -O0 -std=c99 -Wall -Werror -o fifteen fifteen.c -lcs50 -lm
 
 fifteen_hacker: fifteen_hacker.c
-	clang -ggdb3 -O0 -std=c99 -Wall -Werror -o fifteen fifteen.c -lcs50 -lm
+	clang -ggdb3 -O0 -std=c99 -Wall -Werror -o fifteen_hacker fifteen_hacker.c -lcs50 -lm
 
 clean:
 	rm -f *.o a.out core fifteen

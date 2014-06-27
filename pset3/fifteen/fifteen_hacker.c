@@ -131,11 +131,12 @@ void greet(void)
  */
 void init(void)
 {
- int n= d*d -1;
+    int n= d*d -1;
     for (int i=0; i < d; i++){
         for (int j=0; j < d; j++){
+            //not playable this one.
             board[i][j]= rand() % n;
-            n -=1;
+//            n -=1;
             // Should print nothing, not 0 actually...
             //if(board[i][j]==0) board[i][j]="_";
             }
