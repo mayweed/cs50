@@ -137,11 +137,10 @@ for (int i=0; i < d; i++){
     for (int j=0; j < d; j++){
         board[i][j]=n;
         n -=1;
-        // Should print nothing, not 0 actually...
-        //if(board[i][j]==0) board[i][j]='_';
+    if (board[i][j]==0) board[i][j]='_';
     }
 }
-        
+
 // case d is even, swap please
 if(d%2==0){ 
     int temp=board[d][2];
@@ -156,14 +155,19 @@ if(d%2==0){
  */
 void draw(void)
 {
+//Cette boucle ne tourne que jusqu'a board[d][d-1]
+//le dernier int doit etre interprete ascii
     for (int i=0; i < d; i++){
         for (int j=0; j < d; j++){
-        printf("%3d ",board[i][j]);
+        if(board[i][j]!='_') printf("%3d ",board[i][j]);
+        if(board[i][j]=='_') printf("%3c",board[i][j]);
         }
     printf("\n\n");
     }
-
 }
+
+// Should print nothing, not 0 actually...
+
 
 /**
  * If tile borders empty space, moves tile and returns true, else
