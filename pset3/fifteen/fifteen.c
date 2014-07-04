@@ -158,7 +158,7 @@ void draw(void)
     for (int i=0; i < d; i++){
         for (int j=0; j < d; j++){
         if(board[i][j]!='_') printf("%3d ",board[i][j]);
-        if(board[i][j]=='_') printf("%3c",board[i][j]);
+        if(board[i][j]=='_') printf("%3c ",board[i][j]);
         }
     printf("\n\n");
     }
