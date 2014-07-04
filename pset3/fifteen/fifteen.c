@@ -138,10 +138,9 @@ for (int i=0; i < d; i++){
         board[i][j]=n;
         n -=1;
         // Should print nothing, not 0 actually...
-        //if(board[i][j]==0) board[i][j]="_";
-        }
-
+        //if(board[i][j]==0) board[i][j]='_';
     }
+}
         
 // case d is even, swap please
 if(d%2==0){ 
@@ -150,8 +149,6 @@ if(d%2==0){
     board[d][3]=temp;
     }
 
-if (board[d][d]==0)
-      board[d][d]='_';
 }
 
 /**
