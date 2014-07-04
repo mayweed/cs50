@@ -155,8 +155,6 @@ if(d%2==0){
  */
 void draw(void)
 {
-//Cette boucle ne tourne que jusqu'a board[d][d-1]
-//le dernier int doit etre interprete ascii
     for (int i=0; i < d; i++){
         for (int j=0; j < d; j++){
         if(board[i][j]!='_') printf("%3d ",board[i][j]);
@@ -165,9 +163,6 @@ void draw(void)
     printf("\n\n");
     }
 }
-
-// Should print nothing, not 0 actually...
-
 
 /**
  * If tile borders empty space, moves tile and returns true, else
@@ -178,28 +173,28 @@ bool move(int tile)
 for (int i=0; i < d; i++){
     for (int j=0; j < d; j++){
         if (board[i][j] == tile){
-            if (board[i+1][j] == 0 && ((i+1) < d)){
+            if (board[i+1][j] == '_' && ((i+1) < d)){
                 int s=tile;
                 board[i][j]=board[i+1][j];
                 board[i+1][j]=s;
                 return true;
             }
 
-            else if (board[i-1][j]==0 && ((i-1) >= 0)){
+            else if (board[i-1][j]== '_' && ((i-1) >= 0)){
                 int s=board[i][j];                
                 board[i][j]=board[i-1][j];
                 board[i-1][j]=s;
                 return true;
             }
 
-            else if (board[i][j+1]==0 && ((j+1) < d)){
+            else if (board[i][j+1]== '_' && ((j+1) < d)){
                 int s=tile;
                 board[i][j]=board[i][j+1];
                 board[i][j+1]=s;
                 return true;
             }
 
-            else if (board[i][j-1]==0 && ((j-1) >= 0)){
+            else if (board[i][j-1]== '_' && ((j-1) >= 0)){
                 int s=tile;
                 board[i][j]=board[i][j-1];
                 board[i][j-1]=s;
