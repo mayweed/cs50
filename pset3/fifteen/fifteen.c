@@ -137,7 +137,7 @@ for (int i=0; i < d; i++){
     for (int j=0; j < d; j++){
         board[i][j]=n;
         n -=1;
-    if (board[i][j]==0) board[i][j]='_';
+        if (board[i][j]==0) board[i][j]='_';
     }
 }
 
@@ -158,7 +158,7 @@ void draw(void)
     for (int i=0; i < d; i++){
         for (int j=0; j < d; j++){
         if(board[i][j]!='_') printf("%3d ",board[i][j]);
-        if(board[i][j]=='_') printf("%3c ",board[i][j]);
+        else if(board[i][j]=='_') printf("%3c ",board[i][j]);
         }
     printf("\n\n");
     }
@@ -221,6 +221,7 @@ bool won(void)
             return false;
             }
         }
+        return true;
     }
     return true;
 }
