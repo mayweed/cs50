@@ -218,7 +218,7 @@ bool won(void)
     for (int i=0; i < d; i++){
        for (int j=0; j < d; j++){ 
         //j+1 at one moment will go over the bound...
-        if (board[i][j-1]>board[i][j]){
+        if (board[i][j-1] > board[i][j]){
             return false;
             }
         }
