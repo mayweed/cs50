@@ -137,12 +137,10 @@ for (int i=0; i < d; i++){
     for (int j=0; j < d; j++){
         board[i][j]=n;
         n -=1;
-        // Should print nothing, not 0 actually...
-        //if(board[i][j]==0) board[i][j]="_";
-        }
-
+        if (board[i][j]==0) board[i][j]='_';
     }
-        
+}
+
 // case d is even, swap please
 if(d%2==0){ 
     int temp=board[d][2];
@@ -150,8 +148,6 @@ if(d%2==0){
     board[d][3]=temp;
     }
 
-if (board[d][d]==0)
-      board[d][d]='_';
 }
 
 /**
@@ -161,11 +157,11 @@ void draw(void)
 {
     for (int i=0; i < d; i++){
         for (int j=0; j < d; j++){
-        printf("%3d ",board[i][j]);
+        if(board[i][j]!='_') printf("%3d ",board[i][j]);
+        else if(board[i][j]=='_') printf("%3c ",board[i][j]);
         }
     printf("\n\n");
     }
-
 }
 
 /**
@@ -177,28 +173,28 @@ bool move(int tile)
 for (int i=0; i < d; i++){
     for (int j=0; j < d; j++){
         if (board[i][j] == tile){
-            if (board[i+1][j] == 0 && ((i+1) < d)){
+            if (board[i+1][j] == '_' && ((i+1) < d)){
                 int s=tile;
                 board[i][j]=board[i+1][j];
                 board[i+1][j]=s;
                 return true;
             }
 
-            else if (board[i-1][j]==0 && ((i-1) >= 0)){
+            else if (board[i-1][j]== '_' && ((i-1) >= 0)){
                 int s=board[i][j];                
                 board[i][j]=board[i-1][j];
                 board[i-1][j]=s;
                 return true;
             }
 
-            else if (board[i][j+1]==0 && ((j+1) < d)){
+            else if (board[i][j+1]== '_' && ((j+1) < d)){
                 int s=tile;
                 board[i][j]=board[i][j+1];
                 board[i][j+1]=s;
                 return true;
             }
 
-            else if (board[i][j-1]==0 && ((j-1) >= 0)){
+            else if (board[i][j-1]== '_' && ((j-1) >= 0)){
                 int s=tile;
                 board[i][j]=board[i][j-1];
                 board[i][j-1]=s;
@@ -219,13 +215,13 @@ for (int i=0; i < d; i++){
 bool won(void)
 {
     // Should check row by row;col by col
-    // EMPTY TILE!!!
     for (int i=0; i < d; i++){
-       for (int j=0; j < d; j++){ //empty tile==0 !!!
+       for (int j=0; j < d; j++){ 
         if (board[i][j]>board[i][j+1]){
             return false;
             }
         }
+        return true;
     }
     return true;
 }
