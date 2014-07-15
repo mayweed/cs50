@@ -53,13 +53,13 @@ int main(void)
     initBricks(window);
 
     // instantiate ball, centered in middle of window
-    GOval ball = initBall(window);
+    //GOval ball = initBall(window);
 
     // instantiate paddle, centered at bottom of window
-    GRect paddle = initPaddle(window);
+    //GRect paddle = initPaddle(window);
 
     // instantiate scoreboard, centered in middle of window, just above ball
-    GLabel label = initScoreboard(window);
+    //GLabel label = initScoreboard(window);
 
     // number of bricks initially
     int bricks = COLS * ROWS;
@@ -71,10 +71,10 @@ int main(void)
     int points = 0;
 
     // keep playing until game over
-    while (lives > 0 && bricks > 0)
-    {
+    //while (lives > 0 && bricks > 0)
+    //{
         // TODO
-    }
+    //}
 
     // wait for click before exiting
     waitForClick();
@@ -90,6 +90,20 @@ int main(void)
 void initBricks(GWindow window)
 {
     // TODO
+    int space=0;
+    int width=35;
+    int height=5;
+
+    for (int i=0; i < ROWS; i++){
+        for (int y=0; y < COLS; y++){
+            GRect rect = newGRect(0, space, width, height);
+            setFilled(rect, true);
+            setColor(rect, "RED");
+            add(window, rect);
+            space+= (width + 2); //2px between each?
+            }
+            printf("\n"); //end of line?
+    }
 }
 
 /**
