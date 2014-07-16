@@ -89,21 +89,25 @@ int main(void)
  */
 void initBricks(GWindow window)
 {
-    // TODO
-    int space=0;
-    int width=35;
-    int height=5;
+    // Initialize coordinates, x abscisse/y ordonnee 
+    int x=2;
+    int y=50;
 
-    for (int i=0; i < ROWS; i++){
-        for (int y=0; y < COLS; y++){
-            GRect rect = newGRect(0, space, width, height);
+    // Initialize brick
+    int width=35;
+    int height=10;
+
+    // Usage: rect = newGRect(x, y, width, height);
+    //for (int i=0; i < ROWS; i++){
+        for (int j=0; j < COLS; j++){
+            GRect rect = newGRect(x, y, width, height);
             setFilled(rect, true);
             setColor(rect, "RED");
             add(window, rect);
-            space+= (width + 2); //2px between each?
+            x+= (width + 5); //2px between each?
             }
-            printf("\n"); //end of line?
-    }
+     //       printf("\n"); //end of line?
+    //}
 }
 
 /**
