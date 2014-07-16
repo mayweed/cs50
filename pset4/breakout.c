@@ -98,16 +98,16 @@ void initBricks(GWindow window)
     int height=10;
 
     // Usage: rect = newGRect(x, y, width, height);
-    //for (int i=0; i < ROWS; i++){
+    for (int i=0; i < ROWS; i++){
         for (int j=0; j < COLS; j++){
             GRect rect = newGRect(x, y, width, height);
             setFilled(rect, true);
             setColor(rect, "RED");
             add(window, rect);
-            x+= (width + 5); //2px between each?
-            }
-     //       printf("\n"); //end of line?
-    //}
+            x+= (width + 5); //5px between each
+        }
+        y+=15; //Needed for the next line, width+5px
+    }
 }
 
 /**
