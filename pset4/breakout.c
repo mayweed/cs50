@@ -34,6 +34,9 @@
 // lives
 #define LIVES 3
 
+// Paddle
+#define PADDLE_Y 530
+
 // prototypes
 void initBricks(GWindow window);
 GOval initBall(GWindow window);
@@ -72,10 +75,25 @@ int main(void)
     int points = 0;
 
     // keep playing until game over
-    //while (lives > 0 && bricks > 0)
-    //{
+    while (lives > 0 && bricks > 0)
+    {
         // TODO
-    //}
+        // check for mouse event
+        GEvent event = getNextEvent(MOUSE_EVENT);
+
+        // if we heard one
+        if (event != NULL)
+        {
+            // if the event was movement
+            if (getEventType(event) == MOUSE_MOVED)
+            {
+                // ensure paddle follows top cursor
+                double x = getX(event);
+                setLocation(paddle, x, PADDLE_Y);
+            }
+        }
+
+    }
 
     // wait for click before exiting
     waitForClick();
@@ -144,14 +162,11 @@ GOval initBall(GWindow window)
 GRect initPaddle(GWindow window)
 {
     int x= 165;
-    int y= 530;
-
-    //cant get a comma-separated initialization of both of them...
     int width=70;
     int height=10;
 
 
-    GRect paddle = newGRect(x, y, width, height);
+    GRect paddle = newGRect(x, PADDLE_Y, width, height);
     setFilled(paddle, true);
     setColor(paddle, "BLACK");
     add(window, paddle);
