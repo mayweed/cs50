@@ -57,7 +57,7 @@ int main(void)
     GOval ball = initBall(window);
 
     // instantiate paddle, centered at bottom of window
-    //GRect paddle = initPaddle(window);
+    GRect paddle = initPaddle(window);
 
     // instantiate scoreboard, centered in middle of window, just above ball
     //GLabel label = initScoreboard(window);
@@ -142,7 +142,19 @@ GOval initBall(GWindow window)
  */
 GRect initPaddle(GWindow window)
 {
-    // TODO
+    int x= 165;
+    int y= 530;
+
+    //cant get a comma-separated initialization of both of them...
+    int width=70;
+    int height=10;
+
+
+    GRect rect = newGRect(x, y, width, height);
+    setFilled(rect, true);
+    setColor(rect, "BLACK");
+    add(window, rect);
+
     return NULL;
 }
 
