@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <cs50.h>
 
 // Stanford Portable Library
 #include "gevents.h"
@@ -93,6 +94,11 @@ void initBricks(GWindow window)
     int x=2;
     int y=50;
 
+    // This is for the colors, cant get enum{} to work, array of strings
+    // makes it so...
+    int z=0;
+    string Colors[5]= {"red", "orange", "yellow", "green", "cyan"};
+
     // Initialize brick
     int width=35;
     int height=10;
@@ -102,12 +108,13 @@ void initBricks(GWindow window)
         for (int j=0; j < COLS; j++){
             GRect rect = newGRect(x, y, width, height);
             setFilled(rect, true);
-            setColor(rect, "RED");
+            setColor(rect, Colors[z]);
             add(window, rect);
             x+= (width + 5); //5px between each
         }
-        x=2;
+        x=2; //Carriage return ^^
         y+=15; //Needed for the next line, width+5px
+        z+=1; //Next line, next color
     }
 }
 
