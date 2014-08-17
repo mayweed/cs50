@@ -54,7 +54,7 @@ int main(void)
     initBricks(window);
 
     // instantiate ball, centered in middle of window
-    //GOval ball = initBall(window);
+    GOval ball = initBall(window);
 
     // instantiate paddle, centered at bottom of window
     //GRect paddle = initPaddle(window);
@@ -123,7 +123,17 @@ void initBricks(GWindow window)
  */
 GOval initBall(GWindow window)
 {
-    // TODO
+    int x= 190;
+    int y= 290;
+
+    //cant get a comma-separated initialization of both of them...
+    int width=20;
+    int height=20;
+
+    GOval ball = newGOval(x,y,width,height);
+    setFilled(ball, true);
+    setColor(ball, "BLACK");
+    add(window, ball);
     return NULL;
 }
 
