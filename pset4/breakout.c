@@ -134,7 +134,8 @@ GOval initBall(GWindow window)
     setFilled(ball, true);
     setColor(ball, "BLACK");
     add(window, ball);
-    return NULL;
+
+    return ball;
 }
 
 /**
@@ -150,12 +151,12 @@ GRect initPaddle(GWindow window)
     int height=10;
 
 
-    GRect rect = newGRect(x, y, width, height);
-    setFilled(rect, true);
-    setColor(rect, "BLACK");
-    add(window, rect);
+    GRect paddle = newGRect(x, y, width, height);
+    setFilled(paddle, true);
+    setColor(paddle, "BLACK");
+    add(window, paddle);
 
-    return NULL;
+    return paddle;
 }
 
 /**
