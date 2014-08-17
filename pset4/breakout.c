@@ -106,6 +106,7 @@ void initBricks(GWindow window)
             add(window, rect);
             x+= (width + 5); //5px between each
         }
+        x=2;
         y+=15; //Needed for the next line, width+5px
     }
 }
