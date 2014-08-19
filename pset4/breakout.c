@@ -130,14 +130,10 @@ void initBricks(GWindow window)
             add(window, rect);
             x+= (width + 5); //5px between each
         }
-<<<<<<< HEAD
-=======
         x=2; //Carriage return ^^
         y+=15; //Needed for the next line, width+5px
         z+=1; //Next line, next color
->>>>>>> b0ec75acff97fdd682cfd39c8ef65fc7e891ea8f
     }
-    y+=15; //Needed for the next line, width+5px
 }
 
 /**
