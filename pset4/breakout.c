@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <cs50.h>
 
 // Stanford Portable Library
 #include "gevents.h"
@@ -33,6 +34,9 @@
 // lives
 #define LIVES 3
 
+// Paddle
+#define PADDLE_Y 530
+
 // prototypes
 void initBricks(GWindow window);
 GOval initBall(GWindow window);
@@ -53,10 +57,10 @@ int main(void)
     initBricks(window);
 
     // instantiate ball, centered in middle of window
-    //GOval ball = initBall(window);
+    GOval ball = initBall(window);
 
     // instantiate paddle, centered at bottom of window
-    //GRect paddle = initPaddle(window);
+    GRect paddle = initPaddle(window);
 
     // instantiate scoreboard, centered in middle of window, just above ball
     //GLabel label = initScoreboard(window);
@@ -71,10 +75,25 @@ int main(void)
     int points = 0;
 
     // keep playing until game over
-    //while (lives > 0 && bricks > 0)
-    //{
+    while (lives > 0 && bricks > 0)
+    {
         // TODO
-    //}
+        // check for mouse event
+        GEvent event = getNextEvent(MOUSE_EVENT);
+
+        // if we heard one
+        if (event != NULL)
+        {
+            // if the event was movement
+            if (getEventType(event) == MOUSE_MOVED)
+            {
+                // ensure paddle follows top cursor
+                double x = getX(event);
+                setLocation(paddle, x, PADDLE_Y);
+            }
+        }
+
+    }
 
     // wait for click before exiting
     waitForClick();
@@ -93,6 +112,11 @@ void initBricks(GWindow window)
     int x=2;
     int y=50;
 
+    // This is for the colors, cant get enum{} to work, array of strings
+    // makes it so...
+    int z=0;
+    string Colors[5]= {"red", "orange", "yellow", "green", "cyan"};
+
     // Initialize brick
     int width=35;
     int height=10;
@@ -102,10 +126,16 @@ void initBricks(GWindow window)
         for (int j=0; j < COLS; j++){
             GRect rect = newGRect(x, y, width, height);
             setFilled(rect, true);
-            setColor(rect, "RED");
+            setColor(rect, Colors[z]);
             add(window, rect);
             x+= (width + 5); //5px between each
         }
+<<<<<<< HEAD
+=======
+        x=2; //Carriage return ^^
+        y+=15; //Needed for the next line, width+5px
+        z+=1; //Next line, next color
+>>>>>>> b0ec75acff97fdd682cfd39c8ef65fc7e891ea8f
     }
     y+=15; //Needed for the next line, width+5px
 }
@@ -115,8 +145,19 @@ void initBricks(GWindow window)
  */
 GOval initBall(GWindow window)
 {
-    // TODO
-    return NULL;
+    int x= 190;
+    int y= 290;
+
+    //cant get a comma-separated initialization of both of them...
+    int width=20;
+    int height=20;
+
+    GOval ball = newGOval(x,y,width,height);
+    setFilled(ball, true);
+    setColor(ball, "BLACK");
+    add(window, ball);
+
+    return ball;
 }
 
 /**
@@ -124,8 +165,17 @@ GOval initBall(GWindow window)
  */
 GRect initPaddle(GWindow window)
 {
-    // TODO
-    return NULL;
+    int x= 165;
+    int width=70;
+    int height=10;
+
+
+    GRect paddle = newGRect(x, PADDLE_Y, width, height);
+    setFilled(paddle, true);
+    setColor(paddle, "BLACK");
+    add(window, paddle);
+
+    return paddle;
 }
 
 /**
