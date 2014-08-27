@@ -27,7 +27,7 @@ int main(void)
     add(window, circle);
     
     // initial velocity
-    double velocity = 2.0;
+    double velocity = 5.0;
     
     // bounce forever
     while (true)
