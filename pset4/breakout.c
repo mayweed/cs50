@@ -90,7 +90,7 @@ int main(void)
                 double x = getX(event);
 
                 //ensure paddle stops at the right edge
-                if (getX(event) + getWidth(paddle) >= getWidth(window)) x=330;
+                if (getX(event) + getWidth(paddle) >= WIDTH) x=330;
 
                 setLocation(paddle, x, PADDLE_Y);
             }
