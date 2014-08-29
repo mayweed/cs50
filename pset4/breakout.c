@@ -96,25 +96,35 @@ int main(void)
             }
         }
 
-        double velocity=3.0;
+        double velocity=1.0;
         while(true){
-            move (ball,0,velocity);
+
+            move (ball,velocity,0);
 
             // bounce off bottom edge of window
-            if (getY(ball) + getWidth(ball) >= HEIGHT)
-            {
-                velocity= -velocity;
+            //if (getY(ball) + getWidth(ball) >= HEIGHT)
+            //{
+            //    velocity= -velocity;
+            //}
 
-            }
+            if (getX(ball)+getWidth(ball) >= WIDTH) 
+             do{
+                     move(ball,-velocity,-velocity);
+             } while (getX(ball) < WIDTH/2 && getY(ball) !=0);
+
+            //else if (getX(ball)==WIDTH && getY(ball)==HEIGHT/2)
+              //              move(ball,-velocity,velocity);
 
             // bounce off upper edge of window
-            else if (getY(ball) <= 0)
-            {
-                velocity = -velocity;
-            }
+            //else if (getY(ball) <= 0)
+            //{
+            //    velocity = -velocity;
+            //    if (getX(ball) != WIDTH &&  getY(ball) != 300)
+            //         move(ball,velocity,velocity);
+            //}
 
             // linger before moving again
-            pause(10);
+            //pause(10);
             }
 
     }
