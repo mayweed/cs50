@@ -105,11 +105,10 @@ int main(void)
             if (getY(ball) + getWidth(ball) >= HEIGHT)
             {
                 velocity= -velocity;
-
-                do{
-                move (ball,20,velocity);
-                } while ((getX(ball) + getWidth(ball) >= WIDTH) && getY(ball) != 300);
-            }
+                move (ball,3.0,velocity);
+            }   
+            //if (getX(ball) + getWidth(ball) >= WIDTH){
+            //}
 
             // bounce off upper edge of window
             else if (getY(ball) <= 0)
