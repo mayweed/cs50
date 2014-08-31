@@ -95,25 +95,37 @@ int main(void)
                 setLocation(paddle, x, PADDLE_Y);
             }
         }
+        
+        double Xvelocity=0;
+        double Yvelocity=1.0;
 
-        double velocity=3.0;
         while(true){
-            double x=0;
-            move (ball,x,velocity);
+            move (ball,Xvelocity,Yvelocity);
 
             // bounce off bottom edge of window
             if (getY(ball) + getWidth(ball) >= HEIGHT)
             {
-                velocity= -velocity;
-                move (ball,3.0,velocity);
-            }   
-            //if (getX(ball) + getWidth(ball) >= WIDTH){
-            //}
+                Xvelocity=1;
+                Yvelocity= -Yvelocity;
+                while(getX(ball) + getWidth(ball) != WIDTH){ 
+                    move(ball,Xvelocity,Yvelocity);
+                }
+            }
+            //bounce off right edge
+            if (getX(ball)+getWidth(ball) >= WIDTH){
+                Xvelocity= -Xvelocity; //Attention !!!
+                Yvelocity= -Yvelocity;//going up from 600 to 0
+                while(getY(ball)+getWidth(ball)!=0)//upper it's 0!
+                    move(ball,Xvelocity,Yvelocity);
+                }
 
             // bounce off upper edge of window
-            else if (getY(ball) <= 0)
+            if (getY(ball)+getWidth(ball) <= 0)
             {
-                velocity = -velocity;
+                Xvelocity= -Xvelocity;
+                Yvelocity = +Yvelocity;
+                while (getX(ball)+getWidth(ball) <=0)
+                    move(ball,Xvelocity,Yvelocity);
             }
 
             // linger before moving again
