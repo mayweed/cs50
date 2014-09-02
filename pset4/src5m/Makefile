@@ -10,6 +10,9 @@ all: bounce button checkbox click cursor label slider text window
 bounce: bounce.c Makefile
 	clang -ggdb3 -Ispl/include -O0 -std=c99 -Wall -Werror -o bounce bounce.c -Lspl/lib -lcs -lm
 
+bounce_upper: bounce_upper.c Makefile
+	clang -ggdb3 -Ispl/include -O0 -std=c99 -Wall -Werror -o bounce_upper bounce_upper.c -Lspl/lib -lcs -lm
+
 button: button.c Makefile
 	clang -ggdb3 -Ispl/include -O0 -std=c99 -Wall -Werror -o button button.c -Lspl/lib -lcs -lm
 

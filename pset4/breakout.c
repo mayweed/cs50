@@ -102,31 +102,38 @@ int main(void)
         while(true){
             move (ball,Xvelocity,Yvelocity);
 
-            // bounce off bottom edge of window
-            if (getY(ball) + getWidth(ball) >= HEIGHT)
+            //bounce off bottom edge
+            if (getY(ball) + getWidth(ball) >= getHeight(window))
             {
                 Xvelocity=1;
                 Yvelocity= -Yvelocity;
-                while(getX(ball) + getWidth(ball) != WIDTH){ 
+                while(getX(ball) + getWidth(ball) >= getWidth(window)){ 
                     move(ball,Xvelocity,Yvelocity);
                 }
             }
+
             //bounce off right edge
-            if (getX(ball)+getWidth(ball) >= WIDTH){
-                Xvelocity= -Xvelocity; //Attention !!!
-                Yvelocity= -Yvelocity;//going up from 600 to 0
-                while(getY(ball)+getWidth(ball)!=0)//upper it's 0!
+            if (getX(ball)+getWidth(ball) >= getWidth(window)){
+                Xvelocity= -Xvelocity; 
+                while(getY(ball)-getWidth(ball) ==0)
                     move(ball,Xvelocity,Yvelocity);
                 }
 
-            // bounce off upper edge of window
-            if (getY(ball)+getWidth(ball) <= 0)
+            //bounce off upper edge
+            if (getX(ball)-getWidth(ball) == 0)
             {
                 Xvelocity= -Xvelocity;
-                Yvelocity = +Yvelocity;
-                while (getX(ball)+getWidth(ball) <=0)
+                //Yvelocity = -Yvelocity;
+                while (getX(ball)-getWidth(ball) ==0)
                     move(ball,Xvelocity,Yvelocity);
             }
+            
+            if (getY(ball)-getWidth(ball) == 0)
+                Xvelocity= -Xvelocity;
+                Yvelocity= +Yvelocity;
+                while(getX(ball) + getWidth(ball) >= WIDTH){ 
+                    move(ball,Xvelocity,Yvelocity);
+                }
 
             // linger before moving again
             pause(10);
