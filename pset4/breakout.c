@@ -115,26 +115,30 @@ int main(void)
             //bounce off right edge
             if (getX(ball)+getWidth(ball) >= getWidth(window)){
                 Xvelocity= -Xvelocity; 
-                while(getY(ball)-getWidth(ball) ==0)
+                while(getY(ball)-getWidth(ball) !=0)
                     move(ball,Xvelocity,Yvelocity);
                 }
-
-            //bounce off upper edge
+            
+            //bounce off left edge
             if (getX(ball)-getWidth(ball) == 0)
             {
-                Xvelocity= -Xvelocity;
-                //Yvelocity = -Yvelocity;
-                while (getX(ball)-getWidth(ball) ==0)
+                Xvelocity= +Xvelocity;
+                //Yvelocity = +Yvelocity;
+                //let's go down uh
+                while (getY(ball)+getWidth(ball) != 0)
                     move(ball,Xvelocity,Yvelocity);
             }
             
+
+            //bounce off upper edge
             if (getY(ball)-getWidth(ball) == 0)
                 Xvelocity= -Xvelocity;
                 Yvelocity= +Yvelocity;
                 while(getX(ball) + getWidth(ball) >= WIDTH){ 
                     move(ball,Xvelocity,Yvelocity);
                 }
-
+            
+            
             // linger before moving again
             pause(10);
             }
