@@ -107,6 +107,7 @@ int main(void)
             {
                 Xvelocity=1;
                 Yvelocity= -Yvelocity;
+                //go right
                 while(getX(ball) + getWidth(ball) >= getWidth(window)){ 
                     move(ball,Xvelocity,Yvelocity);
                 }
@@ -115,28 +116,29 @@ int main(void)
             //bounce off right edge
             if (getX(ball)+getWidth(ball) >= getWidth(window)){
                 Xvelocity= -Xvelocity; 
-                while(getY(ball)-getWidth(ball) !=0)
+                while(getY(ball)-getWidth(ball) >= 0)
                     move(ball,Xvelocity,Yvelocity);
                 }
             
-            //bounce off left edge
-            if (getX(ball)-getWidth(ball) == 0)
-            {
-                Xvelocity= +Xvelocity;
-                //Yvelocity = +Yvelocity;
-                //let's go down uh
-                while (getY(ball)+getWidth(ball) != 0)
-                    move(ball,Xvelocity,Yvelocity);
-            }
+            //bounce off upper edge
+            //if (getY(ball)-getWidth(ball) >= 0) 
+            //{
+            //    Xvelocity= -Xvelocity;
+            //    Yvelocity = +Yvelocity;
+            //    //go down left edge
+            //    while (getX(ball)-getWidth(ball) > 0)
+            //        move(ball,Xvelocity,Yvelocity);
+            //}
             
 
-            //bounce off upper edge
-            if (getY(ball)-getWidth(ball) == 0)
-                Xvelocity= -Xvelocity;
-                Yvelocity= +Yvelocity;
-                while(getX(ball) + getWidth(ball) >= WIDTH){ 
-                    move(ball,Xvelocity,Yvelocity);
-                }
+            //bounce off left edge
+            //if (getX(ball)-getWidth(ball) == 0)
+            //    Xvelocity= -Xvelocity;
+            //    Yvelocity= +Yvelocity;
+                //go to bottom
+            //    while(getY(ball) + getWidth(ball) >= HEIGHT){ 
+            //       move(ball,Xvelocity,Yvelocity);
+            //    }
             
             
             // linger before moving again
