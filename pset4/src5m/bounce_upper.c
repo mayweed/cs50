@@ -35,13 +35,13 @@ int main(void)
         // move circle along y-axis
         move(circle, 0, velocity);
 
-        // bounce off upper edge of window
+        // bounce off bottom edge of window
         if (getY(circle) + getWidth(circle) >= getHeight(window))
         {
             velocity = -velocity;
         }
 
-        // bounce off bottom edge of window
+        // bounce off upper edge of window
         else if (getY(circle) <= 0)
         {
             velocity = -velocity;

@@ -34,9 +34,6 @@
 // lives
 #define LIVES 3
 
-// Paddle
-#define PADDLE_Y 530
-
 // prototypes
 void initBricks(GWindow window);
 GOval initBall(GWindow window);
@@ -77,6 +74,7 @@ int main(void)
     // keep playing until game over
     while (lives > 0 && bricks > 0)
     {
+        
         // check for mouse event
         GEvent event = getNextEvent(MOUSE_EVENT);
 
@@ -90,61 +88,60 @@ int main(void)
                 double x = getX(event);
 
                 //ensure paddle stops at the right edge
-                if (getX(event) + getWidth(paddle) >= WIDTH) x=330;
+                if (getX(event) + getWidth(paddle) >= getWidth(window)) x=330;
 
-                setLocation(paddle, x, PADDLE_Y);
+                setLocation(paddle, x, 530);
             }
         }
-        
         double Xvelocity=0;
         double Yvelocity=1.0;
 
         while(true){
-            move (ball,Xvelocity,Yvelocity);
 
-            //bounce off bottom edge
-            if (getY(ball) + getWidth(ball) >= getHeight(window))
-            {
-                Xvelocity=1;
-                Yvelocity= -Yvelocity;
-                //go right
-                while(getX(ball) + getWidth(ball) >= getWidth(window)){ 
-                    move(ball,Xvelocity,Yvelocity);
-                }
-            }
+        move (ball,Xvelocity,Yvelocity);
+        //bounce off bottom edge
+        if (getY(ball) + getWidth(ball) >= getHeight(window))
+        {
+            Xvelocity=1;
+            Yvelocity= -Yvelocity;
+            //go right
+            //while(getX(ball) + getWidth(ball) >= getWidth(window)){ 
+            while(getX(ball) >=0)
+                move(ball,Xvelocity,Yvelocity);
+        }
 
-            //bounce off right edge
-            if (getX(ball)+getWidth(ball) >= getWidth(window)){
-                Xvelocity= -Xvelocity; 
-                while(getY(ball)-getWidth(ball) >= 0)
-                    move(ball,Xvelocity,Yvelocity);
-                }
+        //bounce off right edge
+        //else if (getX(ball)+getWidth(ball) >= getWidth(window))
+        //{
+        //    Xvelocity= -Xvelocity; 
+        //    while(getY(ball) >= 0 )
+        //        move(ball,Xvelocity,Yvelocity);
+        //}
             
-            //bounce off upper edge
-            //if (getY(ball)-getWidth(ball) >= 0) 
-            //{
-            //    Xvelocity= -Xvelocity;
-            //    Yvelocity = +Yvelocity;
-            //    //go down left edge
-            //    while (getX(ball)-getWidth(ball) > 0)
-            //        move(ball,Xvelocity,Yvelocity);
-            //}
+        //bounce off upper edge
+        //else if (getY(ball) <= 0) 
+        //{
+        //    Xvelocity= -Xvelocity;
+        //    Yvelocity = +Yvelocity;
+            //go down left edge
+        //    while (getX(ball) >= 0)
+        //        move(ball,Xvelocity,Yvelocity);
+        //}
             
 
-            //bounce off left edge
-            //if (getX(ball)-getWidth(ball) == 0)
-            //    Xvelocity= -Xvelocity;
-            //    Yvelocity= +Yvelocity;
-                //go to bottom
-            //    while(getY(ball) + getWidth(ball) >= HEIGHT){ 
-            //       move(ball,Xvelocity,Yvelocity);
-            //    }
+        //bounce off left edge
+        else if (getX(ball) <= 0)
+        {
+            Xvelocity= +Xvelocity;
+            Yvelocity= +Yvelocity;
+            //go to bottom
+            while(getY(ball) + getWidth(ball) >= getHeight(window))
+                move(ball,Xvelocity,Yvelocity);
+        }      
             
-            
-            // linger before moving again
-            pause(10);
-            }
-
+        // linger before moving again
+        pause(10);
+        }
     }
 
     // wait for click before exiting
@@ -218,7 +215,7 @@ GRect initPaddle(GWindow window)
     int height=10;
 
 
-    GRect paddle = newGRect(x, PADDLE_Y, width, height);
+    GRect paddle = newGRect(x, 530, width, height);
     setFilled(paddle, true);
     setColor(paddle, "BLACK");
     add(window, paddle);
