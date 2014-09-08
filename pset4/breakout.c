@@ -74,7 +74,6 @@ int main(void)
     // keep playing until game over
     while (lives > 0 && bricks > 0)
     {
-        
         // check for mouse event
         GEvent event = getNextEvent(MOUSE_EVENT);
 
@@ -93,12 +92,13 @@ int main(void)
                 setLocation(paddle, x, 530);
             }
         }
+        
+        while(true)
+        {
         double Xvelocity=0;
         double Yvelocity=1.0;
-
-        while(true){
-
         move (ball,Xvelocity,Yvelocity);
+
         //bounce off bottom edge
         if (getY(ball) + getWidth(ball) >= getHeight(window))
         {
