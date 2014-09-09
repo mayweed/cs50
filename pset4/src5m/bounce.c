@@ -27,7 +27,7 @@ int main(void)
     add(window, circle);
     
     // initial velocity
-    double velocity = 5.0;
+    double velocity = 2.0;
     
     // bounce forever
     while (true)
@@ -44,7 +44,7 @@ int main(void)
         // bounce off left edge of window
         else if (getX(circle) <= 0)
         {
-            velocity = -velocity;
+            velocity = +velocity;
         }
 
         // linger before moving again

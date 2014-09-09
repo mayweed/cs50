@@ -93,50 +93,36 @@ int main(void)
             }
         }
         
+        double Xvelocity=drand48();
+        double Yvelocity=1.0;
+
         while(true)
         {
-        double Xvelocity=0;
-        double Yvelocity=1.0;
         move (ball,Xvelocity,Yvelocity);
 
         //bounce off bottom edge
         if (getY(ball) + getWidth(ball) >= getHeight(window))
         {
-            Xvelocity=1;
             Yvelocity= -Yvelocity;
-            //go right
-            //while(getX(ball) + getWidth(ball) >= getWidth(window)){ 
-            while(getX(ball) >=0)
-                move(ball,Xvelocity,Yvelocity);
         }
 
         //bounce off right edge
-        //else if (getX(ball)+getWidth(ball) >= getWidth(window))
-        //{
-        //    Xvelocity= -Xvelocity; 
-        //    while(getY(ball) >= 0 )
-        //        move(ball,Xvelocity,Yvelocity);
-        //}
+        if (getX(ball)+getWidth(ball) >= getWidth(window))
+        {
+            Xvelocity= -Xvelocity; 
+        }
             
         //bounce off upper edge
-        //else if (getY(ball) <= 0) 
-        //{
-        //    Xvelocity= -Xvelocity;
-        //    Yvelocity = +Yvelocity;
-            //go down left edge
-        //    while (getX(ball) >= 0)
-        //        move(ball,Xvelocity,Yvelocity);
-        //}
+        if (getY(ball) <= 0) 
+        {
+            Yvelocity = -Yvelocity;
+        }
             
 
         //bounce off left edge
-        else if (getX(ball) <= 0)
+        if (getX(ball) <= 0)
         {
-            Xvelocity= +Xvelocity;
-            Yvelocity= +Yvelocity;
-            //go to bottom
-            while(getY(ball) + getWidth(ball) >= getHeight(window))
-                move(ball,Xvelocity,Yvelocity);
+            Xvelocity= -Xvelocity;
         }      
             
         // linger before moving again
