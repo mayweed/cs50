@@ -60,7 +60,7 @@ int main(void)
     GRect paddle = initPaddle(window);
 
     // instantiate scoreboard, centered in middle of window, just above ball
-    //GLabel label = initScoreboard(window);
+    GLabel label = initScoreboard(window);
 
     // number of bricks initially
     int bricks = COLS * ROWS;
@@ -82,8 +82,8 @@ int main(void)
         while(true)
         {
         move (ball,Xvelocity,Yvelocity);
-
         GObject object = detectCollision(window,ball);
+
         //bounce off bottom edge
         if (getY(ball) + getWidth(ball) >= getHeight(window))
         {
@@ -122,13 +122,7 @@ int main(void)
         //    Yvelocity= -Yvelocity;
         //}
 
-        //ignore scoreboard
-        //if (strcmp(getType(object), "GLabel") == 0)
-        //{
-        //        continue;
-        //}
-            
-        // linger before moving again
+        /* linger before moving again*/
         pause(10);
         
         // check for mouse event
