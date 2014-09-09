@@ -78,10 +78,12 @@ int main(void)
         double Xvelocity=drand48();
         double Yvelocity=1.0;
 
+
         while(true)
         {
         move (ball,Xvelocity,Yvelocity);
 
+        GObject object = detectCollision(window,ball);
         //bounce off bottom edge
         if (getY(ball) + getWidth(ball) >= getHeight(window))
         {
@@ -106,6 +108,25 @@ int main(void)
         {
             Xvelocity= -Xvelocity;
         }      
+
+        //in case paddle detected
+        if (object==paddle)
+        {
+           Yvelocity= -Yvelocity;
+        }
+
+        
+        //in case bricks detected
+        //if (strcmp(getType(object), "GRect") == 0)
+        //{
+        //    Yvelocity= -Yvelocity;
+        //}
+
+        //ignore scoreboard
+        //if (strcmp(getType(object), "GLabel") == 0)
+        //{
+        //        continue;
+        //}
             
         // linger before moving again
         pause(10);
@@ -128,6 +149,7 @@ int main(void)
                 setLocation(paddle, x, 530);
             }
         }
+
 
         }
     }
