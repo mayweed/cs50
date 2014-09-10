@@ -74,16 +74,14 @@ int main(void)
     // keep playing until game over
     while (lives > 0 && bricks > 0)
     {
-                
+
         double Xvelocity=drand48();
         double Yvelocity=1.0;
-
-
+                
         while(true)
         {
-        move (ball,Xvelocity,Yvelocity);
-        GObject object = detectCollision(window,ball);
 
+        move (ball,Xvelocity,Yvelocity);
         //bounce off bottom edge
         if (getY(ball) + getWidth(ball) >= getHeight(window))
         {
@@ -108,6 +106,9 @@ int main(void)
         {
             Xvelocity= -Xvelocity;
         }      
+        
+
+        GObject object = detectCollision(window,ball);
 
         //in case paddle detected
         if (object==paddle)
@@ -117,12 +118,15 @@ int main(void)
 
         
         //in case bricks detected
-        //if (strcmp(getType(object), "GRect") == 0)
+        //if (strcmp(getType(object), "GRect")== 0)
         //{
-        //    Yvelocity= -Yvelocity;
+        //        Yvelocity= -Yvelocity;
         //}
 
-        /* linger before moving again*/
+        
+
+
+                /* linger before moving again*/
         pause(10);
         
         // check for mouse event
