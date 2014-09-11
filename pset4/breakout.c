@@ -38,6 +38,7 @@
 void initBricks(GWindow window);
 GOval initBall(GWindow window);
 GRect initPaddle(GWindow window);
+GLabel initLostLabel(GWindow window);
 GLabel initScoreboard(GWindow window);
 void updateScoreboard(GWindow window, GLabel label, int points);
 GObject detectCollision(GWindow window, GOval ball);
@@ -154,6 +155,10 @@ int main(void)
     }
 
     //if lives == 0 print a "Game Over!!" label
+    if (lives == 0)
+    {
+            initLostLabel(window);
+    }
 
     // wait for click before exiting
     waitForClick();
@@ -239,7 +244,7 @@ GRect initPaddle(GWindow window)
 GLabel initScoreboard(GWindow window)
 {
     GLabel label = newGLabel("0");
-    setFont(label, "SansSerif-24");
+    setFont(label, "SansSerif-30");
 
     // center label in window
     double x = (getWidth(window) - getWidth(label)) / 2;
@@ -256,15 +261,37 @@ GLabel initScoreboard(GWindow window)
 GLabel initLostLabel(GWindow window)
 {
     GLabel lost_label = newGLabel("GAME OVER!!");
-    setFont(label, "SansSerif-24");
+    setFont(lost_label, "SansSerif-35");
 
     // center label in window
     double x = (getWidth(window) - getWidth(lost_label)) / 2;
-    double y = (getHeight(window) - getHeight(lost_label)) / 2;
+    //double y = (getHeight(window) - getHeight(lost_label)) / 2;
+    // atop of the ball and the scoreboard
+    double y= 200;
+
     setLocation(lost_label, x, y);
     add(window, lost_label);
 
     return lost_label;
+}
+
+/**
+ * Instantiates, configures, and returns a game won label
+ */
+GLabel initWonLabel(GWindow window)
+{
+    GLabel won_label = newGLabel("YOU WIN, CONGRATS!!");
+    setFont(won_label, "SansSerif-35");
+
+    // center label in window
+    double x = (getWidth(window) - getWidth(won_label)) / 2;
+    // atop of the ball and the scoreboard
+    double y= 200;
+
+    setLocation(won_label, x, y);
+    add(window, won_label);
+
+    return won_label;
 }
 
 /**
