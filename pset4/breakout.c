@@ -103,11 +103,13 @@ int main(void)
         pause(10);
 
         // bounce off bottom edge
-        if (getY(ball) + getWidth(ball) >= getHeight(window))
+        if (getY(ball) + getWidth(ball) > getHeight(window))
         {
-            Yvelocity= -Yvelocity;
+            //Yvelocity += Yvelocity;
             // need to check staff's implementation first
             lives -=1;
+            pause(10);
+            ball=initBall(window);
         }
 
         // bounce off right edge
