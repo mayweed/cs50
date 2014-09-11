@@ -147,6 +147,7 @@ int main(void)
                 removeGWindow(window,object);
                 bricks -= 1;
                 points +=1;
+                updateScoreboard(window, label, points);
             }
         }
     }
@@ -237,10 +238,13 @@ GLabel initScoreboard(GWindow window)
 {
     GLabel label = newGLabel("0");
     setFont(label, "SansSerif-24");
+
+    // center label in window
     double x = (getWidth(window) - getWidth(label)) / 2;
-    double y = (getHeight(window) + getFontAscent(label)) / 2;
+    double y = (getHeight(window) - getHeight(label)) / 2;
     setLocation(label, x, y);
     add(window, label);
+
     return label;
 }
 
