@@ -90,7 +90,7 @@ int main(void)
                 // ensure paddle follows top cursor
                 double x = getX(event);
 
-                //ensure paddle stops at the right edge
+                // ensure paddle stops at the right edge
                 if (getX(event) + getWidth(paddle) >= getWidth(window)) x=330;
 
                 setLocation(paddle, x, 530);
@@ -102,28 +102,27 @@ int main(void)
         // linger before moving again
         pause(10);
 
-        //bounce off bottom edge
+        // bounce off bottom edge
         if (getY(ball) + getWidth(ball) >= getHeight(window))
         {
             Yvelocity= -Yvelocity;
-            //Need to check staff's implementation first
+            // need to check staff's implementation first
             lives -=1;
         }
 
-        //bounce off right edge
+        // bounce off right edge
         if (getX(ball)+getWidth(ball) >= getWidth(window))
         {
             Xvelocity= -Xvelocity; 
         }
             
-        //bounce off upper edge
+        // bounce off upper edge
         if (getY(ball) <= 0) 
         {
             Yvelocity = -Yvelocity;
         }
             
-
-        //bounce off left edge
+        // bounce off left edge
         if (getX(ball) <= 0)
         {
             Xvelocity= -Xvelocity;
@@ -131,16 +130,16 @@ int main(void)
         
         GObject object = detectCollision(window,ball);
 
-        //sanity check
+        // sanity check
         if (object != NULL)
         {
-            //in case paddle detected
+            // in case paddle detected
             if (object==paddle)
             {
                 Yvelocity= -Yvelocity;
             }
         
-            //in case bricks detected
+            // in case bricks detected
             else if ((strcmp(getType(object), "GRect")== 0) && (object != paddle))
             {
                 Yvelocity= -Yvelocity;
@@ -185,11 +184,11 @@ void initBricks(GWindow window)
             setFilled(rect, true);
             setColor(rect, Colors[z]);
             add(window, rect);
-            x+= (width + 5); //5px between each
+            x+= (width + 5); // 5px between each
         }
-        x=2; //Carriage return ^^
-        y+=15; //Needed for the next line, width+5px
-        z+=1; //Next line, next color
+        x=2; // carriage return ^^
+        y+=15; // needed for the next line, width+5px
+        z+=1; // next line, next color
     }
 }
 
@@ -201,7 +200,7 @@ GOval initBall(GWindow window)
     int x= 190;
     int y= 290;
 
-    //cant get a comma-separated initialization of both of them...
+    // cant get a comma-separated initialization of both of them...
     int width=20;
     int height=20;
 
@@ -221,7 +220,6 @@ GRect initPaddle(GWindow window)
     int x= 165;
     int width=70;
     int height=10;
-
 
     GRect paddle = newGRect(x, 530, width, height);
     setFilled(paddle, true);
