@@ -153,6 +153,8 @@ int main(void)
         }
     }
 
+    //if lives == 0 print a "Game Over!!" label
+
     // wait for click before exiting
     waitForClick();
 
@@ -246,6 +248,23 @@ GLabel initScoreboard(GWindow window)
     add(window, label);
 
     return label;
+}
+
+/**
+ * Instantiates, configures, and returns a Game Over label
+ */
+GLabel initLostLabel(GWindow window)
+{
+    GLabel lost_label = newGLabel("GAME OVER!!");
+    setFont(label, "SansSerif-24");
+
+    // center label in window
+    double x = (getWidth(window) - getWidth(lost_label)) / 2;
+    double y = (getHeight(window) - getHeight(lost_label)) / 2;
+    setLocation(lost_label, x, y);
+    add(window, lost_label);
+
+    return lost_label;
 }
 
 /**
