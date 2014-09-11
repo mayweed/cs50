@@ -71,21 +71,43 @@ int main(void)
     // number of points initially
     int points = 0;
 
+    // ball velocity keep that out of the while() else segfault
+    double Xvelocity=drand48();
+    double Yvelocity=1.0;
+
     // keep playing until game over
     while (lives > 0 && bricks > 0)
     {
+        // check for mouse event
+        GEvent event = getNextEvent(MOUSE_EVENT);
 
-        double Xvelocity=drand48();
-        double Yvelocity=1.0;
-                
-        while(true)
+        // if we heard one
+        if (event != NULL)
         {
+            // if the event was movement
+            if (getEventType(event) == MOUSE_MOVED)
+            {
+                // ensure paddle follows top cursor
+                double x = getX(event);
+
+                //ensure paddle stops at the right edge
+                if (getX(event) + getWidth(paddle) >= getWidth(window)) x=330;
+
+                setLocation(paddle, x, 530);
+            }
+        }
 
         move (ball,Xvelocity,Yvelocity);
+
+        // linger before moving again
+        pause(10);
+
         //bounce off bottom edge
         if (getY(ball) + getWidth(ball) >= getHeight(window))
         {
             Yvelocity= -Yvelocity;
+            //Need to check staff's implementation first
+            lives -=1;
         }
 
         //bounce off right edge
@@ -107,48 +129,25 @@ int main(void)
             Xvelocity= -Xvelocity;
         }      
         
-
         GObject object = detectCollision(window,ball);
 
-        //in case paddle detected
-        if (object==paddle)
+        //sanity check
+        if (object != NULL)
         {
-           Yvelocity= -Yvelocity;
-        }
-
-        
-        //in case bricks detected
-        //if (strcmp(getType(object), "GRect")== 0)
-        //{
-        //        Yvelocity= -Yvelocity;
-        //}
-
-        
-
-
-                /* linger before moving again*/
-        pause(10);
-        
-        // check for mouse event
-        GEvent event = getNextEvent(MOUSE_EVENT);
-
-        // if we heard one
-        if (event != NULL)
-        {
-            // if the event was movement
-            if (getEventType(event) == MOUSE_MOVED)
+            //in case paddle detected
+            if (object==paddle)
             {
-                // ensure paddle follows top cursor
-                double x = getX(event);
-
-                //ensure paddle stops at the right edge
-                if (getX(event) + getWidth(paddle) >= getWidth(window)) x=330;
-
-                setLocation(paddle, x, 530);
+                Yvelocity= -Yvelocity;
             }
-        }
-
-
+        
+            //in case bricks detected
+            else if ((strcmp(getType(object), "GRect")== 0) && (object != paddle))
+            {
+                Yvelocity= -Yvelocity;
+                removeGWindow(window,object);
+                bricks -= 1;
+                points +=1;
+            }
         }
     }
 
@@ -236,8 +235,13 @@ GRect initPaddle(GWindow window)
  */
 GLabel initScoreboard(GWindow window)
 {
-    // TODO
-    return NULL;
+    GLabel label = newGLabel("0");
+    setFont(label, "SansSerif-24");
+    double x = (getWidth(window) - getWidth(label)) / 2;
+    double y = (getHeight(window) + getFontAscent(label)) / 2;
+    setLocation(label, x, y);
+    add(window, label);
+    return label;
 }
 
 /**
