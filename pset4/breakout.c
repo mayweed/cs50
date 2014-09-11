@@ -38,6 +38,7 @@
 void initBricks(GWindow window);
 GOval initBall(GWindow window);
 GRect initPaddle(GWindow window);
+GLabel initWonLabel(GWindow window);
 GLabel initLostLabel(GWindow window);
 GLabel initScoreboard(GWindow window);
 void updateScoreboard(GWindow window, GLabel label, int points);
@@ -104,12 +105,11 @@ int main(void)
         pause(10);
 
         // bounce off bottom edge
-        if (getY(ball) + getWidth(ball) > getHeight(window))
+        if (getY(ball) > getHeight(window))
         {
-            //Yvelocity += Yvelocity;
-            // need to check staff's implementation first
             lives -=1;
             pause(10);
+            // do try again :)
             ball=initBall(window);
         }
 
@@ -158,6 +158,10 @@ int main(void)
     if (lives == 0)
     {
             initLostLabel(window);
+    }
+    else if (bricks==0)
+    {
+            initWonLabel(window);
     }
 
     // wait for click before exiting
