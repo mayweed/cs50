@@ -1,7 +1,11 @@
-0.  TODO
-1.  TODO
-2.  TODO
-3.  TODO
+0.  BMP supports 16 millions colors, GIF supports 256 colors, PNG
+    supports 256 tera-colors, JPEG supports 16 millions colors.
+1.  GIF
+2.  Lossy compression uses inexact approximations (or partial data
+    discarding) for representing the content that has been encoded,
+    where lossless compression does not: it  allows the original data to
+    be perfectly reconstructed from the compressed data. 
+3.  JPEG 
 4.  TODO
 5.  TODO
 6.  TODO
