@@ -12,7 +12,9 @@
     directory entry can be recycled. Second, the system moves all of the
     files's FAT clusters to the hard drive's list of free clusters. The
     actual file data is never touched.
-5.  TODO
+5.  One way to ensure with high probability that deleted files cannot be recovered
+    consists in overwriting that data with other data so that the
+    original data cannot be recovered
 6.  TODO
 7.  TODO
 8.  TODO
