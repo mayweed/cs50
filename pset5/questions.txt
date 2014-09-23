@@ -6,7 +6,12 @@
     where lossless compression does not: it  allows the original data to
     be perfectly reconstructed from the compressed data. 
 3.  JPEG 
-4.  TODO
+4.  When the operating system erases a FAT file, two things occur.
+    First, the system modifies the filename's first character in the file's
+    directory entry to signal that the file has been deleted and that the
+    directory entry can be recycled. Second, the system moves all of the
+    files's FAT clusters to the hard drive's list of free clusters. The
+    actual file data is never touched.
 5.  TODO
 6.  TODO
 7.  TODO
