@@ -19,14 +19,22 @@
     specified widths, and defines corresponding sets of macros. It
     also defines macros that specify limits of integer types
     corresponding to types defined in other standard headers. 
-7.  A simple int is 4 bytes, with intN_t you could widen the range of a type to
-    suit the requirements of your program.
-8.  TODO
-9.  TODO
-10. TODO
-11. TODO
-12. TODO
-13. TODO
+7.  It creates exact fixed-sized integers. It enhances the portability
+    of a program: when used, the type sizes are no more implementation-defined. A
+    int8_t will always be 8 bits whatever the implementation is. 
+8.  BYTE is 8 bits, DWORD and LONG are 32 bits and WORD is 16 bits.
+9.  The first two bytes contain bfType: 0x42 in decimal, 0x4D in hexadecimal,
+    BM in ASCII
+10. bfSize is the the size of the BMP file in bytes, whereas biSize is
+    the size of BITMAPINFOHEADER.
+11. For uncompressed RGB bitmaps, if biHeight is positive, the bitmap is
+    a bottom-up DIB with the origin at the lower left corner. If biHeight is
+    negative, the bitmap is a top-down DIB with the origin at the upper left
+    corner.
+    For compressed formats, biHeight must be positive, regardless of
+    image orientation.
+12. biBitCount
+13. It yields NULL if the prog can't create/open the outfile.
 14. TODO
 15. TODO
 16. TODO
