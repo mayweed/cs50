@@ -35,8 +35,16 @@
     image orientation.
 12. biBitCount
 13. It yields NULL if the prog can't create/open the outfile.
-14. TODO
-15. TODO
-16. TODO
-17. TODO
+14. On  success,fread() returns the number of items read or written.
+    This number equals the number of bytes transferred only when size is 1
+15. 3 like 3 bytes, 1 byte(8 bits) for red, one for green and the last
+    for blue. (To check)
+16. The  fseek() function sets the file position indicator for a stream 
+    (pass as a pointer to the function). The new position, measured in bytes, 
+    is obtained by adding offset bytes to the position specified  by
+    whence, the last argument of fseek(). It's like a cursor: you got a
+    stream, a first position and a offset to indicate the new position
+    in the file the program should use.
+17. SEEK_CUR is a predefined position indicator of fseek(). It is
+    relative to the current position indicator.
 18. TODO
