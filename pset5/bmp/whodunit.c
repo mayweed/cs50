@@ -80,6 +80,8 @@ int main(int argc, char* argv[])
 
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+            if (RGBTRIPLE.rgbtred=0xFF)
+                    fputc(0x00, outptr);
 
             // write RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
