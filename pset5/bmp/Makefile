@@ -1,12 +1,11 @@
-#
-# Makefile
-#
-# Computer Science 50
-# Problem Set 4
+# Simple Makefile to straight things out de-tedious the process ;)
 #
 
-whodunit: whodunit.c Makefile
-	clang -ggdb3 -Ispl/include -O0 -std=c99 -Wall -Werror -Wno-unused-variable -o whodunit whodunit.c -Lspl/lib -lcs -lm
+CC=clang
 
-clean:
-	rm -f *.o core whodunit
+CFLAGS= -ggdb -O0 -std=c99 -Wall -Werror
+
+LDLIBS= -lcrypt -lcs50 -lm
+
+target: *.c
+	$(CC) $(CFLAGS) *.c $(LDLIBS) 
