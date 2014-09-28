@@ -82,8 +82,12 @@ int main(int argc, char* argv[])
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
             //Turns everything red??
-            if (triple.rgbtRed==0xFF)
-                    fputc(0x00, outptr);
+            if (triple.rgbtRed==0xFF && triple.rgbtGreen==0x00)
+            {
+                triple.rgbtRed=0x00;
+                triple.rgbtGreen=0xFF;
+            }
+                  //  fputc(0x00, outptr);
 
             // write RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
