@@ -47,4 +47,4 @@
     in the file the program should use.
 17. SEEK_CUR is a predefined position indicator of fseek(). It is
     relative to the current position indicator.
-18. TODO
+18. Milo Banana dun it
