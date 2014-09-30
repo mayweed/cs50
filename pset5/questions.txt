@@ -38,7 +38,7 @@
 14. On  success,fread() returns the number of items read or written.
     This number equals the number of bytes transferred only when size is 1
 15. 3 like 3 bytes, 1 byte(8 bits) for red, one for green and the last
-    for blue. (To check)
+    for blue. (NO it's padding to get a multiple of 4)
 16. The  fseek() function sets the file position indicator for a stream 
     (pass as a pointer to the function). The new position, measured in bytes, 
     is obtained by adding offset bytes to the position specified  by
