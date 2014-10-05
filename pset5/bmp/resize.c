@@ -28,8 +28,8 @@ int main(int argc, char* argv[])
     } 
 
     // remember filenames
-    char* infile = argv[1];
-    char* outfile = argv[2];
+    char* infile = argv[2];
+    char* outfile = argv[3];
 
     // open input file 
     FILE* inptr = fopen(infile, "r");
