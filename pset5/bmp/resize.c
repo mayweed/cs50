@@ -75,6 +75,7 @@ int main(int argc, char* argv[])
     new_bi.biWidth= bi.biWidth * multiplier;
     new_bi.height= bi.height * multiplier;
     new_bi.biSizeImage= bi.biSizeImage * multiplier;
+    new_bf.bfSize= new_bi.biSizeImage + 54;
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&new_bf, sizeof(BITMAPFILEHEADER), 1, outptr);
