@@ -9,6 +9,7 @@
        
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #include "bmp.h"
 
@@ -22,11 +23,11 @@ int main(int argc, char* argv[])
     }
 
     int multiplier= atoi(argv[1]);
-    if (!(isdigit(multiplier))) 
-    {
-       printf("The second argument must be a number\n");
-       return 1;
-    } 
+    //if (!(isdigit(multiplier))) 
+    //{
+    //   printf("The second argument must be a number\n");
+    //   return 1;
+    //} 
 
     // remember filenames
     char* infile = argv[2];
@@ -73,9 +74,16 @@ int main(int argc, char* argv[])
 
     //Before writing, must change header(and bfSize?)
     new_bi.biWidth= bi.biWidth * multiplier;
-    new_bi.height= bi.height * multiplier;
-    new_bi.biSizeImage= bi.biSizeImage * multiplier;
+    new_bi.biHeight= bi.biHeight * multiplier;
+    //new_bi.biSizeImage= bi.biSizeImage * multiplier;
+    new_bi.biSizeImage=new_bi.biWidth*bi.biSizeImage;
     new_bf.bfSize= new_bi.biSizeImage + 54;
+
+    // Sanity check
+    //printf("Old biWidth=%x\nNew biWidth=%x\n",bi.biWidth, new_bi.biWidth);
+    //printf("Old biHeight=%x\nNew biHeight=%x\n",bi.biHeight, new_bi.biHeight);
+    printf("Old biSizeImage=%x\nNew biSizeImage=%x\n",bi.biSizeImage, new_bi.biSizeImage);
+    printf("Old bfSize=%x\nNew bfSize=%x\n",bf.bfSize, new_bf.bfSize);
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&new_bf, sizeof(BITMAPFILEHEADER), 1, outptr);
