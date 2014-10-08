@@ -21,7 +21,8 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    if (!(isdigit(argv[1]))) 
+    int multiplier= atoi(argv[1]);
+    if (!(isdigit(multiplier))) 
     {
        printf("The second argument must be a number\n");
        return 1;
@@ -66,23 +67,29 @@ int main(int argc, char* argv[])
         return 4;
     }
 
-    //Before writing, must change biWidth
-    bi.biWidth= bi.biWidth * argv[1];
+    // Backup old header
+    BITMAPFILEHEADER new_bf=bf;
+    BITMAPINFOHEADER new_bi=bi;
+
+    //Before writing, must change header(and bfSize?)
+    new_bi.biWidth= bi.biWidth * multiplier;
+    new_bi.height= bi.height * multiplier;
+    new_bi.biSizeImage= bi.biSizeImage * multiplier;
 
     // write outfile's BITMAPFILEHEADER
-    fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
+    fwrite(&new_bf, sizeof(BITMAPFILEHEADER), 1, outptr);
 
     // write outfile's BITMAPINFOHEADER
-    fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr);
+    fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
     // determine padding for scanlines
-    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    int padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     // iterate over infile's scanlines
-    for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
+    for (int i = 0, biHeight = abs(new_bi.biHeight); i < biHeight; i++)
     {
         // iterate over pixels in scanline
-        for (int j = 0; j < bi.biWidth; j++)
+        for (int j = 0; j < new_bi.biWidth; j++)
         {
             // temporary storage
             RGBTRIPLE triple;
