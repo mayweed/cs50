@@ -93,22 +93,31 @@ int main(int argc, char* argv[])
     fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
     // determine padding for scanlines
-    int padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     // iterate over infile's scanlines
-    for (int i = 0, biHeight = abs(new_bi.biHeight); i < biHeight; i++)
+    for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
         // iterate over pixels in scanline
-        for (int j = 0; j < new_bi.biWidth; j++)
+        for (int j = 0; j < bi.biWidth; j++)
         {
             // temporary storage
             RGBTRIPLE triple;
 
+            // get rid of it, should add it (if necessary afterwards) skip over padding, if any
+            //fseek(inptr, padding, SEEK_CUR);
+
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-
-            // write RGB triple to outfile
-            fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+     
+            //Must copy each scanline n times in outfile DOES NOT WORK
+            //(yet!!) each scanline here it's not the case...
+            for (int k = 0; k < multiplier; k++){
+               for (int l = 0; l < multiplier; l++){
+                   // write n * RGB triple to outfile
+                   fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+                    }
+             }
         }
 
         // skip over padding, if any
