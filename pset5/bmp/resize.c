@@ -23,11 +23,13 @@ int main(int argc, char* argv[])
     }
 
     int multiplier= atoi(argv[1]);
-    //if (!(isdigit(multiplier))) 
-    //{
-    //   printf("The second argument must be a number\n");
-    //   return 1;
-    //} 
+
+    //Should ensure thta n is in [1,100]
+    if ((multiplier < 1) || (multiplier > 100)) 
+    {
+       printf("The multiplying number must be between 1 and 100 inclusive\n");
+       return 1;
+    } 
 
     // remember filenames
     char* infile = argv[2];
