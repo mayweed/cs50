@@ -104,20 +104,17 @@ int main(int argc, char* argv[])
             // temporary storage
             RGBTRIPLE triple;
 
-            // get rid of it, should add it (if necessary afterwards) skip over padding, if any
-            //fseek(inptr, padding, SEEK_CUR);
-
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
      
             //Must copy each scanline n times in outfile DOES NOT WORK
             //(yet!!) each scanline here it's not the case...
-            for (int k = 0; k < multiplier; k++){
+            //for (int k = 0; k < abs(new_bi.biHeight); k++){
                for (int l = 0; l < multiplier; l++){
                    // write n * RGB triple to outfile
                    fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
                     }
-             }
+             //}
         }
 
         // skip over padding, if any
