@@ -106,6 +106,9 @@ int main(int argc, char* argv[])
 
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+
+            // get rid of padding "rough" way :)
+            if (triple.rgbtBlue == 0 && triple.rgbtGreen == 0 && triple.rgbtRed ==0) continue; 
      
             //Must copy each scanline n times in outfile DOES NOT WORK
             //(yet!!) each scanline here it's not the case...
