@@ -95,6 +95,14 @@ int main(int argc, char* argv[])
     // determine padding for scanlines
     int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
+    // temporary storage
+    RGBTRIPLE triple;
+
+    // Should do it line by line with fseek() one line read, one line
+    // copied etc...So you read one line from inptr, you process the 
+    // pixels AND the padding, you copy that line n times in outptr 
+    // and back again until first bi.biHeight is done and then new_bi.biHeight...
+
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
@@ -102,25 +110,22 @@ int main(int argc, char* argv[])
         // iterate over pixels in scanline
         for (int j = 0; j < bi.biWidth; j++)
         {
-            // temporary storage
-            RGBTRIPLE triple;
-            
+                        
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
-            //Must copy each scanline n times in outfile DOES NOT WORK
-            //(yet!!) each scanline here it's not the case...
-            //for (int k = 0; k < new_bi.biWidth; k++){
-            for (int l = 0; l < multiplier; l++)
-            {
-                // write n * RGB triple to outfile
-                fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
-            }
-            //}
         }
-        //Not bad but too much 00 to fill, one line is missing though...
-        fseek(outptr,(new_bi.biWidth*3)*multiplier,SEEK_CUR);
-        
+    }
+
+    // Not yet
+    for (int x=0; x < abs(new_bi.biHeight);x++)
+    {
+        for (int l = 0; l < multiplier; l++)
+        {
+            // write n * RGB triple to outfile
+            fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+        }
+
         // skip over padding, if any
         fseek(inptr, padding, SEEK_CUR);
 
@@ -129,7 +134,9 @@ int main(int argc, char* argv[])
         //{
         //    fputc(0x00, outptr);
         //}
+        fseek(outptr,new_bi.biWidth*3,SEEK_CUR); //update cursor line by line no?
     }
+    
 
     // close infile
     fclose(inptr);
