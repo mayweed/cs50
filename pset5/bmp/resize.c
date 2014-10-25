@@ -98,31 +98,29 @@ int main(int argc, char* argv[])
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
+        
         // iterate over pixels in scanline
         for (int j = 0; j < bi.biWidth; j++)
         {
             // temporary storage
             RGBTRIPLE triple;
-
+            
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
             //Must copy each scanline n times in outfile DOES NOT WORK
             //(yet!!) each scanline here it's not the case...
             //for (int k = 0; k < new_bi.biWidth; k++){
-               for (int l = 0; l < multiplier; l++){
-                   // write n * RGB triple to outfile
-                   fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
-
-                   }
-
-
+            for (int l = 0; l < multiplier; l++)
+            {
+                // write n * RGB triple to outfile
+                fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+            }
             //}
         }
-
         //Not bad but too much 00 to fill, one line is missing though...
         fseek(outptr,(new_bi.biWidth*3)*multiplier,SEEK_CUR);
-
+        
         // skip over padding, if any
         fseek(inptr, padding, SEEK_CUR);
 
