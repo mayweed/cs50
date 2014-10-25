@@ -93,7 +93,11 @@ int main(int argc, char* argv[])
     fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
     // determine padding for scanlines
-    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    //int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+
+    // temporary storage
+    RGBTRIPLE triple;
+    RGBTRIPLE scanline[bi.biHeight][bi.biWidth];
 
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
@@ -101,30 +105,19 @@ int main(int argc, char* argv[])
         // iterate over pixels in scanline
         for (int j = 0; j < bi.biWidth; j++)
         {
-            // temporary storage
-            RGBTRIPLE triple;
-            RGBTRIPLE scanline[bi.biHeight];
-            int x=0;
-
-            // read RGB triple from infile
-            fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-
-            // Initialize scanline array 
-            for (int l = 0; l < multiplier; l++)
-            {
-                 scanline[i] = triple;
-            }
-
-               for (int a= 0; a < multiplier; a++){
-                   fwrite(&scanline[x], sizeof(scanline[x]), 1, outptr);
-                   }
-                   x+=1;
-
-            }
-        }
+        // read RGB triple from infile
+        fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+        scanline[i][j]=triple;
 
         // skip over padding, if any
-        fseek(inptr, padding, SEEK_CUR);
+        //fseek(inptr, padding, SEEK_CUR);
+        fwrite(&scanline[i][j], sizeof(scanline[i][j]), 1, outptr);
+        }
+        // Initialize scanline array 
+        //    for (int l = 0; l < multiplier; l++)
+        //    {
+        //         scanline[i] = triple;
+        //    }
 
         // then add it back (to demonstrate how)
         //for (int k = 0; k < padding; k++)
