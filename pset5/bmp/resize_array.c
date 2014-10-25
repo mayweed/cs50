@@ -97,35 +97,32 @@ int main(int argc, char* argv[])
 
     // temporary storage
     RGBTRIPLE triple;
-    RGBTRIPLE scanline[bi.biHeight][bi.biWidth+padding];
+    RGBTRIPLE scanline[bi.biHeight][bi.biWidth];
 
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
         // iterate over pixels in scanline
-        for (int j = 0; j < bi.biWidth+padding; j++)
+        for (int j = 0; j < bi.biWidth; j++)
         {
         // read RGB triple from infile
         fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
         // try to store it in a multidim array
         scanline[i][j]=triple;
-
-        // skip over padding, if any
-        //fseek(inptr, padding, SEEK_CUR);
+        
+        // and write it back
         fwrite(&scanline[i][j], sizeof(scanline[i][j]), 1, outptr);
         }
-        // Initialize scanline array 
-        //    for (int l = 0; l < multiplier; l++)
-        //    {
-        //         scanline[i] = triple;
-        //    }
+
+        // skip over padding, if any
+        fseek(inptr, padding, SEEK_CUR);
 
         // then add it back (to demonstrate how)
-        //for (int k = 0; k < padding; k++)
-        //{
-        //    fputc(0x00, outptr);
-        //}
+        for (int k = 0; k < padding; k++)
+        {
+            fputc(0x00, outptr);
+        }
     }
 
     // close infile
