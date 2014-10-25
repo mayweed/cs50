@@ -107,6 +107,8 @@ int main(int argc, char* argv[])
         {
         // read RGB triple from infile
         fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+
+        // try to store it in a multidim array
         scanline[i][j]=triple;
 
         // skip over padding, if any
