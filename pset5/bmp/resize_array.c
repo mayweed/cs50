@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
     fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
     // determine padding for scanlines
-    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    //int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     // temporary storage
     RGBTRIPLE triple;
@@ -116,13 +116,13 @@ int main(int argc, char* argv[])
         }
 
         // skip over padding, if any
-        fseek(inptr, padding, SEEK_CUR);
+        //fseek(inptr, padding, SEEK_CUR);
 
         // then add it back (to demonstrate how)
-        for (int k = 0; k < padding; k++)
-        {
-            fputc(0x00, outptr);
-        }
+        //for (int k = 0; k < padding; k++)
+        //{
+        //    fputc(0x00, outptr);
+        //}
     }
 
     // close infile

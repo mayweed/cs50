@@ -113,31 +113,28 @@ int main(int argc, char* argv[])
                         
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+            
+            for (int l = 0; l < multiplier; l++)
+            {
+                // write n * RGB triple to outfile
+                fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+            }
 
         }
     }
 
-    // Not yet
-    for (int x=0; x < abs(new_bi.biHeight);x++)
-    {
-        for (int l = 0; l < multiplier; l++)
-        {
-            // write n * RGB triple to outfile
-            fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
-        }
+    // skip over padding, if any
+    fseek(inptr, padding, SEEK_CUR);
 
-        // skip over padding, if any
-        fseek(inptr, padding, SEEK_CUR);
+    // then add it back (to demonstrate how)
+    //for (int k = 0; k < padding; k++)
+    //{
+    //    fputc(0x00, outptr);
+    //}
 
-        // then add it back (to demonstrate how)
-        //for (int k = 0; k < padding; k++)
-        //{
-        //    fputc(0x00, outptr);
-        //}
-        fseek(outptr,new_bi.biWidth*3,SEEK_CUR); //update cursor line by line no?
-    }
-    
+    //fseek(outptr,new_bi.biWidth*3,SEEK_CUR); //update cursor line by line no?
 
+    //fseek(inptr,bi.biWidth*3,SEEK_CUR);
     // close infile
     fclose(inptr);
 
