@@ -93,48 +93,38 @@ int main(int argc, char* argv[])
     fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
     // determine padding for scanlines
-    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    //int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     // temporary storage
     RGBTRIPLE triple;
-
-    // Should do it line by line with fseek() one line read, one line
-    // copied etc...So you read one line from inptr, you process the 
-    // pixels AND the padding, you copy that line n times in outptr 
-    // and back again until first bi.biHeight is done and then new_bi.biHeight...
+    RGBTRIPLE scanline[bi.biHeight][bi.biWidth];
 
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        
         // iterate over pixels in scanline
         for (int j = 0; j < bi.biWidth; j++)
         {
-                        
-            // read RGB triple from infile
-            fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-            
-            for (int l = 0; l < multiplier; l++)
-            {
-                // write n * RGB triple to outfile
-                fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
-            }
+        // read RGB triple from infile
+        fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
+        // try to store it in a multidim array
+        scanline[i][j]=triple;
+        
+        // and write it back
+        fwrite(&scanline[i][j], sizeof(scanline[i][j]), 1, outptr);
         }
+
+        // skip over padding, if any
+        //fseek(inptr, padding, SEEK_CUR);
+
+        // then add it back (to demonstrate how)
+        //for (int k = 0; k < padding; k++)
+        //{
+        //    fputc(0x00, outptr);
+        //}
     }
 
-    // skip over padding, if any
-    fseek(inptr, padding, SEEK_CUR);
-
-    // then add it back (to demonstrate how)
-    //for (int k = 0; k < padding; k++)
-    //{
-    //    fputc(0x00, outptr);
-    //}
-
-    //fseek(outptr,new_bi.biWidth*3,SEEK_CUR); //update cursor line by line no?
-
-    //fseek(inptr,bi.biWidth*3,SEEK_CUR);
     // close infile
     fclose(inptr);
 
