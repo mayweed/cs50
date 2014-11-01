@@ -80,12 +80,6 @@ int main(int argc, char* argv[])
     new_bi.biSizeImage=new_bi.biWidth*bi.biSizeImage;
     new_bf.bfSize= new_bi.biSizeImage + 54;
 
-    // Sanity check
-    //printf("Old biWidth=%x\nNew biWidth=%x\n",bi.biWidth, new_bi.biWidth);
-    //printf("Old biHeight=%x\nNew biHeight=%x\n",bi.biHeight, new_bi.biHeight);
-    //printf("Old biSizeImage=%x\nNew biSizeImage=%x\n",bi.biSizeImage, new_bi.biSizeImage);
-    //printf("Old bfSize=%x\nNew bfSize=%x\n",bf.bfSize, new_bf.bfSize);
-
     // write outfile's BITMAPFILEHEADER
     fwrite(&new_bf, sizeof(BITMAPFILEHEADER), 1, outptr);
 
@@ -93,42 +87,28 @@ int main(int argc, char* argv[])
     fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
     // determine padding for scanlines
-    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    int padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     // temporary storage
     RGBTRIPLE triple;
 
-    // Should do it line by line with fseek() one line read, one line
-    // copied etc...So you read one line from inptr, you process the 
-    // pixels AND the padding, you copy that line n times in outptr 
-    // and back again until first bi.biHeight is done and then new_bi.biHeight...
-
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        for (int l = 0; l < multiplier; l++)
+        // iterate over pixels in scanline
+        for (int j = 0; j < bi.biWidth; j++)
         {
-            // iterate over pixels in scanline
-            for (int j = 0; j < bi.biWidth; j++)
+        // read RGB triple from infile
+        fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+
+            for (int l = 0; l < multiplier; l++)
             {
-            // read RGB triple from infile
-            fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
             // write n * RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
             }
-        fseek(inptr,bi.biWidth*3,SEEK_CUR);
         }
+    //fseek(inptr,-bi.biWidth*3,SEEK_CUR);
     }
-    
-    // iterate over outfile's scanlines
-    //for (int y = 0, NewbiHeight = abs(new_bi.biHeight); y < NewbiHeight; y++)
-    //{
-    //    // iterate over pixels in scanline
-    //    for (int j = 0; j < new_bi.biWidth; j++)
-    //    {
-    //                }
-    //}
-
 
     // skip over padding, if any
     fseek(inptr, padding, SEEK_CUR);
