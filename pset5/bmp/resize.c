@@ -92,25 +92,27 @@ int main(int argc, char* argv[])
     // temporary storage
     RGBTRIPLE triple;
 
-    // iterate over infile's scanlines
+    // To loop n times on each scanline
+    for(int u=0; u < multiplier; u++)
+    {
+    // iterate over infile's scanlines 
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-                // iterate over pixels in scanline
+        // iterate over pixels in scanline
         for (int j = 0; j < bi.biWidth; j++)
         {
         // read RGB triple from infile
         fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-        for(int u=0; u < multiplier; u++)
-        {
-
+        
+            // write n * RGB triple to outfile
             for (int l = 0; l < multiplier; l++)
             {
-            // write n * RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
             }
         }
-        }
-    //fseek(inptr,-bi.biWidth*3,SEEK_CUR);
+     }
+     // in the end should go where? And when should i go there?  
+     fseek(inptr,-bi.biWidth*3,SEEK_CUR);
     }
 
     // skip over padding, if any
