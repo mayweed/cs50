@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
 
     // temporary storage
     RGBTRIPLE triple;
-    BYTE scanline[bi.biHeight][bi.biWidth];
+    RGBTRIPLE scanline[bi.biHeight][bi.biWidth];
 
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)

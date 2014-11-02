@@ -88,33 +88,36 @@ int main(int argc, char* argv[])
 
     // determine padding for scanlines
     int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    //int new_padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     // temporary storage
     RGBTRIPLE triple;
 
-    // To loop n times on each scanline
-    for(int u=0; u < multiplier; u++)
-    {
+    
     // iterate over infile's scanlines 
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        // iterate over pixels in scanline
-        for (int j = 0; j < bi.biWidth; j++)
+    
+        // To loop n times on each scanline
+        for(int u=0; u < multiplier; u++)
         {
-        // read RGB triple from infile
-        fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-        
-            // write n * RGB triple to outfile
-            for (int l = 0; l < multiplier; l++)
+            // iterate over pixels in scanline
+            for (int j = 0; j < bi.biWidth; j++)
             {
-            fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+            // read RGB triple from infile
+            fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+        
+                // write n * RGB triple to outfile
+                for (int l = 0; l < multiplier; l++)
+                {
+                fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+                }
             }
         }
-     }
-     // in the end should go where? And when should i go there?  
-     fseek(inptr,-bi.biWidth*3,SEEK_CUR);
+    // in the end should go where? And when should i go there?  
+    fseek(inptr,-(bi.biWidth+padding)*3,SEEK_CUR);
     }
-
+    
     // skip over padding, if any
     fseek(inptr, padding, SEEK_CUR);
 
@@ -124,9 +127,6 @@ int main(int argc, char* argv[])
     //    fputc(0x00, outptr);
     //}
 
-    //fseek(outptr,new_bi.biWidth*3,SEEK_CUR); //update cursor line by line no?
-
-    //fseek(inptr,bi.biWidth*3,SEEK_CUR);
     // close infile
     fclose(inptr);
 
