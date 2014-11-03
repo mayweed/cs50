@@ -126,6 +126,9 @@ int main(int argc, char* argv[])
             }
 
             //on each scanline but the last
+            //"Also, if n=4 (for example) think about what happens after
+            //you have written padding to the outfile the 4th time."
+            //Thx to YeahIProgram for that (readditing.com)
             if (u < multiplier -1)
             {
             fseek(inptr,-(bi.biWidth*sizeof(RGBTRIPLE)+padding),SEEK_CUR);
