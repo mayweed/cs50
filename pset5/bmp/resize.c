@@ -69,6 +69,9 @@ int main(int argc, char* argv[])
         fprintf(stderr, "Unsupported file format.\n");
         return 4;
     }
+    // determine padding for scanlines
+    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    int new_padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     // Backup old header
     BITMAPFILEHEADER new_bf=bf;
@@ -77,6 +80,11 @@ int main(int argc, char* argv[])
     //Before writing, must change header(and bfSize?)
     new_bi.biWidth= bi.biWidth * multiplier;
     new_bi.biHeight= bi.biHeight * multiplier;
+    
+    //WRONG: forgot the (eventual) padding!! Should I multiply by 3 for
+    //bytes in biSizeImage?? And each line is padded right?
+    new_bi.biSizeImage=((new_bi.biWidth*sizeof(RGBTRIPLE))*new_bi.biHeight)+(new_bi.biHeight*new_padding);
+    new_bf.bfSize= new_bi.biSizeImage + 54;
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&new_bf, sizeof(BITMAPFILEHEADER), 1, outptr);
@@ -84,18 +92,6 @@ int main(int argc, char* argv[])
     // write outfile's BITMAPINFOHEADER
     fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
-    // determine padding for scanlines
-    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
-    int new_padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
-
-    //WRONG: forgot the (eventual) padding!! Should I multiply by 3 for
-    //bytes in biSizeImage?? And each line is padded right?
-    new_bi.biSizeImage=((new_bi.biWidth*sizeof(RGBTRIPLE))*new_bi.biHeight)+(new_bi.biHeight*new_padding);
-    new_bf.bfSize= new_bi.biSizeImage + 54;
-
-    // temporary storage
-    RGBTRIPLE triple;
-    
     // iterate over infile's scanlines 
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
@@ -105,6 +101,9 @@ int main(int argc, char* argv[])
             // iterate over pixels in infile's scanline
             for (int j = 0; j < bi.biWidth; j++)
             {
+                // temporary storage
+                RGBTRIPLE triple;
+
                 // read RGB triple from infile
                 fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
