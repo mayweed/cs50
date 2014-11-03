@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
 
     int multiplier= atoi(argv[1]);
 
-    //Should ensure thta n is in [1,100]
+    //Should ensure that n is in [1,100]
     if ((multiplier < 1) || (multiplier > 100)) 
     {
        printf("The multiplying number must be between 1 and 100 inclusive\n");
@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
     // write outfile's BITMAPINFOHEADER
     fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
-        // iterate over infile's scanlines 
+    // iterate over infile's scanlines 
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
         // To loop n times on each scanline
