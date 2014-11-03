@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
 
     //WRONG: forgot the (eventual) padding!! Should I multiply by 3 for
     //bytes in biSizeImage?? And each line is padded right?
-    new_bi.biSizeImage=(new_bi.biWidth*sizeof(RGBTRIPLE))*new_bi.biHeight+(new_bi.biHeight*new_padding);
+    new_bi.biSizeImage=((new_bi.biWidth*sizeof(RGBTRIPLE))*new_bi.biHeight)+(new_bi.biHeight*new_padding);
     new_bf.bfSize= new_bi.biSizeImage + 54;
 
     // write outfile's BITMAPFILEHEADER
