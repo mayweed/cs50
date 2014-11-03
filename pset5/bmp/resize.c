@@ -75,6 +75,7 @@ int main(int argc, char* argv[])
     BITMAPINFOHEADER new_bi=bi;
 
     //Before writing, must change header(and bfSize?)
+    //Use abs() here with biHeight is wrong!!
     new_bi.biWidth= bi.biWidth * multiplier;
     new_bi.biHeight= bi.biHeight * multiplier;
     
@@ -82,12 +83,16 @@ int main(int argc, char* argv[])
     int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
     int new_padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
-    //WRONG: forgot the (eventual) padding!! Should I multiply by 3 for
-    //bytes in biSizeImage?? And each line is padded right?
+    // BiSizeImage
+    // First the number of bytes per scanline
     int scanline_bytes= (new_bi.biWidth*sizeof(RGBTRIPLE))+ new_padding;
-
+    // Then you multiply that by the number of rows to get biSizeImage
+    // Here one must not forget abs()
     new_bi.biSizeImage=scanline_bytes*abs(new_bi.biHeight);
-    new_bf.bfSize= new_bi.biSizeImage + 54;
+
+    // BfSize: you simply add up biSizeImage and the headers' size
+    int header_size = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
+    new_bf.bfSize= new_bi.biSizeImage + header_size;
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&new_bf, sizeof(BITMAPFILEHEADER), 1, outptr);
