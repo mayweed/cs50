@@ -77,8 +77,6 @@ int main(int argc, char* argv[])
     //Before writing, must change header(and bfSize?)
     new_bi.biWidth= bi.biWidth * multiplier;
     new_bi.biHeight= bi.biHeight * multiplier;
-    new_bi.biSizeImage=new_bi.biWidth*bi.biSizeImage;
-    new_bf.bfSize= new_bi.biSizeImage + 54;
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&new_bf, sizeof(BITMAPFILEHEADER), 1, outptr);
@@ -88,11 +86,15 @@ int main(int argc, char* argv[])
 
     // determine padding for scanlines
     int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
-    //int new_padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    int new_padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+
+    //WRONG: forgot the (eventual) padding!! Should I multiply by 3 for
+    //bytes in biSizeImage?? And each line is padded right?
+    new_bi.biSizeImage=(new_bi.biWidth*new_bi.biHeight)+ (new_bi.biHeight*new_padding);
+    new_bf.bfSize= new_bi.biSizeImage + 54;
 
     // temporary storage
     RGBTRIPLE triple;
-
     
     // iterate over infile's scanlines 
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
@@ -111,21 +113,26 @@ int main(int argc, char* argv[])
                 {
                 fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
                 }
+
             }
-        //...
-        fseek(inptr,-(bi.biWidth*sizeof(RGBTRIPLE)),SEEK_CUR);
+            // Padding at the end of each line
+            // skip over padding  in infile if any
+            fseek(inptr, padding, SEEK_CUR);
+
+            // then add it back in outfile
+            for (int k = 0; k < new_padding; k++)
+            {
+                fputc(0x00, outptr);
+            }
+
+            //...
+            //int offset= bi.biWidth*sizeof(RGBTRIPLE)+padding;
+            //printf("offset=%d\n",offset);
+            fseek(inptr,bi.biWidth*sizeof(RGBTRIPLE)+padding,SEEK_CUR);
         }
     }
     
-    // skip over padding, if any
-    fseek(inptr, padding, SEEK_CUR);
-
-    // then add it back (to demonstrate how)
-    //for (int k = 0; k < padding; k++)
-    //{
-    //    fputc(0x00, outptr);
-    //}
-
+    
     // close infile
     fclose(inptr);
 
