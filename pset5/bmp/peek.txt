@@ -73,3 +73,16 @@ offset  type   name              argv[1]   argv[2]
 42      LONG   biYPelsPerMeter  00000b12  00000b12
 46      DWORD  biClrUsed        00000000  00000000
 50      DWORD  biClrImportant   00000000  00000000
+
+3/11/14:
+jharvard@appliance (~/SRC/cs50/pset5/bmp): check50 2014/x/pset5/resize bmp.h resize.c
+:) resize.c and bmp.h exist
+:) resize.c compiles
+:) doesn't resize 1x1-pixel BMP when n is 1
+:) resizes 1x1-pixel BMP to 2x2 correctly when n is 2
+:) resizes 1x1-pixel BMP to 3x3 correctly when n is 3
+:) resizes 1x1-pixel BMP to 4x4 correctly when n is 4
+:) resizes 1x1-pixel BMP to 5x5 correctly when n is 5
+:) resizes 2x2-pixel BMP to 4x4 correctly when n is 2
+https://sandbox.cs50.net/checks/6f108a46572641c2a5b4513b998b7c91
+
