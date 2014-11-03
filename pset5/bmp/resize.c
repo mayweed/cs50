@@ -136,6 +136,7 @@ int main(int argc, char* argv[])
             //"Also, if n=4 (for example) think about what happens after
             //you have written padding to the outfile the 4th time."
             //Thx to YeahIProgram for that (readditing.com)
+            //In GDB use print ftell(inptr)...
             if (u < multiplier -1)
             {
             fseek(inptr,-(bi.biWidth*sizeof(RGBTRIPLE)+padding),SEEK_CUR);
