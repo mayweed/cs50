@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
 
     //Before writing, must change header(and bfSize?)
     new_bi.biWidth= bi.biWidth * multiplier;
-    new_bi.biHeight= abs(bi.biHeight) * multiplier;
+    new_bi.biHeight= bi.biHeight * multiplier;
     
     // determine padding for scanlines
     int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
