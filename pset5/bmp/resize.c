@@ -69,9 +69,6 @@ int main(int argc, char* argv[])
         fprintf(stderr, "Unsupported file format.\n");
         return 4;
     }
-    // determine padding for scanlines
-    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
-    int new_padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     // Backup old header
     BITMAPFILEHEADER new_bf=bf;
@@ -81,6 +78,10 @@ int main(int argc, char* argv[])
     new_bi.biWidth= bi.biWidth * multiplier;
     new_bi.biHeight= abs(bi.biHeight) * multiplier;
     
+    // determine padding for scanlines
+    int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    int new_padding =  (4 - (new_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+
     //WRONG: forgot the (eventual) padding!! Should I multiply by 3 for
     //bytes in biSizeImage?? And each line is padded right?
     new_bi.biSizeImage=(new_bi.biWidth*sizeof(RGBTRIPLE))*new_bi.biHeight+(new_bi.biHeight*new_padding);
@@ -92,7 +93,7 @@ int main(int argc, char* argv[])
     // write outfile's BITMAPINFOHEADER
     fwrite(&new_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
-    // iterate over infile's scanlines 
+        // iterate over infile's scanlines 
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
         // To loop n times on each scanline
