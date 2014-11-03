@@ -125,10 +125,11 @@ int main(int argc, char* argv[])
                 fputc(0x00, outptr);
             }
 
-            //...TEST and dont forget the minus!!
-            //int offset= bi.biWidth*sizeof(RGBTRIPLE)+padding;
-            //printf("offset=%d\n",offset);
+            //on each scanline but the last
+            if (u < multiplier -1)
+            {
             fseek(inptr,-(bi.biWidth*sizeof(RGBTRIPLE)+padding),SEEK_CUR);
+            }
         }
     }
     
