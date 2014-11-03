@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 
     //WRONG: forgot the (eventual) padding!! Should I multiply by 3 for
     //bytes in biSizeImage?? And each line is padded right?
-    new_bi.biSizeImage=(new_bi.biWidth*new_bi.biHeight)+ (new_bi.biHeight*new_padding);
+    new_bi.biSizeImage=((new_bi.biWidth*sizeof(RGBTRIPLE))*new_bi.biHeight)+(new_bi.biHeight*new_padding);
     new_bf.bfSize= new_bi.biSizeImage + 54;
 
     // temporary storage
@@ -125,10 +125,10 @@ int main(int argc, char* argv[])
                 fputc(0x00, outptr);
             }
 
-            //...
+            //...TEST and dont forget the minus!!
             //int offset= bi.biWidth*sizeof(RGBTRIPLE)+padding;
             //printf("offset=%d\n",offset);
-            fseek(inptr,bi.biWidth*sizeof(RGBTRIPLE)+padding,SEEK_CUR);
+            fseek(inptr,-(bi.biWidth*sizeof(RGBTRIPLE)+padding),SEEK_CUR);
         }
     }
     
