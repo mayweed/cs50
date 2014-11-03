@@ -36,7 +36,7 @@ offset  type   name              argv[1]
 50      DWORD  biClrImportant   00000000
 
 AND:
-
+$~cs50/pset5/peek test.bmp staff.bmp
 offset  type   name              argv[1]   argv[2]
 0       WORD   bfType               4d42      4d42
 2       DWORD  bfSize           000001e6  000001e6
@@ -50,6 +50,25 @@ offset  type   name              argv[1]   argv[2]
 28      WORD   biBitCount           0018      0018
 30      DWORD  biCompression    00000000  00000000
 34      DWORD  biSizeImage      000001b0  000001b0
+38      LONG   biXPelsPerMeter  00000b12  00000b12
+42      LONG   biYPelsPerMeter  00000b12  00000b12
+46      DWORD  biClrUsed        00000000  00000000
+50      DWORD  biClrImportant   00000000  00000000
+
+BUT with n==5 then:
+offset  type   name              argv[1]   argv[2]
+0       WORD   bfType               4d42      4d42
+2       DWORD  bfSize           00000252  00000306 <-- HERE
+6       WORD   bfReserved1          0000      0000
+8       WORD   bfReserved2          0000      0000
+10      DWORD  bfOffBits        00000036  00000036
+14      DWORD  biSize           00000028  00000028
+18      LONG   biWidth          0000000f  0000000f
+22      LONG   biHeight         fffffff1  fffffff1
+26      WORD   biPlanes             0001      0001
+28      WORD   biBitCount           0018      0018
+30      DWORD  biCompression    00000000  00000000
+34      DWORD  biSizeImage      0000021c  000002d0 <-- HERE
 38      LONG   biXPelsPerMeter  00000b12  00000b12
 42      LONG   biYPelsPerMeter  00000b12  00000b12
 46      DWORD  biClrUsed        00000000  00000000
