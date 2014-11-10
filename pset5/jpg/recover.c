@@ -10,19 +10,32 @@
 #include<stdio.h>
 #include<stdint.h>
 
-typedef uint8_t BYTE;
+int file_length (FILE* fp)
+{
+    int size=0;
+
+    while(!feof(fp))
+    {
+        fgetc(fp);
+        size+=1;
+    }
+    return size;
+}
 
 int main(int argc, char* argv[])
 {
     // Let's open the card
     FILE* card = fopen("card.raw", "r");
 
-    BYTE card_blocks[sizeof(card)];
+    int BUFSIZE=file_length(card);
 
-    while(feof(card) != 0)
-        {
-        fread(&card, sizeof(BYTE), card);
-        //fwrite(
-        }
+    //Is this necessary. Can i use directly card pointer instead?
+    char card_blocks[BUFSIZE];
+
+    for (int i=0; i < BUFSIZE; i++)
+    {
+        fread(&card,sizeof(char),1,card);
+        printf("card_blocks[%i]=%x\n",i,card_blocks[i]);
+    }
 
 }
