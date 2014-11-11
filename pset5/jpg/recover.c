@@ -10,6 +10,9 @@
 #include<stdio.h>
 #include<stdint.h>
 #include<stdlib.h>
+#define CARDSIZE 14330369
+
+typedef uint8_t BYTE;
 
 int file_length (FILE* fp)
 {
@@ -23,23 +26,32 @@ int file_length (FILE* fp)
     return size;
 }
 
+
 int main(int argc, char* argv[])
 {
     // Let's open the card
     FILE* card = fopen("card.raw", "r");
 
-    int BUFSIZE=file_length(card);
+    //Test
+    FILE* test = fopen("test", "w");
 
-    //Is this necessary. Can i use directly card pointer instead?
-    typedef uint8_t BYTE;
-    BYTE *card_blocks=malloc(BUFSIZE);
+    // In both cases with BUFSIZE it's segfault!!!But it did not with
+    // the precise number of bytes??? With a define it
+    // works...Strange...It segfaults with an array though...
+    //BYTE card_blocks[14330369];//oops segfault...
+    BYTE* card_blocks=(BYTE*)malloc(sizeof(BYTE)*CARDSIZE);
 
-    for (int i=0; i < BUFSIZE; i++)
+    for(int i=0; i < CARDSIZE;i++)
     {
         fread(&card_blocks[i],sizeof(BYTE),1,card);
-        printf("card_blocks[%i]=%x\n",i,card_blocks[i]);
+
+        fwrite(&card_blocks[i],sizeof(BYTE),1,test);
     }
 
     //should close the file and freed up mem
     fclose(card);
+
+    fclose(test);
+
+    free(card_blocks);
 }
