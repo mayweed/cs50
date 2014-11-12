@@ -10,7 +10,7 @@
 #include<stdio.h>
 #include<stdint.h>
 #include<stdlib.h>
-#define CARDSIZE 14330369
+#define CARDSIZE 14330368
 
 typedef uint8_t BYTE;
 
@@ -23,7 +23,8 @@ int file_length (FILE* fp)
         fgetc(fp);
         size+=1;
     }
-    return size;
+    //do not need '\0' count
+    return size-1;
 }
 
 
