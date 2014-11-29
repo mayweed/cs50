@@ -10,6 +10,7 @@
 #include<stdio.h>
 #include<stdint.h>
 #include<stdlib.h>
+#include<string.h>
 #define CARDSIZE 14330368
 
 typedef uint8_t BYTE;
@@ -42,11 +43,17 @@ int main(int argc, char* argv[])
     //BYTE card_blocks[CARDSIZE];//oops segfault...
     BYTE* card_blocks=(BYTE*)malloc(sizeof(BYTE)*CARDSIZE);
 
+    char* sig="0xff 0xd8 0xff 0xe0";
+
     for(int i=0; i < CARDSIZE;i++)
     {
         fread(&card_blocks[i],sizeof(BYTE),1,card);
 
-        fwrite(&card_blocks[i],sizeof(BYTE),1,test);
+        //Why not using memcmp here with a loop on a signature pointer?
+        //if(card_blocks[i]==0xff && card_blocks[i+1]==0xd8 && card_blocks[i+2]==0xff 
+         //               && (card_blocks[i+3]==0xe0|| card_blocks[i+3]==0xe1))
+         if(memcmp(card_blocks[i],sig,4))
+            fwrite(&card_blocks[i],sizeof(BYTE),1,test);
     }
 
     //should close the file and freed up mem
