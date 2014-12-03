@@ -35,31 +35,39 @@ int main(int argc, char* argv[])
     FILE* card = fopen("card.raw", "r");
 
     //Test
-    FILE* test = fopen("test", "w");
+    //FILE* test = fopen("test", "w");
 
+
+    FILE* test.raw = fopen("test.raw","w");
     // In both cases with BUFSIZE it's segfault!!!But it did not with
     // the precise number of bytes??? With a define it
     // works...Strange...It segfaults with an array though...
-    //BYTE card_blocks[CARDSIZE];//oops segfault...
+    // BYTE card_blocks[CARDSIZE];//oops segfault...
+    // 
+    // OKI:should read 512 by 512 bytes
     BYTE* card_blocks=(BYTE*)malloc(sizeof(BYTE)*CARDSIZE);
 
-    char* sig="0xff 0xd8 0xff 0xe0";
+//    char* sig="0xff 0xd8 0xff 0xe0";
 
     for(int i=0; i < CARDSIZE;i++)
     {
         fread(&card_blocks[i],sizeof(BYTE),1,card);
 
-        //Why not using memcmp here with a loop on a signature pointer?
-        //if(card_blocks[i]==0xff && card_blocks[i+1]==0xd8 && card_blocks[i+2]==0xff 
-         //               && (card_blocks[i+3]==0xe0|| card_blocks[i+3]==0xe1))
-         if(memcmp(card_blocks[i],sig,4))
-            fwrite(&card_blocks[i],sizeof(BYTE),1,test);
+        if(card_blocks[i]==0xff && card_blocks[i+1]==0xd8 && card_blocks[i+2]==0xff 
+                        && (card_blocks[i+3]==0xe0|| card_blocks[i+3]==0xe1))
+        {
+            fwrite(&card_blocks[i],sizeof(BYTE),1,test.raw);
+            if(card_blocks[i]==0xff && card_blocks[i+1]==0xd8 && card_blocks[i+2]==0xff 
+                        && (card_blocks[i+3]==0xe0|| card_blocks[i+3]==0xe1))
+                    fclose(test.raw);
+        }
+
     }
 
     //should close the file and freed up mem
     fclose(card);
 
-    fclose(test);
+    //fclose(test);
 
     free(card_blocks);
 }
