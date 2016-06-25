@@ -40,25 +40,18 @@ int main(int argc, char* argv[])
     // Array of 512 for a block 
     int card_blocks[BLOCK];
 
-    //is this really necessary?
-    int counter=0;
-
-    int t=0;
-    // Iterate through the card
-    for(int i=counter; i <= CARDSIZE;i++)
+    // Iterate through the card there is 27989 blocks
+    for(int i=counter; i <= CARDSIZE/BLOCK;i++)
     {
-        //Iterate through each block
+        //Iterate through each block bits
         for(int y=0; y <= BLOCK; y++)
         {
-        fread(&card_blocks[y],sizeof(int),1,card);
+            fread(&card_blocks[y],sizeof(int),1,card);
 
-        if(card_blocks[y]==0xff && card_blocks[y+1]==0xd8 && card_blocks[y+2]==0xff) 
+            if(card_blocks[y]==0xff && card_blocks[y+1]==0xd8 && card_blocks[y+2]==0xff) 
                         //&& (card_blocks[i+3]==0xe0|| card_blocks[i+3]==0xe1))
-            //fwrite(&card_blocks[i],sizeof(int),1,test.raw);
-            t+=1;
+                    fwrite(&card_blocks[i],sizeof(int),1,test.raw);
         }
-    //Should add a counter here, to the next 512 block
-    counter += 512;
     }
 
     printf("%d\n",t);
