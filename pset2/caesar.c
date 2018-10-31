@@ -53,11 +53,10 @@ int main(int argc, string argv[])
         printf ("You must pass one and only one argument\n");
         return 1;
     }
-    //Segfault
-    //else if (!isdigit(argv[0])){
-    //    printf("Your key must be a number\n");
-    //    return 1;
-    //}
+    else if (!isdigit(*argv[1])){
+        printf("Your key must be a number\n");
+        return 1;
+    }
 
     printf("Please give me a string:");
     string p = get_string();
