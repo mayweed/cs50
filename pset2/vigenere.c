@@ -106,17 +106,11 @@ int main(int argc, string argv[])
     for (int y= 0; y < n; y++) 
     {
         if (!isalpha (s[y])) 
-        {
             continue;
-        } 
         else if (islower(s[y])) 
-        { 
             position[y]= find_letter_min(s[y]);
-        }   
         else if (isupper(s[y])) 
-        { 
             position[y]=find_letter_maj(s[y]);
-        }
     }
 
     printf("ciphertext: ");
