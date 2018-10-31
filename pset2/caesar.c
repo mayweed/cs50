@@ -9,21 +9,19 @@ char AlphaBetMaj[26];
 char alphabet[26]; 
 int found_letter = 0;
 int found_letter_maj = 0;
-int cipher=0;
-int cipher_maj=0;
 
 //This function takes a small letter and yields back
 //his position in the alphabet.
 int find_letter_min(char letter)
 {
-    int i=1;
+    int i=0;
 
     for(int a='a';a<='z';a++) {
         alphabet[i]=a;
         i+=1;
     }
 
-    for ( i = 1; i <= 26; i++) {
+    for ( i = 0; i < 26; i++) {
        if (alphabet[i]==letter) {
           found_letter=i;
        }
@@ -34,14 +32,14 @@ int find_letter_min(char letter)
 // Same as above for capital letters
 int find_letter_maj(char letter)
 {
-    int y=1;
+    int y=0;
 
     for(int a='A';a<='Z';a++) {
         AlphaBetMaj[y]=a;
         y+=1;
     }
     
-    for ( y = 1; y <= 26; y++) {
+    for ( y = 0; y < 26; y++) {
        if (AlphaBetMaj[y]==letter) {
           found_letter_maj=y;
        }
@@ -55,12 +53,17 @@ int main(int argc, string argv[])
         printf ("You must pass one and only one argument\n");
         return 1;
     }
+    //Segfault
+    //else if (!isdigit(argv[0])){
+    //    printf("Your key must be a number\n");
+    //    return 1;
+    //}
 
-    //Check50 needs that to stop yelling out...
-    //printf("Please give me a string:");
-    string p = GetString();
+    printf("Please give me a string:");
+    string p = get_string();
     long int key= strtol(argv[1], NULL,10);
 
+    printf("ciphertext: "); //this is lame, should use sprintf() instead
     for (int i = 0, n = strlen(p); i < n; i++) {
         if (islower(p[i])) {
             find_letter_min(p[i]);
