@@ -1,4 +1,4 @@
 cs50
 ====
 
-CS50 repo
+CS50 2018 repo
