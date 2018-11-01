@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <cs50.h>
 
-int pyramide (int height)
+int pyramide (int height) 
 {
     int i, j,whitespace,sharp;
     whitespace=height -1;

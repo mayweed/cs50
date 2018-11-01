@@ -2,7 +2,7 @@
 #include<math.h>
 #include<cs50.h>
 
-int convert (int change)
+int convert (int change) 
 {
     int quarter=0;
     int dime=0;
@@ -28,12 +28,6 @@ int convert (int change)
          change -= 1;
          penny +=1;
     }
-    //Testing purpose...
-    //printf("Quarter => %i\n",quarter);
-    //printf("Dime => %i\n",dime);
-    //printf("Nickel => %i\n",nickel);
-    //printf("Penny => %i\n",penny);
-    //printf ("Number of coins = %d\n",quarter+dime+nickel+penny);
     printf ("%d\n",quarter + dime + nickel + penny);
     return 0;
 }

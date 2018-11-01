@@ -22,9 +22,8 @@ int find_letter_min(char letter)
     }
 
     for ( i = 0; i < 26; i++) {
-       if (alphabet[i]==letter) {
+       if (alphabet[i]==letter) 
           found_letter=i;
-       }
     }
     return found_letter;
 }
@@ -40,9 +39,8 @@ int find_letter_maj(char letter)
     }
     
     for ( y = 0; y < 26; y++) {
-       if (AlphaBetMaj[y]==letter) {
+       if (AlphaBetMaj[y]==letter) 
           found_letter_maj=y;
-       }
     } 
     return found_letter_maj;
 }

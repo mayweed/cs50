@@ -3,7 +3,7 @@
 #include<cs50.h>
 #include<math.h>
 
-int add_number(int s)
+int add_number(int s) 
 {
     int sum=0;
     while (s > 0){
