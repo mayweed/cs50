@@ -19,5 +19,9 @@ int frequency(string note)
 // Determines whether a string represents a rest
 bool is_rest(string s)
 {
-    // TODO
+    // instead of an int, shouldnt it be better to use strlen()
+    if (!strncmp(s,"",6))
+        return true;
+    else
+        return false;
 }
