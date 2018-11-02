@@ -7,7 +7,15 @@
 // Converts a fraction formatted as X/Y to eighths
 int duration(string fraction)
 {
-    // TODO
+    int x= atoi(&fraction[0]);
+    int y= atoi(&fraction[2]);
+    int dur=0;
+    switch(y){
+        case 2:dur= x*4;break;
+        case 4:dur= x*2;break;
+        case 8:dur= x;break;
+    }
+    return dur;
 }
 
 // Calculates frequency (in Hz) of a note
