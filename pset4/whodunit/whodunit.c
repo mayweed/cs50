@@ -1,5 +1,5 @@
 /**
- * copy.c
+ * copy.c -> whodunit.c
  *
  * Computer Science 50
  * Problem Set 5
