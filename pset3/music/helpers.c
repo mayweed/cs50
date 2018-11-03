@@ -1,9 +1,7 @@
 // Helper functions for music
-
 #include <cs50.h>
 #include <math.h>
 #include <string.h>
-
 #include "helpers.h"
 
 // Converts a fraction formatted as X/Y to eighths
@@ -26,12 +24,9 @@ int frequency(string note)
     //First parse input
     char n = note[0];
     int octave;
-
-    double freq;
     int st_gap=0;
 
     //init st_gap
-    //https://msdn.microsoft.com/fr-fr/library/66k51h7a.aspx
     if (note[1]=='#' || note[1]=='b'){
         octave=atoi(&note[2]);
         switch(note[1]){
@@ -39,14 +34,14 @@ int frequency(string note)
             case 'b':st_gap=-1;break;
         }
     }
-    else{
+    else
         octave=atoi(&note[1]);
-    }
 
     //Second configure semitones gap
+    // 1-per notes
     switch (n){
         case 'A':st_gap+=0;break;
-        case 'B':st_gap+=10;break;
+        case 'B':st_gap+=2;break;
         case 'C':st_gap+=-9;break;
         case 'D':st_gap+=-7;break;
         case 'E':st_gap+=-5;break;
@@ -54,7 +49,7 @@ int frequency(string note)
         case 'G':st_gap+=-2;break;
     }
 
-    //add octave
+    //2-per octaves
     switch (octave){
         case 0:st_gap+=-48;break;
         case 1:st_gap+=-36;break;
@@ -67,12 +62,13 @@ int frequency(string note)
     }
 
     //freq calculation
-    double div=st_gap/12.;
-    freq=pow(2,div)*440;
+    double div = st_gap/12.;
+    double f = pow(2,div)*440;
+    double freq = round(f);
 
-    //eprintf("note:%c octave:%d st_gap:%d div: %f freq:%.2f\n",n,octave,st_gap,div,freq);
     return freq;
 }
+
 // Determines whether a string represents a rest
 bool is_rest(string s)
 {
