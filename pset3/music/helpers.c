@@ -54,12 +54,24 @@ int frequency(string note)
         case 'G':st_gap+=-2;break;
     }
 
+    //add octave
+    switch (octave){
+        case 0:st_gap+=-48;break;
+        case 1:st_gap+=-36;break;
+        case 2:st_gap+=-24;break;
+        case 3:st_gap+=-12;break;
+        case 4:st_gap+=0;break;
+        case 5:st_gap+=12;break;
+        case 6:st_gap+=24;break;
+        case 7:st_gap+=36;break;
+    }
+
     //freq calculation
     double div=st_gap/12.;
     freq=pow(2,div)*440;
 
-    eprintf("note:%c octave:%d st_gap:%d div: %f freq:%.2f\n",n,octave,st_gap,div,freq);
-    return 0;
+    //eprintf("note:%c octave:%d st_gap:%d div: %f freq:%.2f\n",n,octave,st_gap,div,freq);
+    return freq;
 }
 // Determines whether a string represents a rest
 bool is_rest(string s)
