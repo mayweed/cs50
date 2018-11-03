@@ -1,6 +1,8 @@
 // Helper functions for music
 
 #include <cs50.h>
+#include <math.h>
+#include <string.h>
 
 #include "helpers.h"
 
@@ -24,16 +26,17 @@ int frequency(string note)
     //First parse input
     char n = note[0];
     int octave;
-    bool sharp=false,bemol=false;
 
-    float freq;
-    int semitones_delta;
+    double freq;
+    int st_gap=0;
 
+    //init st_gap
+    //https://msdn.microsoft.com/fr-fr/library/66k51h7a.aspx
     if (note[1]=='#' || note[1]=='b'){
         octave=atoi(&note[2]);
         switch(note[1]){
-            case '#':sharp=true;
-            case 'b':bemol=true;
+            case '#':st_gap=1;break;
+            case 'b':st_gap=-1;break;
         }
     }
     else{
@@ -42,28 +45,22 @@ int frequency(string note)
 
     //Second configure semitones gap
     switch (n){
-        case 'A':st_gap=0;break;
-        case 'B':st_gap=10;break;
-        case 'C':st_gap=-9;break;
-        case 'D':st_gap=-7;break;
-        case 'E':st_gap=-5;break;
-        case 'F':st_gap=-4;break;
-        case 'G':st_gap=-2;break;
+        case 'A':st_gap+=0;break;
+        case 'B':st_gap+=10;break;
+        case 'C':st_gap+=-9;break;
+        case 'D':st_gap+=-7;break;
+        case 'E':st_gap+=-5;break;
+        case 'F':st_gap+=-4;break;
+        case 'G':st_gap+=-2;break;
     }
-    //does not work here?
-    if (sharp){
-    st_gap+=1;
-    eprintf("test loop");
-    }
-    if (bemol)st_gap-=1;
 
     //freq calculation
     double div=st_gap/12.;
     freq=pow(2,div)*440;
 
-    eprintf("note:%c, sharp: %d; octave:%d st_gap:%d div: %f freq:%.2f\n",n,sharp,octave,st_gap,div,freq);
+    eprintf("note:%c octave:%d st_gap:%d div: %f freq:%.2f\n",n,octave,st_gap,div,freq);
+    return 0;
 }
-
 // Determines whether a string represents a rest
 bool is_rest(string s)
 {
