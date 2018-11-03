@@ -21,7 +21,25 @@ int duration(string fraction)
 // Calculates frequency (in Hz) of a note
 int frequency(string note)
 {
-    // TODO
+    //First parse input
+    char n = note[0];
+    int octave;
+    bool sharp=false,bemol=false;
+
+    float freq;
+    int semitones_delta;
+
+    if (note[1]=='#' || note[1]=='b'){
+        octave=atoi(&note[2]);
+        switch(note[1]){
+            case '#':sharp=true;
+            case 'b':bemol=true;
+        }
+    }
+    else{
+        octave=atoi(&note[1]);
+    }
+    eprintf("note:%c, sharp: %d; octave:%d\n",n,sharp,octave);
 }
 
 // Determines whether a string represents a rest
