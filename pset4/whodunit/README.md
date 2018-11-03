@@ -43,7 +43,8 @@ This number equals the number of bytes transferred only when size is 1
 
 ## What value does line 65 of `copy.c` assign to `padding` if `bi.biWidth` is `3`?
 
-TODO
+3 like 3 bytes, 1 byte(8 bits) for red, one for green and the last
+for blue. (NO it's padding to get a multiple of 4)
 
 ## What does `fseek` do?
 
