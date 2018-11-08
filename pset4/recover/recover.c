@@ -9,6 +9,7 @@
 
 //#include<cs50.h>
 #include<stdio.h>
+#include<stdbool.h>
 
 
 int main(int argc, char* argv[])
@@ -23,24 +24,21 @@ int main(int argc, char* argv[])
     FILE *card = fopen("card.raw", "r");
     if (card==NULL) return 2;
 
-     FILE *outptr=NULL;
+    FILE *outptr=NULL;
 
     //not int coz int == 8 bytes!! We compare bytes per bytes
     //we want a 1-byte type
     unsigned char buffer[512];
-
+    bool start=false;
     //https://www.tutorialspoint.com/cprogramming/c_scope_rules.htm
     int count=0;
     char filename[6];
-
-
 
     //Return value (ccpreference.com)
     //Number of objects read successfully, which may be less
     //than count if an error or end-of-file condition occurs.
     while (fread(buffer,512,1,card)==1)
     {
-        bool start=false;
         //block aligned, check only the first bytes of the buffer (cf spec)
         //the last one: F0 == 1111 0000 while e == 1110 so if you & the two you
         //get a 'e' (as 1&0 = 0) and the 4 last bits always yields0, whatever the bits
@@ -52,7 +50,6 @@ int main(int argc, char* argv[])
         }
         else
             start=false;
-
 
         //I encountered a sig
         if (start){
