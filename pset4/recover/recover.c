@@ -30,6 +30,7 @@ int main(int argc, char* argv[])
     //we want a 1-byte type
     unsigned char buffer[512];
     bool start=false;
+
     //https://www.tutorialspoint.com/cprogramming/c_scope_rules.htm
     int count=0;
     char filename[8];
@@ -46,7 +47,6 @@ int main(int argc, char* argv[])
         //check for sig in the first buffer blocks
         if (buffer[0]==0xff && buffer[1]==0xd8 && buffer[2]==0xff && (buffer[3] & 0xf0) == 0xe0){
             start=true;
-            count+=1;
         }
         else
             start=false;
@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
             snprintf(filename,sizeof(filename),"%03d.jpg",count);
             outptr=fopen(filename,"w");
             fwrite(&buffer,512,1,outptr);
-            //fprintf(stderr,"%d\n",count);
+            count+=1;
         }else{
             //false start (first bytes are no good)
             if (outptr!=NULL)
