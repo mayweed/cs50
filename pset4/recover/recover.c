@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
     bool start=false;
     //https://www.tutorialspoint.com/cprogramming/c_scope_rules.htm
     int count=0;
-    char filename[6];
+    char filename[8];
 
     //Return value (ccpreference.com)
     //Number of objects read successfully, which may be less
@@ -57,11 +57,10 @@ int main(int argc, char* argv[])
             if (outptr != NULL){
                 fclose(outptr);
             }
-            //count+=1;
-            sprintf(filename,"%03d.jpg",count);
+            snprintf(filename,sizeof(filename),"%03d.jpg",count);
             outptr=fopen(filename,"w");
             fwrite(&buffer,512,1,outptr);
-            fprintf(stderr,"%d\n",count);
+            //fprintf(stderr,"%d\n",count);
         }else{
             //false start (first bytes are no good)
             if (outptr!=NULL)
