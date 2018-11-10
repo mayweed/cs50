@@ -24,14 +24,14 @@ int main(int argc, char* argv[])
     FILE *card = fopen("card.raw", "r");
     if (card==NULL) return 2;
 
+    //open the output file
     FILE *outptr=NULL;
 
     //not int coz int == 8 bytes!! We compare bytes per bytes
     //we want a 1-byte type
     unsigned char buffer[512];
-    bool start=false;
-    //https://www.tutorialspoint.com/cprogramming/c_scope_rules.htm
     int count=0;
+    bool start=false;
     char filename[6];
 
     //Return value (ccpreference.com)
@@ -45,8 +45,7 @@ int main(int argc, char* argv[])
 
         //check for sig in the first buffer blocks
         if (buffer[0]==0xff && buffer[1]==0xd8 && buffer[2]==0xff && (buffer[3] & 0xf0) == 0xe0){
-            start=true;
-            count+=1;
+               start=true;
         }
         else
             start=false;
@@ -57,11 +56,12 @@ int main(int argc, char* argv[])
             if (outptr != NULL){
                 fclose(outptr);
             }
-            //count+=1;
-            sprintf(filename,"%03d.jpg",count);
-            outptr=fopen(filename,"w");
-            fwrite(&buffer,512,1,outptr);
-            fprintf(stderr,"%d\n",count);
+           count+=1;
+           sprintf(filename,"%03d.jpg",count);
+           outptr=fopen(filename,"w");
+           fwrite(&buffer,512,1,outptr);
+           fprintf(stderr,"%d\n",count);
+
         }else{
             //false start (first bytes are no good)
             if (outptr!=NULL)
