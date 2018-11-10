@@ -11,7 +11,6 @@
 #include<stdio.h>
 #include<stdbool.h>
 
-
 int main(int argc, char* argv[])
 {
     //Usage
@@ -30,9 +29,11 @@ int main(int argc, char* argv[])
     //not int coz int == 8 bytes!! We compare bytes per bytes
     //we want a 1-byte type
     unsigned char buffer[512];
-    int count=0;
     bool start=false;
-    char filename[6];
+
+    //https://www.tutorialspoint.com/cprogramming/c_scope_rules.htm
+    int count=0;
+    char filename[8];
 
     //Return value (ccpreference.com)
     //Number of objects read successfully, which may be less
@@ -56,12 +57,10 @@ int main(int argc, char* argv[])
             if (outptr != NULL){
                 fclose(outptr);
             }
-           count+=1;
-           sprintf(filename,"%03d.jpg",count);
-           outptr=fopen(filename,"w");
-           fwrite(&buffer,512,1,outptr);
-           fprintf(stderr,"%d\n",count);
-
+            snprintf(filename,sizeof(filename),"%03d.jpg",count);
+            outptr=fopen(filename,"w");
+            fwrite(&buffer,512,1,outptr);
+            count+=1;
         }else{
             //false start (first bytes are no good)
             if (outptr!=NULL)
