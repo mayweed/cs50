@@ -1,16 +1,35 @@
 # Questions
 
 ## What is pneumonoultramicroscopicsilicovolcanoconiosis?
-
-TODO
+pneumonoultramicroscopicsilicovolcanoconiosis is a word invented by the president of
+the National Puzzlers' League as a synonym for the disease known as silicosis. It is
+the longest word in the english language published in a dictionary, the Oxford
+English Dictionary, which defines it as "an artificial long word said to mean a lung
+disease caused by inhaling very fine ash and sand dust". (cf wikipedia)
 
 ## According to its man page, what does `getrusage` do?
 
-TODO
+Its declaration is: int getrusage(int who, struct rusage \*usage);
+It returns resource usage measures for who which can be one of the following:
+
+RUSAGE_SELF Return resource usage statistics for the calling process,
+which is the sum of resources used by all threads in the
+process.
+
+RUSAGE_CHILDREN Return resource usage statistics for all children of the
+calling process that have terminated and been waited for.
+These statistics will include the resources used by
+grandchildren, and further removed descendants, if all of the
+intervening descendants waited on their terminated children.
+
+RUSAGE_THREAD (since Linux 2.6.26) Return resource usage statistics for the calling thread.  The
+_GNU_SOURCE feature test macro must be defined (before
+including any header file) in order to obtain the definition
+of this constant from <sys/resource.h>.
 
 ## Per that same man page, how many members are in a variable of type `struct rusage`?
 
-TODO
+struct rusage got 16 members tow of which are struct.
 
 ## Why do you think we pass `before` and `after` by reference (instead of by value) to `calculate`, even though we're not changing their contents?
 
